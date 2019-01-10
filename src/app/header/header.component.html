@@ -1,0 +1,50 @@
+<mat-toolbar>
+  <mat-toolbar-row class="tool">
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>code</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button routerLink="/products" mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Collection</span>
+      </button>
+    </mat-menu>
+
+    <span class="logo">
+      <img routerLink="/" src="../../assets/C.N.21.svg">
+    </span>
+
+    <span class="spacer"></span>
+
+    <ng-template #anonymousUser>
+      <button mat-button routerLinkActive="mat-accent" routerLink="/login" class="header-menu">Login</button>
+      <button mat-button routerLinkActive="mat-accent" routerLink="/registration" class="header-menu">Join</button>
+    </ng-template>
+
+    <div *ngIf="appUser; else anonymousUser">
+
+      <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">{{appUser.email}}</button>
+      <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>My orders</button>
+        <ng-container *ngIf="appUser.isAdmin">
+          <button routerLink="/admin/orders" mat-menu-item>Manage Orders</button>
+          <button
+            [matMenuTriggerFor]="manage_products"
+            routerLink="/admin/products"
+            mat-menu-item
+          >
+            Manage Products
+          </button>
+        </ng-container>
+      </mat-menu>
+      <mat-menu #manage_products="matMenu">
+        <button routerLink="/admin/products/new" mat-menu-item>New</button>
+      </mat-menu>
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

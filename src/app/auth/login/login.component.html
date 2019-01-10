@@ -1,0 +1,26 @@
+<div class="form">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="example-form">
+    <mat-card>
+      <mat-card-title align="center">LOGIN</mat-card-title>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+          Email is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="password" matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="form.contains('password') && !password.hasError('required')">
+          Min length is 6
+        </mat-error>
+        <mat-error *ngIf="password.hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      <button [disabled]="form.invalid" mat-raised-button>Login</button>
+    </mat-card>
+  </form>
+</div>

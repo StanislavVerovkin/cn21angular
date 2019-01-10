@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="addProduct()" class="form">
+  <div class="example-form">
+    <mat-card>
+      <mat-card-title align="center">New product</mat-card-title>
+      <mat-form-field class="example-full-width">
+        <input formControlName="title" matInput placeholder="Title">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input formControlName="price" type="number" matInput placeholder="Price">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input formControlName="description" matInput placeholder="Description">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input formControlName="size" matInput placeholder="Size">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-select formControlName="category" placeholder="Category">
+          <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input formControlName="imageUrl" matInput placeholder="Image URL">
+      </mat-form-field>
+      <button [disabled]="form.invalid" mat-raised-button>Save</button>
+      <button type="button" [disabled]="form.invalid" (click)="deleteProduct()" mat-raised-button>Delete</button>
+    </mat-card>
+  </div>
+</form>
