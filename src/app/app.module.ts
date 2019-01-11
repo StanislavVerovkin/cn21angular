@@ -40,6 +40,7 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 const routes: Routes = [
@@ -102,7 +103,8 @@ const routes: Routes = [
     MatExpansionModule,
     MatDialogModule,
     NgxDatatableModule,
-    MatGridListModule
+    MatGridListModule,
+    FlexLayoutModule
   ],
   providers: [
     AuthService,

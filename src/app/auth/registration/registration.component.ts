@@ -66,6 +66,7 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     const dataFromRegisterForm = this.form.value;
+    console.log(dataFromRegisterForm);
     const {email, password} = this.form.value;
 
     this.spinner.show();

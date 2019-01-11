@@ -1,17 +1,6 @@
 <mat-toolbar>
   <mat-toolbar-row class="tool">
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>code</mat-icon>
-    </button>
-
-    <mat-menu #menu="matMenu">
-      <button routerLink="/products" mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Collection</span>
-      </button>
-    </mat-menu>
-
     <span class="logo">
       <img routerLink="/" src="../../assets/C.N.21.svg">
     </span>
@@ -26,7 +15,6 @@
     <div *ngIf="appUser; else anonymousUser">
 
       <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">{{appUser.email}}</button>
-      <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item>My orders</button>
@@ -39,6 +27,7 @@
           >
             Manage Products
           </button>
+          <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
         </ng-container>
       </mat-menu>
       <mat-menu #manage_products="matMenu">
@@ -46,5 +35,15 @@
       </mat-menu>
 
     </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>code</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button routerLink="/products" mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Collection</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
