@@ -5,7 +5,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
-import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-product-form',
@@ -24,7 +23,6 @@ export class ProductFormComponent implements OnInit {
               private spinner: NgxSpinnerService,
               private route: ActivatedRoute,
               private router: Router,
-              private afStorage: AngularFireStorage
   ) {
     this.categories$ = categoryService.getCategories();
   }
