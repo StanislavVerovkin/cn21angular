@@ -10,6 +10,10 @@
   width: 200px;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 mat-toolbar {
   color: black;
   background-color: white;
@@ -19,10 +23,6 @@ mat-toolbar {
 
 img {
   width: 150px;
-}
-
-button {
-  animation: glitch 1s steps(100) infinite;
 }
 
 

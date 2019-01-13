@@ -15,6 +15,7 @@
     <div *ngIf="appUser; else anonymousUser">
 
       <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">{{appUser.email}}</button>
+      <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item>My orders</button>
@@ -27,7 +28,6 @@
           >
             Manage Products
           </button>
-          <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
         </ng-container>
       </mat-menu>
       <mat-menu #manage_products="matMenu">

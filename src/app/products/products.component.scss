@@ -1,15 +1,24 @@
-.img {
-  width: 100%;
-  border: inset 1px black;
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  animation: glitch 1s steps(100) infinite;
 }
-.card-picture {
-  width: 23%;
-  margin-bottom: 2%;
+
+.flex > div {
+  flex-grow: 1;
+  text-align: center;
 }
-.container {
-  min-height: 100%;
-  width: 100%;
+
+img {
+  width: 500px;
 }
-.search-form {
-  width: 90%;
+
+h1 {
+  text-align: center;
+}
+
+.flex > div {
+  background: #fff;
+  border-radius: 2px;
+  padding: 1em;
 }

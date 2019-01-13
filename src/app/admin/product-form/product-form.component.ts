@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
+import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-product-form',
@@ -18,11 +19,15 @@ export class ProductFormComponent implements OnInit {
   public product;
   public form: FormGroup;
 
+  public ref: AngularFireStorageReference;
+  public task: AngularFireUploadTask;
+
   constructor(public categoryService: CategoryService,
               private productService: ProductService,
               private spinner: NgxSpinnerService,
               private route: ActivatedRoute,
               private router: Router,
+              private afStorage: AngularFireStorage
   ) {
     this.categories$ = categoryService.getCategories().valueChanges();
   }
@@ -77,17 +82,18 @@ export class ProductFormComponent implements OnInit {
       this.productService.update(this.id, dataFromForm)
         .then(() => {
           this.spinner.hide();
+          this.router.navigate(['/admin/products']);
         });
     } else {
       this.productService.addProductToDb(dataFromForm)
         .then(() => {
           this.spinner.hide();
+          this.form.reset();
         });
     }
   }
 
   deleteProduct() {
-
     if (confirm('Are you sure?')) {
       this.spinner.show();
       this.productService.delete(this.id)
@@ -96,5 +102,11 @@ export class ProductFormComponent implements OnInit {
           this.spinner.hide();
         });
     }
+  }
+
+  uploadImage(event) {
+    const id = Math.random().toString(36).substring(2);
+    this.ref = this.afStorage.ref(id);
+    this.task = this.ref.put(event.target.files[0]);
   }
 }

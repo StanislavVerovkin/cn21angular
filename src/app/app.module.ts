@@ -11,7 +11,7 @@ import {
   MatSnackBarModule,
   MatTabsModule,
   MatToolbarModule,
-  MatMenuModule, MatSelectModule, MatTableModule, MatExpansionModule, MatDialogModule, MatGridListModule
+  MatMenuModule, MatSelectModule, MatTableModule, MatExpansionModule, MatDialogModule, MatGridListModule, MatProgressBarModule
 } from '@angular/material';
 import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
@@ -41,6 +41,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 
 const routes: Routes = [
@@ -82,6 +83,7 @@ const routes: Routes = [
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -104,7 +106,8 @@ const routes: Routes = [
     MatDialogModule,
     NgxDatatableModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatProgressBarModule
   ],
   providers: [
     AuthService,

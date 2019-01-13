@@ -1,31 +1,7 @@
-<div>
-  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/pants.jpg">
-    </div>
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/pants.jpg">
-    </div>
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/pants.jpg">
-    </div>
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/pants.jpg">
-    </div>
-  </div>
-  <div class="container" style="position: relative; bottom: 3px" fxLayout="row" fxLayout.xs="column"
-       fxLayoutAlign="center">
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/suit.jpg">
-    </div>
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/suit.jpg">
-    </div>
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/suit.jpg">
-    </div>
-    <div fxFlex="50%">
-      <img mat-card-image class="img" src="../../assets/suit.jpg">
-    </div>
+<div class="flex">
+  <div *ngFor="let p of products$">
+    <h2>{{p.title}}</h2>
+    <img [src]=p.imageUrl/>
+    <p>EUR {{p.price}}</p>
   </div>
 </div>
