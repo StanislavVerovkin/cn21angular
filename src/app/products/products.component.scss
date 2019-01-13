@@ -1,23 +1,21 @@
 .flex {
   display: flex;
   flex-wrap: wrap;
+
+  div {
+    flex-grow: 1;
+    text-align: center;
+    background: #fff;
+    border-radius: 2px;
+    padding: 1em;
+  }
+
+  img {
+    width: 500px;
+  }
+
+  h1 {
+    text-align: center;
+  }
 }
 
-.flex > div {
-  flex-grow: 1;
-  text-align: center;
-}
-
-img {
-  width: 500px;
-}
-
-h1 {
-  text-align: center;
-}
-
-.flex > div {
-  background: #fff;
-  border-radius: 2px;
-  padding: 1em;
-}
