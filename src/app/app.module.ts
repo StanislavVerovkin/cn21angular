@@ -107,7 +107,7 @@ const routes: Routes = [
     NgxDatatableModule,
     MatGridListModule,
     FlexLayoutModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   providers: [
     AuthService,

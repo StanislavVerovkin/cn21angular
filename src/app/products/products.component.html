@@ -1,7 +1,19 @@
+<button mat-button [matMenuTriggerFor]="menu">categories</button>
+<mat-menu #menu="matMenu">
+  <a
+    *ngFor="let c of categories$ | async"
+    mat-menu-item
+    [routerLink]="['/products/']"
+    [queryParams]="{ category: c.id }"
+  >
+    {{c.name}}
+  </a>
+</mat-menu>
 <div class="flex">
-  <div *ngFor="let p of products$">
+  <div *ngFor="let p of filteredProducts">
     <h2>{{p.title}}</h2>
-    <img [src]=p.imageUrl/>
+    <img [src]=p.imageUrl />
     <p>EUR {{p.price}}</p>
+    <button mat-button>Add to cart</button>
   </div>
 </div>

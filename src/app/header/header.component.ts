@@ -13,7 +13,7 @@ import {User} from '../models/user.model';
 })
 export class HeaderComponent implements OnInit {
 
-  appUser: User;
+  public appUser: User;
 
   constructor(private fb: AngularFireAuth,
               private authService: AuthService,
