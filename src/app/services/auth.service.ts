@@ -38,7 +38,7 @@ export class AuthService {
       .pipe(
         switchMap(user => {
           if (user) {
-            return this.userService.getUserObject(user.uid).valueChanges();
+            return this.userService.getUserObject(user.uid).valueChanges()
           }
           return of(null);
         })

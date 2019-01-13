@@ -16,16 +16,7 @@ export class AdminProductsComponent {
 
   constructor(private productService: ProductService) {
     this.isLoaded = true;
-    this.productService.getAllProducts().snapshotChanges()
-      .pipe(
-        map(actions => {
-          return actions.map(a => {
-            const data = a.payload.doc.data() as Product;
-            const id = a.payload.doc.id;
-            return {id, ...data};
-          });
-        })
-      )
+    this.productService.getAllProducts()
       .subscribe((products) => {
         this.filteredProducts = this.products = products;
         this.isLoaded = false;

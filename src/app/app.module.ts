@@ -42,6 +42,7 @@ import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import { ProductItemComponent } from './product-item/product-item.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'products', component: ProductsComponent},
+  {path: 'product-item/:id', component: ProductItemComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
 
   {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
@@ -76,6 +78,7 @@ const routes: Routes = [
     ProductFormComponent,
     HeaderComponent,
     HomeComponent,
+    ProductItemComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],

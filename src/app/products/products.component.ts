@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
     public route: ActivatedRoute,
   ) {
 
-    this.productService.getAllProducts().valueChanges()
+    this.productService.getAllProducts()
       .pipe(
         switchMap((products) => {
           this.products = products;
@@ -39,16 +39,7 @@ export class ProductsComponent implements OnInit {
           this.products;
       });
 
-    this.categories$ = this.categoryService.getCategories().snapshotChanges()
-      .pipe(
-        map(actions => {
-          return actions.map(a => {
-            const data = a.payload.doc.data() as Product;
-            const id = a.payload.doc.id;
-            return {id, ...data};
-          });
-        })
-      );
+    this.categories$ = this.categoryService.getCategories();
 
     this.category = this.route.snapshot.paramMap.get('category');
   }

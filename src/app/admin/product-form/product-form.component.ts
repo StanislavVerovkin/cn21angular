@@ -29,7 +29,7 @@ export class ProductFormComponent implements OnInit {
               private router: Router,
               private afStorage: AngularFireStorage
   ) {
-    this.categories$ = categoryService.getCategories().valueChanges();
+    this.categories$ = categoryService.getCategories();
   }
 
   ngOnInit() {

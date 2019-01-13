@@ -12,8 +12,9 @@
 <div class="flex">
   <div *ngFor="let p of filteredProducts">
     <h2>{{p.title}}</h2>
-    <img [src]=p.imageUrl />
+    <a [routerLink]="['/product-item/', p.id]">
+      <img [src]=p.imageUrl />
+    </a>
     <p>EUR {{p.price}}</p>
-    <button color="warn" mat-raised-button>ADD TO CART</button>
   </div>
 </div>
