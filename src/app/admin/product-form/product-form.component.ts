@@ -5,8 +5,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
-import {UploadService} from '../../services/upload.service';
-import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-product-form',
@@ -19,16 +17,12 @@ export class ProductFormComponent implements OnInit {
   public categories$;
   public product;
   public form: FormGroup;
-  public imageSrc;
-
 
   constructor(public categoryService: CategoryService,
               private productService: ProductService,
               private spinner: NgxSpinnerService,
               private route: ActivatedRoute,
               private router: Router,
-              private uploadService: UploadService,
-              private storage: AngularFireStorage
   ) {
     this.categories$ = categoryService.getCategories();
   }
@@ -86,16 +80,9 @@ export class ProductFormComponent implements OnInit {
           this.router.navigate(['/admin/products']);
         });
     } else {
-      this.uploadService.upload()
-        .then((data) => {
-          this.imageSrc = data.ref.getDownloadURL()
-            .then((url) => {
-              this.imageSrc = url;
-              this.productService.addProductToDb(dataFromForm)
-                .then(() => {
-                  this.productService.update(this.id, dataFromForm.upload = this.imageSrc);
-                });
-            });
+      this.productService.addProductToDb(dataFromForm)
+        .then(() => {
+          this.spinner.hide();
         });
     }
   }
@@ -109,9 +96,5 @@ export class ProductFormComponent implements OnInit {
           this.spinner.hide();
         });
     }
-  }
-
-  detectFiles() {
-    this.uploadService.detect(event);
   }
 }

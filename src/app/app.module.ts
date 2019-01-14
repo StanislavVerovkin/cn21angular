@@ -43,7 +43,6 @@ import {HomeComponent} from './home/home.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ProductItemComponent } from './product-item/product-item.component';
-import {UploadService} from './services/upload.service';
 
 
 const routes: Routes = [
@@ -118,7 +117,6 @@ const routes: Routes = [
     UserService,
     CategoryService,
     ProductService,
-    UploadService,
     AuthGuard,
     AdminGuard
   ],

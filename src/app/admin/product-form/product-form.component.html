@@ -19,10 +19,9 @@
           <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <!--<mat-form-field class="example-full-width">-->
-      <input type="file" formControlName="upload" (change)="detectFiles($event)">
-      <!--<button type="button" mat-raised-button (click)="uploadImage()">Upload file</button>-->
-      <!--</mat-form-field>-->
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput="" formControlName="upload" placeholder="Image URL">
+      </mat-form-field>
       <button [disabled]="form.invalid" mat-raised-button>Save</button>
       <button type="button" [disabled]="form.invalid" (click)="deleteProduct()" mat-raised-button>Delete</button>
     </mat-card>
