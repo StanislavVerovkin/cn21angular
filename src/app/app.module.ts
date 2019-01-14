@@ -11,7 +11,14 @@ import {
   MatSnackBarModule,
   MatTabsModule,
   MatToolbarModule,
-  MatMenuModule, MatSelectModule, MatTableModule, MatExpansionModule, MatDialogModule, MatGridListModule, MatProgressBarModule
+  MatMenuModule,
+  MatSelectModule,
+  MatTableModule,
+  MatExpansionModule,
+  MatDialogModule,
+  MatGridListModule,
+  MatProgressBarModule,
+  MatBadgeModule
 } from '@angular/material';
 import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
@@ -43,6 +50,7 @@ import {HomeComponent} from './home/home.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ProductItemComponent } from './product-item/product-item.component';
+import {ShoppingCartService} from './services/shopping-cart.service';
 
 
 const routes: Routes = [
@@ -111,12 +119,14 @@ const routes: Routes = [
     MatGridListModule,
     FlexLayoutModule,
     MatProgressBarModule,
+    MatBadgeModule
   ],
   providers: [
     AuthService,
     UserService,
     CategoryService,
     ProductService,
+    ShoppingCartService,
     AuthGuard,
     AdminGuard
   ],

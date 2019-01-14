@@ -5,6 +5,7 @@ import {map, switchMap} from 'rxjs/operators';
 import {CategoryService} from '../services/category.service';
 import {ActivatedRoute} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {ShoppingCartService} from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-products',
@@ -12,6 +13,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  @Input('product') product: Product;
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
@@ -21,6 +23,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
+    private shoppingCart: ShoppingCartService,
     public route: ActivatedRoute,
   ) {
 
@@ -40,10 +43,19 @@ export class ProductsComponent implements OnInit {
       });
 
     this.categories$ = this.categoryService.getCategories();
-
     this.category = this.route.snapshot.paramMap.get('category');
   }
 
   ngOnInit() {
+  }
+
+  addToCart(product: Product) {
+    const cartId = localStorage.getItem('cartId');
+    if (!cartId) {
+      this.shoppingCart.create()
+        .then((result) => {
+          localStorage.setItem('cartId', result.id);
+        });
+    }
   }
 }

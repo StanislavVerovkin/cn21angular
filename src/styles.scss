@@ -1,19 +1,19 @@
 @import '~@angular/material/theming';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300');
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Love Ya Like A Sister, cursive'
+  $font-family: 'Roboto Mono, monospace'
 );
 
 @include mat-core($custom-typography);
 
 body {
   margin: 0;
-  font-family: 'Love Ya Like A Sister', cursive;
+  font-family: 'Roboto Mono', monospace;
 }
 
 //GLITCH EFFECT//

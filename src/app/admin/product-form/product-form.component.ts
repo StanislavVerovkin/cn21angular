@@ -44,7 +44,7 @@ export class ProductFormComponent implements OnInit {
       'category': new FormControl('', [
         Validators.required
       ]),
-      'upload': new FormControl('', [
+      'imageUrl': new FormControl('', [
         Validators.required
       ]),
     });
@@ -57,13 +57,13 @@ export class ProductFormComponent implements OnInit {
           take(1)
         )
         .subscribe((data) => {
-          console.log(data);
           this.product = data;
           this.form.get('title').setValue(this.product.title);
           this.form.get('price').setValue(this.product.price);
           this.form.get('description').setValue(this.product.description);
           this.form.get('size').setValue(this.product.size);
           this.form.get('category').setValue(this.product.category);
+          this.form.get('imageUrl').setValue(this.product.imageUrl);
         });
     }
   }
@@ -82,6 +82,7 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.productService.addProductToDb(dataFromForm)
         .then(() => {
+          this.form.reset();
           this.spinner.hide();
         });
     }

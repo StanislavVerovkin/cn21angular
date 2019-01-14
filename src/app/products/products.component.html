@@ -1,4 +1,12 @@
-<button mat-button [matMenuTriggerFor]="menu">categories</button>
+<div class="icons_menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>sort</mat-icon>
+  </button>
+  <button routerLink="/shopping-cart" mat-icon-button>
+    <mat-icon matBadge="6" matBadgeColor="warn">add_shopping_cart</mat-icon>
+  </button>
+</div>
+
 <mat-menu #menu="matMenu">
   <a
     *ngFor="let c of categories$ | async"
@@ -13,8 +21,9 @@
   <div *ngFor="let p of filteredProducts">
     <h2>{{p.title}}</h2>
     <a [routerLink]="['/product-item/', p.id]">
-      <img [src]=p.imageUrl />
+      <img [src]=p.imageUrl/>
     </a>
     <p>EUR {{p.price}}</p>
+    <button (click)="addToCart(product)" mat-raised-button color="warn">Add to cart</button>
   </div>
 </div>
