@@ -75,12 +75,12 @@ export class ProductFormComponent implements OnInit {
   }
 
   addProduct() {
-    const {title, price, description, size, category} = this.form.value;
+    const dataFromForm = this.form.value;
 
     this.spinner.show();
 
     if (this.id) {
-      this.productService.update(this.id, {title, price, description, size, category})
+      this.productService.update(this.id, dataFromForm)
         .then(() => {
           this.spinner.hide();
           this.router.navigate(['/admin/products']);
@@ -91,8 +91,9 @@ export class ProductFormComponent implements OnInit {
           this.imageSrc = data.ref.getDownloadURL()
             .then((url) => {
               this.imageSrc = url;
-              this.productService.addProductToDb({title, price, description, size, category})
+              this.productService.addProductToDb(dataFromForm)
                 .then(() => {
+                  this.productService.update(this.id, dataFromForm.upload = this.imageSrc);
                 });
             });
         });
