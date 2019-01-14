@@ -1,9 +1,10 @@
 .flex {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   div {
-    flex-grow: 1;
+    //flex-grow: 1;
     text-align: center;
     background: #fff;
     border-radius: 2px;

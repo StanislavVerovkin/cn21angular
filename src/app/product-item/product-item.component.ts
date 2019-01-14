@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {take} from 'rxjs/operators';
 import {ProductService} from '../services/product.service';
 
 @Component({
@@ -11,20 +10,20 @@ import {ProductService} from '../services/product.service';
 export class ProductItemComponent implements OnInit {
 
   public id;
+  public isLoaded = false;
   public product: any = {};
 
-  constructor(private route: ActivatedRoute, private productService: ProductService,
+  constructor(private route: ActivatedRoute,
+              private productService: ProductService
   ) {
 
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id) {
       this.productService.getProductById(this.id).valueChanges()
-        .pipe(
-          take(1)
-        )
         .subscribe((data) => {
           this.product = data;
+          this.isLoaded = true;
         });
     }
   }

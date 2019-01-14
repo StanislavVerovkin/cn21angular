@@ -5,6 +5,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
+import {UploadService} from '../../services/upload.service';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-product-form',
@@ -17,12 +19,16 @@ export class ProductFormComponent implements OnInit {
   public categories$;
   public product;
   public form: FormGroup;
+  public imageSrc;
+
 
   constructor(public categoryService: CategoryService,
               private productService: ProductService,
               private spinner: NgxSpinnerService,
               private route: ActivatedRoute,
               private router: Router,
+              private uploadService: UploadService,
+              private storage: AngularFireStorage
   ) {
     this.categories$ = categoryService.getCategories();
   }
@@ -44,9 +50,9 @@ export class ProductFormComponent implements OnInit {
       'category': new FormControl('', [
         Validators.required
       ]),
-      'imageUrl': new FormControl('', [
+      'upload': new FormControl('', [
         Validators.required
-      ])
+      ]),
     });
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -64,27 +70,31 @@ export class ProductFormComponent implements OnInit {
           this.form.get('description').setValue(this.product.description);
           this.form.get('size').setValue(this.product.size);
           this.form.get('category').setValue(this.product.category);
-          this.form.get('imageUrl').setValue(this.product.imageUrl);
         });
     }
   }
 
   addProduct() {
-    const dataFromForm = this.form.value;
+    const {title, price, description, size, category} = this.form.value;
 
     this.spinner.show();
 
     if (this.id) {
-      this.productService.update(this.id, dataFromForm)
+      this.productService.update(this.id, {title, price, description, size, category})
         .then(() => {
           this.spinner.hide();
           this.router.navigate(['/admin/products']);
         });
     } else {
-      this.productService.addProductToDb(dataFromForm)
-        .then(() => {
-          this.spinner.hide();
-          this.form.reset();
+      this.uploadService.upload()
+        .then((data) => {
+          this.imageSrc = data.ref.getDownloadURL()
+            .then((url) => {
+              this.imageSrc = url;
+              this.productService.addProductToDb({title, price, description, size, category})
+                .then(() => {
+                });
+            });
         });
     }
   }
@@ -98,5 +108,9 @@ export class ProductFormComponent implements OnInit {
           this.spinner.hide();
         });
     }
+  }
+
+  detectFiles() {
+    this.uploadService.detect(event);
   }
 }

@@ -1,5 +1,6 @@
-<div class="description">
+<div *ngIf="isLoaded" class="description">
   <h1>{{product.title}}</h1>
   <h2>EUR {{product.price}}</h2>
+  <img [src]="product.imageUrl">
 </div>
 
