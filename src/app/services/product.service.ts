@@ -14,8 +14,15 @@ export class ProductService {
   ) {
   }
 
-  addProductToDb(product) {
-    return this.afs.collection('products').add(product);
+  addProductToDb(value) {
+    return this.afs.collection('products').add({
+      title: value.title,
+      price: value.price,
+      description: value.description,
+      size: value.size,
+      category: value.category,
+      image: ''
+    });
   }
 
   getAllProducts() {
@@ -35,8 +42,15 @@ export class ProductService {
     return this.afs.collection('products').doc(productId);
   }
 
-  update(productId, product) {
-    return this.afs.collection('products').doc(productId).set(product);
+  update(productId, image, value) {
+    return this.afs.collection('products').doc(productId).set({
+      title: value.title,
+      price: value.price,
+      description: value.description,
+      size: value.size,
+      category: value.category,
+      image: image
+    });
   }
 
   delete(productId) {

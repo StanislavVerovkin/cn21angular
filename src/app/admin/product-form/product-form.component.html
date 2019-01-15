@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="addProduct()" class="form">
+<form [formGroup]="form" (ngSubmit)="addProduct(form.value)" class="form">
   <div class="example-form">
     <mat-card>
       <mat-card-title align="center">New product</mat-card-title>
@@ -19,11 +19,14 @@
           <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input type="text" matInput="" formControlName="imageUrl" placeholder="Image URL">
-      </mat-form-field>
+      <!--<mat-form-field class="example-full-width">-->
+      <!--<input type="text" matInput="" formControlName="imageUrl" placeholder="Image URL">-->
+      <!--</mat-form-field>-->
+      <input  (change)="onFileChanged($event)" #fileInput type="file" hidden accept="image/*">
+      <button type="button" (click)="fileInput.click()" mat-raised-button>Upload</button>
       <button [disabled]="form.invalid" mat-raised-button>Save</button>
-      <button type="button" [disabled]="form.invalid" (click)="deleteProduct()" mat-raised-button>Delete</button>
+      <button [disabled]="form.invalid" type="button" (click)="deleteProduct()" mat-raised-button>Delete</button>
     </mat-card>
+    <img *ngIf="imageSrc" [src]="imageSrc">
   </div>
 </form>

@@ -21,7 +21,7 @@
   <div *ngFor="let p of filteredProducts">
     <h2>{{p.title}}</h2>
     <a [routerLink]="['/product-item/', p.id]">
-      <img [src]=p.imageUrl/>
+      <img [src]=p.image />
     </a>
     <p>EUR {{p.price}}</p>
     <button (click)="addToCart(product)" mat-raised-button color="warn">Add to cart</button>
