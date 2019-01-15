@@ -47,6 +47,9 @@ export class ProductFormComponent implements OnInit {
       ]),
       'category': new FormControl('', [
         Validators.required
+      ]),
+      'image': new FormControl('', [
+        Validators.required
       ])
     });
 
@@ -84,22 +87,21 @@ export class ProductFormComponent implements OnInit {
   }
 
   updateImage() {
-    if (this.id.length > 0) {
-      const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
+    const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
 
-      this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)
-        .then((data) => {
-          data.ref.getDownloadURL()
-            .then((url) => {
-              this.imageSrc = url;
-              this.productService.update(this.id, this.imageSrc, this.form.value)
-                .then(() => {
-                  this.form.reset();
-                  this.spinner.hide();
-                });
-            });
-        });
-    }
+    this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)
+      .then((data) => {
+        data.ref.getDownloadURL()
+          .then((url) => {
+            this.imageSrc = url;
+            this.productService.update(this.id, this.imageSrc, this.form.value)
+              .then(() => {
+                this.form.reset();
+                this.spinner.hide();
+                this.router.navigate(['/admin/products']);
+              });
+          });
+      });
   }
 
   deleteProduct() {

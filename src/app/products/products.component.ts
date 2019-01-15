@@ -13,7 +13,6 @@ import {ShoppingCartService} from '../services/shopping-cart.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  @Input('product') product: Product;
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
@@ -49,13 +48,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
   }
 
-  addToCart(product: Product) {
-    const cartId = localStorage.getItem('cartId');
-    if (!cartId) {
-      this.shoppingCart.create()
-        .then((result) => {
-          localStorage.setItem('cartId', result.id);
-        });
-    }
+  addToCart() {
+    this.shoppingCart.addToCart();
   }
 }
