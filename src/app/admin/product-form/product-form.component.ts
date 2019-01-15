@@ -73,27 +73,29 @@ export class ProductFormComponent implements OnInit {
     this.spinner.show();
 
     if (this.id) {
-      // this.productService.update(this.id, value, )
-      //   .then(() => {
-      //     this.spinner.hide();
-      //     this.router.navigate(['/admin/products']);
-      //   });
+      this.updateImage();
     } else {
       this.productService.addProductToDb(value)
         .then((product) => {
+          this.id = product.id;
+          this.updateImage();
+        });
+    }
+  }
 
-          const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
+  updateImage() {
+    if (this.id.length > 0) {
+      const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
 
-          this.afs.ref(`uploads/${product.id}${imageExtension}`).put(this.image)
-            .then((data) => {
-              data.ref.getDownloadURL()
-                .then((url) => {
-                  const imageSrc = url;
-                  this.productService.update(product.id, imageSrc, value)
-                    .then(() => {
-                      this.form.reset();
-                      this.spinner.hide();
-                    });
+      this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)
+        .then((data) => {
+          data.ref.getDownloadURL()
+            .then((url) => {
+              this.imageSrc = url;
+              this.productService.update(this.id, this.imageSrc, this.form.value)
+                .then(() => {
+                  this.form.reset();
+                  this.spinner.hide();
                 });
             });
         });
