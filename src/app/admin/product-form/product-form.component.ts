@@ -71,8 +71,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  addProduct(value) {
-
+  onSubmit(value) {
     if (this.id) {
       this.updateImage();
     } else {

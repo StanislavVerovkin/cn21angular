@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, take} from 'rxjs/operators';
-import {Product} from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +31,7 @@ export class ShoppingCartService {
 
   async addToCart(product) {
     const cartId = await this.getOrCreateCartId();
-    const item$ = this.afs.collection('cart').doc(cartId).collection('items').doc(product[0].id);
+    const item$ = this.afs.collection('cart').doc(cartId).collection('items').doc(product.id);
 
     item$.snapshotChanges()
       .pipe(
