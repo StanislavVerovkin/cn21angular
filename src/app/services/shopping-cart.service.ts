@@ -19,7 +19,8 @@ export class ShoppingCartService {
 
   public async getCart() {
     const cartId = await this.getOrCreateCartId();
-    return this.afs.collection('cart').doc(cartId).collection('items');
+    return this.afs.collection('cart').doc(cartId).collection('items').snapshotChanges();
+
   }
 
   private getItem(cartId: string, productId: string) {
