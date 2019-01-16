@@ -17,7 +17,16 @@ export class ShoppingCartService {
     });
   }
 
-  private async getOrCreateCartId() {
+  public async getCart() {
+    const cartId = await this.getOrCreateCartId();
+    return this.afs.collection('cart').doc(cartId).collection('items');
+  }
+
+  private getItem(cartId: string, productId: string) {
+    return this.afs.collection('cart').doc(cartId).collection('items').doc(productId);
+  }
+
+  private async getOrCreateCartId(): Promise<string> {
     const cartId = localStorage.getItem('cartId');
 
     if (cartId) {
@@ -30,8 +39,9 @@ export class ShoppingCartService {
   }
 
   async addToCart(product) {
+
     const cartId = await this.getOrCreateCartId();
-    const item$ = this.afs.collection('cart').doc(cartId).collection('items').doc(product.id);
+    const item$ = this.getItem(cartId, product.id);
 
     item$.snapshotChanges()
       .pipe(

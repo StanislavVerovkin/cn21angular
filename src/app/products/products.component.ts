@@ -1,27 +1,30 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../services/product.service';
 import {Product} from '../models/product.model';
-import {switchMap} from 'rxjs/operators';
+import {map, switchMap, take} from 'rxjs/operators';
 import {CategoryService} from '../services/category.service';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingCartService} from '../services/shopping-cart.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
   public categories$;
   public category: string;
+  public cart: any;
+  public subscription: Subscription;
 
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private shoppingCart: ShoppingCartService,
+    private cartService: ShoppingCartService,
     public route: ActivatedRoute,
   ) {
 
@@ -44,10 +47,37 @@ export class ProductsComponent implements OnInit {
     this.category = this.route.snapshot.paramMap.get('category');
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    (await this.cartService.getCart())
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            return {...data};
+          });
+        })
+      )
+      .subscribe((cart) => {
+        console.log(cart);
+        this.cart = cart;
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   addToCart(product) {
-    this.shoppingCart.addToCart(product);
+    this.cartService.addToCart(product);
+  }
+
+  getQuantity() {
+    if (!this.cart) {
+      return 0;
+    }
+    const item = this.cart;
+    debugger;
+    // return item.quantity ? item.quantity : 0;
   }
 }
