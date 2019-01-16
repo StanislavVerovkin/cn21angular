@@ -73,8 +73,6 @@ export class ProductFormComponent implements OnInit {
 
   addProduct(value) {
 
-    this.spinner.show();
-
     if (this.id) {
       this.updateImage();
     } else {
@@ -87,6 +85,8 @@ export class ProductFormComponent implements OnInit {
   }
 
   updateImage() {
+
+    this.spinner.show();
     const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
 
     this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)

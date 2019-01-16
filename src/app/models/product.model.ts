@@ -1,5 +1,5 @@
 export interface Product {
-  $key: string;
+  id: string;
   category: string;
   description: string;
   image: string;
