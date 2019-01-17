@@ -18,7 +18,7 @@ import {
   MatDialogModule,
   MatGridListModule,
   MatProgressBarModule,
-  MatBadgeModule
+  MatBadgeModule, MatStepperModule
 } from '@angular/material';
 import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
@@ -119,7 +119,8 @@ const routes: Routes = [
     MatGridListModule,
     FlexLayoutModule,
     MatProgressBarModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatStepperModule
   ],
   providers: [
     AuthService,
