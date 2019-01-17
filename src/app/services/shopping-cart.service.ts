@@ -34,8 +34,8 @@ export class ShoppingCartService {
       return cartId;
     } else {
       const result = await this.create();
-      localStorage.setItem('cartId', result.id);
-      return result.id;
+      localStorage.setItem('cartId', result.key);
+      return result.key;
     }
   }
 
