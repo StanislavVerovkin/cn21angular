@@ -12,14 +12,13 @@ import {Subscription} from 'rxjs';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
   public categories$;
   public category: string;
   public cart: any;
-  public subscription: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -61,10 +60,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         console.log(cart);
         this.cart = cart;
       });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   addToCart(product) {
