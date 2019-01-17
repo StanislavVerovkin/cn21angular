@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {map, take} from 'rxjs/operators';
-import {Product} from '../models/product.model';
+import {take} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +40,14 @@ export class ShoppingCartService {
   }
 
   async addToCart(product) {
+    this.updateItemQuantity(product, 1);
+  }
+
+  async removeFromCart(product) {
+    this.updateItemQuantity(product, -1);
+  }
+
+  private async updateItemQuantity(product, change: number) {
 
     const cartId = await this.getOrCreateCartId();
     const item$ = this.getItem(cartId, product.id);
@@ -53,7 +60,7 @@ export class ShoppingCartService {
         console.log(item);
         if (item.quantity) {
           item$.update({
-            quantity: item.quantity + 1
+            quantity: item.quantity + change
           });
         } else {
           item$.set({

@@ -1,11 +1,10 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../services/product.service';
 import {Product} from '../models/product.model';
-import {map, switchMap, take} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 import {CategoryService} from '../services/category.service';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingCartService} from '../services/shopping-cart.service';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +19,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public category: string;
   public cart: any;
   public subscription;
+  public shoppingCartItemCount: number;
 
   constructor(
     private productService: ProductService,
@@ -50,8 +50,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.subscription = (await this.cartService.getCart())
       .subscribe((cart) => {
-        console.log(cart);
         this.cart = cart;
+
+        this.shoppingCartItemCount = 0;
+        for (const productId in this.cart.items) {
+          this.shoppingCartItemCount += this.cart.items[productId].quantity;
+        }
       });
   }
 
@@ -61,6 +65,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   addToCart(product) {
     this.cartService.addToCart(product);
+  }
+
+  removeFromCart(product) {
+    this.cartService.removeFromCart(product);
   }
 
   getQuantity(product) {

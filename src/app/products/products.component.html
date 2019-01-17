@@ -3,7 +3,7 @@
     <mat-icon>sort</mat-icon>
   </button>
   <button routerLink="/shopping-cart" mat-icon-button>
-    <mat-icon matBadge="6" matBadgeColor="warn">add_shopping_cart</mat-icon>
+    <mat-icon [matBadge]="shoppingCartItemCount" matBadgeColor="warn">add_shopping_cart</mat-icon>
   </button>
 </div>
 
@@ -24,7 +24,28 @@
       <img [src]=p.image />
     </a>
     <p>EUR {{p.price}}</p>
-    <button (click)="addToCart(p)" mat-raised-button color="warn">Add to cart</button>
-    <div>{{getQuantity(p)}}</div>
+    <button
+      (click)="addToCart(p)"
+      *ngIf="getQuantity(p) === 0; else updateQuantity"
+      mat-raised-button
+      color="warn"
+    >
+      Add to cart
+    </button>
+    <ng-template #updateQuantity>
+        <button
+          mat-raised-button
+          (click)="removeFromCart(p)"
+        >
+          <mat-icon>navigate_before</mat-icon>
+        </button>
+        {{getQuantity(p)}}
+        <button
+          mat-raised-button
+          (click)="addToCart(p)"
+        >
+          <mat-icon>navigate_next</mat-icon>
+        </button>
+    </ng-template>
   </div>
 </div>
