@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, take} from 'rxjs/operators';
+import {Product} from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +13,19 @@ export class ShoppingCartService {
   }
 
   private create() {
-    return this.afs.collection('cart').add({
+    return this.db.list('cart').push({
       dateCreated: new Date().getDate()
     });
   }
 
   public async getCart() {
     const cartId = await this.getOrCreateCartId();
-    return this.afs.collection('cart').doc(cartId).collection('items').snapshotChanges();
+    return this.db.object('/cart/' + cartId).valueChanges();
 
   }
 
   private getItem(cartId: string, productId: string) {
-    return this.afs.collection('cart').doc(cartId).collection('items').doc(productId);
+    return this.db.object('/cart/' + cartId + '/items/' + productId);
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -44,18 +45,13 @@ export class ShoppingCartService {
     const cartId = await this.getOrCreateCartId();
     const item$ = this.getItem(cartId, product.id);
 
-    item$.snapshotChanges()
+    item$.valueChanges()
       .pipe(
-        take(1),
-        map(a => {
-          const exists = a.payload.exists;
-          const data = a.payload.data();
-          const id = a.payload.id;
-          return {id, exists, ...data};
-        })
+        take(1)
       )
       .subscribe((item: any) => {
-        if (item.exists) {
+        console.log(item);
+        if (item.quantity) {
           item$.update({
             quantity: item.quantity + 1
           });

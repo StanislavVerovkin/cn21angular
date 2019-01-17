@@ -12,13 +12,14 @@ import {Subscription} from 'rxjs';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
   public categories$;
   public category: string;
   public cart: any;
+  public subscription;
 
   constructor(
     private productService: ProductService,
@@ -47,31 +48,26 @@ export class ProductsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    (await this.cartService.getCart())
-      .pipe(
-        map(actions => {
-          return actions.map(a => {
-            const data = a.payload.doc.data();
-            return {...data};
-          });
-        })
-      )
+    this.subscription = (await this.cartService.getCart())
       .subscribe((cart) => {
         console.log(cart);
         this.cart = cart;
       });
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   addToCart(product) {
     this.cartService.addToCart(product);
   }
 
-  getQuantity() {
+  getQuantity(product) {
     if (!this.cart) {
       return 0;
     }
-    const item = this.cart;
-    debugger;
-    // return item.quantity ? item.quantity : 0;
+    const item = this.cart.items[product.id];
+    return item.quantity ? item.quantity : 0;
   }
 }
