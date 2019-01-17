@@ -34,14 +34,14 @@
     </button>
     <ng-template #updateQuantity>
         <button
-          mat-raised-button
+          mat-button
           (click)="removeFromCart(p)"
         >
           <mat-icon>navigate_before</mat-icon>
         </button>
         {{getQuantity(p)}}
         <button
-          mat-raised-button
+          mat-button
           (click)="addToCart(p)"
         >
           <mat-icon>navigate_next</mat-icon>

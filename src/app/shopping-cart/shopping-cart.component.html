@@ -1,25 +1,38 @@
-<mat-vertical-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>CART</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <h3>Title</h3>
-      <div>
-        <img src="../../assets/pants.jpg">
-      </div>
-      <div>
-
-      </div>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+      <ng-template matStepLabel>Cart</ng-template>
+      <ng-container *ngIf="cart$ | async as cart">
+        <h3>Title</h3>
+        <div>
+          <img src="../../assets/suit.jpg" alt="">
+        </div>
+        <div>
+          <button
+            mat-button
+          >
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+          2
+          <button
+            mat-button
+          >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+          <button mat-button>
+            EUR 999
+          </button>
+          <hr>
+          <strong>
+            <div>Total: EUR 9211</div>
+          </strong>
+        </div>
+      </ng-container>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>ORDER</ng-template>
+      <ng-template matStepLabel>Order</ng-template>
       <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>
       </mat-form-field>
@@ -30,6 +43,13 @@
     </form>
   </mat-step>
   <mat-step>
+    <ng-template matStepLabel>Payment</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+  <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     You are now done.
     <div>
@@ -37,4 +57,4 @@
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
-</mat-vertical-stepper>
+</mat-horizontal-stepper>
