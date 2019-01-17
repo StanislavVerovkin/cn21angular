@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {Product} from '../models/product.model';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 
 @Injectable({
@@ -10,12 +9,11 @@ import {map} from 'rxjs/operators';
 export class ProductService {
 
   constructor(private db: AngularFireDatabase,
-              private afs: AngularFirestore
   ) {
   }
 
   addProductToDb(value) {
-    return this.afs.collection('products').add({
+    return this.db.list('products').push({
       title: value.title,
       price: value.price,
       description: value.description,
@@ -26,12 +24,12 @@ export class ProductService {
   }
 
   getAllProducts() {
-    return this.afs.collection<Product>('products').snapshotChanges()
+    return this.db.list<Product>('products').snapshotChanges()
       .pipe(
         map(actions => {
           return actions.map(a => {
-            const data = a.payload.doc.data() as Product;
-            const id = a.payload.doc.id;
+            const data = a.payload.val() as Product;
+            const id = a.payload.key;
             return {id, ...data};
           });
         })
@@ -39,11 +37,11 @@ export class ProductService {
   }
 
   getProductById(productId) {
-    return this.afs.collection('products').doc(productId);
+    return this.db.object('/products/' + productId).valueChanges();
   }
 
   update(productId, image, value) {
-    return this.afs.collection('products').doc(productId).set({
+    return this.db.object('/products/' + productId).update({
       title: value.title,
       price: value.price,
       description: value.description,
@@ -54,6 +52,6 @@ export class ProductService {
   }
 
   delete(productId) {
-    return this.afs.collection('products').doc(productId).delete();
+    return this.db.object('/products/' + productId).remove();
   }
 }

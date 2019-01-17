@@ -56,7 +56,7 @@ export class ProductFormComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id) {
-      this.productService.getProductById(this.id).valueChanges()
+      this.productService.getProductById(this.id)
         .pipe(
           take(1)
         )
@@ -77,7 +77,7 @@ export class ProductFormComponent implements OnInit {
     } else {
       this.productService.addProductToDb(value)
         .then((product) => {
-          this.id = product.id;
+          this.id = product.key;
           this.updateImage();
         });
     }

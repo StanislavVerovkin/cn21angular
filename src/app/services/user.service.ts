@@ -21,7 +21,7 @@ export class UserService {
   }
 
   addUserToDbWithParameters(user: User) {
-    return this.afs.collection('userData').add(user);
+    return this.db.list('userData').push(user);
   }
 
   getUserObject(uid: string): AngularFireObject<User> {

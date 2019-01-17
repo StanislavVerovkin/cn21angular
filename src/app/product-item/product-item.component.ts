@@ -20,7 +20,7 @@ export class ProductItemComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id) {
-      this.productService.getProductById(this.id).valueChanges()
+      this.productService.getProductById(this.id)
         .subscribe((data) => {
           this.product = data;
           this.isLoaded = true;
