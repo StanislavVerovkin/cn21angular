@@ -49,7 +49,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     (await this.cartService.getCart())
-      .snapshotChanges()
       .pipe(
         map(actions => {
           return actions.map(a => {
