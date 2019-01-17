@@ -64,16 +64,14 @@ export class RegistrationComponent implements OnInit {
     return this.form.get('password');
   }
 
-  onSubmit() {
-    const dataFromRegisterForm = this.form.value;
-    console.log(dataFromRegisterForm);
-    const {email, password} = this.form.value;
+  onSubmit(value) {
+    const {email, password} = value;
 
     this.spinner.show();
 
     concat(
       this.authService.registration(email, password),
-      this.userService.addUserToDbWithParameters(dataFromRegisterForm)
+      this.userService.addUserToDbWithParameters(value)
     )
       .subscribe({
         complete: () => {

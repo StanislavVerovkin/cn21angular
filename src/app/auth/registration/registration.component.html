@@ -1,5 +1,5 @@
 <div class="form">
-  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="example-form">
+  <form (ngSubmit)="onSubmit(form.value)" [formGroup]="form" class="example-form">
     <mat-card>
       <mat-card-title align="center">JOIN</mat-card-title>
       <table class="example-full-width" cellspacing="0">

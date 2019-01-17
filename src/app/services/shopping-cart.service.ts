@@ -57,7 +57,6 @@ export class ShoppingCartService {
         take(1)
       )
       .subscribe((item: any) => {
-        console.log(item);
         if (item.quantity) {
           item$.update({
             quantity: item.quantity + change
