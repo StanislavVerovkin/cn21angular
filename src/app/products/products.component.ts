@@ -5,21 +5,22 @@ import {switchMap} from 'rxjs/operators';
 import {CategoryService} from '../services/category.service';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingCartService} from '../services/shopping-cart.service';
+import {Observable} from 'rxjs';
+import {ShoppingCart} from '../models/shopping-cart';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
   public categories$;
   public category: string;
   public cart: any;
-  public subscription;
-  public shoppingCartItemCount: number;
+  public cart$: Observable<ShoppingCart>;
 
   constructor(
     private productService: ProductService,
@@ -48,20 +49,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.subscription = (await this.cartService.getCart())
-      .subscribe((cart) => {
-        this.cart = cart.items;
-        console.log(this.cart);
-
-        this.shoppingCartItemCount = 0;
-        for (const productId in cart.items) {
-          this.shoppingCartItemCount += this.cart[productId].quantity;
-        }
-      });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.cart$ = await this.cartService.getCart();
   }
 
   addToCart(product) {
@@ -77,6 +65,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       return 0;
     }
     const item = this.cart[product.id];
+    debugger
     return item.quantity ? item.quantity : 0;
   }
 }
