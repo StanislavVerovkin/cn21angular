@@ -2,9 +2,9 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Cart</ng-template>
-      <ng-container *ngIf="cart$ | async as cart">
+      <ng-container>
         <h3>Title</h3>
-        <div>
+        <div class="img">
           <img src="../../assets/suit.jpg" alt="">
         </div>
         <div>
@@ -17,10 +17,10 @@
             </div>
           </div>
           <hr>
-          <strong>
+        </div>
+        <strong>
             <div class="total">Merchandise Total: EUR 9211</div>
           </strong>
-        </div>
       </ng-container>
     </form>
   </mat-step>

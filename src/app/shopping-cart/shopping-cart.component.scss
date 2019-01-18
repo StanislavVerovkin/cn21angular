@@ -5,7 +5,7 @@ img {
 .flex {
   display: flex;
   width: 300px;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   mat-icon {
     cursor: pointer;

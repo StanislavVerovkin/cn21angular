@@ -51,6 +51,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subscription = (await this.cartService.getCart())
       .subscribe((cart) => {
         this.cart = cart;
+        console.log(this.cart);
 
         this.shoppingCartItemCount = 0;
         for (const productId in this.cart.items) {

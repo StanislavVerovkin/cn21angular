@@ -24,7 +24,6 @@ export class ShoppingCartComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-
     this.cart$ = await this.shoppingCartService.getCart();
   }
 }
