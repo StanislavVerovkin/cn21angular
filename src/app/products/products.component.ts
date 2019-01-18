@@ -50,12 +50,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.subscription = (await this.cartService.getCart())
       .subscribe((cart) => {
-        this.cart = cart;
+        this.cart = cart.items;
         console.log(this.cart);
 
         this.shoppingCartItemCount = 0;
-        for (const productId in this.cart.items) {
-          this.shoppingCartItemCount += this.cart.items[productId].quantity;
+        for (const productId in cart.items) {
+          this.shoppingCartItemCount += this.cart[productId].quantity;
         }
       });
   }
@@ -76,7 +76,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if (!this.cart) {
       return 0;
     }
-    const item = this.cart.items[product.id];
+    const item = this.cart[product.id];
     return item.quantity ? item.quantity : 0;
   }
 }
