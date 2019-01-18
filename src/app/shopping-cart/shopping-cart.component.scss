@@ -1,3 +1,18 @@
 img {
   width: 300px;
 }
+
+.flex {
+  display: flex;
+  width: 300px;
+  justify-content: flex-end;
+
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: flex-end;
+}
