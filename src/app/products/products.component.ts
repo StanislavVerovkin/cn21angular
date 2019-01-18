@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
   public filteredProducts: Product[] = [];
   public categories$;
   public category: string;
-  public cart: any;
+  public cart;
   public cart$: Observable<ShoppingCart>;
 
   constructor(
@@ -49,7 +49,10 @@ export class ProductsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.cart$ = await this.cartService.getCart();
+    (this.cart$ = await this.cartService.getCart())
+      .subscribe((data) => {
+        this.cart = data;
+      });
   }
 
   addToCart(product) {
@@ -64,8 +67,7 @@ export class ProductsComponent implements OnInit {
     if (!this.cart) {
       return 0;
     }
-    const item = this.cart[product.id];
-    debugger
+    const item = this.cart.items[product.id];
     return item.quantity ? item.quantity : 0;
   }
 }
