@@ -2,22 +2,27 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Cart</ng-template>
-      <ng-container>
-        <h3>Title</h3>
-        <div class="img">
-          <img src="../../assets/suit.jpg" alt="">
-        </div>
-        <div class="flex">
-          <mat-icon>navigate_before</mat-icon>
-          2
-          <mat-icon>navigate_next</mat-icon>
-          <div class="price">
-            Total: EUR 999
+      <ng-container *ngIf="cart$ | async as cart">
+        <div *ngFor="let item of cart.items">
+          <h3>{{item.product.title}}</h3>
+          <div class="img">
+            <img src="../../assets/suit.jpg" alt="">
+          </div>
+          <div class="flex">
+            <mat-icon>navigate_before</mat-icon>
+            {{item.quantity}}
+            <mat-icon>navigate_next</mat-icon>
+            <div class="price">
+              Total: EUR {{item.totalPrice}}
+            </div>
           </div>
         </div>
         <hr>
         <strong>
-          <div class="total">Merchandise Total: EUR 9211</div>
+          <div class="total">Merchandise Total: EUR {{cart.totalPrice}}</div>
+        </strong>
+        <strong>
+          <div class="total">You have {{cart.totalItemsCount}} items in your cart</div>
         </strong>
       </ng-container>
     </form>

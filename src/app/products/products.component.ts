@@ -67,7 +67,7 @@ export class ProductsComponent implements OnInit {
     if (!this.cart) {
       return 0;
     }
-    const item = this.cart.items[product.id];
+    const item = this.cart.itemsMap[product.id];
     return item.quantity ? item.quantity : 0;
   }
 }

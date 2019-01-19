@@ -24,7 +24,7 @@ export class ShoppingCartService {
     const cartId = await this.getOrCreateCartId();
     return this.db.object('/cart/' + cartId).valueChanges()
       .pipe(
-        map((data: ShoppingCart) => {
+        map((data: any) => {
           return new ShoppingCart(data.items);
         })
       );
