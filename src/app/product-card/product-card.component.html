@@ -1,0 +1,30 @@
+<div class="flex">
+  <h2>{{product.title}}</h2>
+  <a [routerLink]="['/product-item/', product.id]">
+    <img [src]=product.image/>
+  </a>
+  <p>EUR {{product.price}}</p>
+  <button
+    (click)="addToCart(product)"
+    *ngIf="getQuantity(product) === 0; else updateQuantity"
+    mat-raised-button
+    color="warn"
+  >
+    Add to cart
+  </button>
+  <ng-template #updateQuantity>
+    <button
+      mat-button
+      (click)="removeFromCart(product)"
+    >
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    {{getQuantity(product)}}
+    <button
+      mat-button
+      (click)="addToCart(product)"
+    >
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </ng-template>
+</div>

@@ -54,20 +54,4 @@ export class ProductsComponent implements OnInit {
         this.cart = data;
       });
   }
-
-  addToCart(product) {
-    this.cartService.addToCart(product);
-  }
-
-  removeFromCart(product) {
-    this.cartService.removeFromCart(product);
-  }
-
-  getQuantity(product) {
-    if (!this.cart) {
-      return 0;
-    }
-    const item = this.cart.itemsMap[product.id];
-    return item.quantity ? item.quantity : 0;
-  }
 }

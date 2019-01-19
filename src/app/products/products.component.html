@@ -19,33 +19,6 @@
 </mat-menu>
 <div class="flex">
   <div *ngFor="let p of filteredProducts">
-    <h2>{{p.title}}</h2>
-    <a [routerLink]="['/product-item/', p.id]">
-      <img [src]=p.image />
-    </a>
-    <p>EUR {{p.price}}</p>
-    <button
-      (click)="addToCart(p)"
-      *ngIf="getQuantity(p) === 0; else updateQuantity"
-      mat-raised-button
-      color="warn"
-    >
-      Add to cart
-    </button>
-    <ng-template #updateQuantity>
-        <button
-          mat-button
-          (click)="removeFromCart(p)"
-        >
-          <mat-icon>navigate_before</mat-icon>
-        </button>
-        {{getQuantity(p)}}
-        <button
-          mat-button
-          (click)="addToCart(p)"
-        >
-          <mat-icon>navigate_next</mat-icon>
-        </button>
-    </ng-template>
+   <app-product-card [shoppingCart]="cart" [product]="p"></app-product-card>
   </div>
 </div>

@@ -51,6 +51,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ProductItemComponent } from './product-item/product-item.component';
 import {ShoppingCartService} from './services/shopping-cart.service';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 
 const routes: Routes = [
@@ -87,6 +88,7 @@ const routes: Routes = [
     HeaderComponent,
     HomeComponent,
     ProductItemComponent,
+    ProductCardComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],
