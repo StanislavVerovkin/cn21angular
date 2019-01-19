@@ -1,0 +1,13 @@
+<button
+  mat-button
+  (click)="removeFromCart()"
+>
+  <mat-icon>navigate_before</mat-icon>
+</button>
+{{shoppingCart.getQuantity(product)}}
+<button
+  mat-button
+  (click)="addToCart()"
+>
+  <mat-icon>navigate_next</mat-icon>
+</button>

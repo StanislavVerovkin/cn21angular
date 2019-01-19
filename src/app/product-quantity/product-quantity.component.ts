@@ -3,17 +3,16 @@ import {Product} from '../models/product.model';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  selector: 'app-product-quantity',
+  templateUrl: './product-quantity.component.html',
+  styleUrls: ['./product-quantity.component.scss']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductQuantityComponent implements OnInit {
 
   @Input('product') product: Product;
   @Input('shoppingCart') shoppingCart;
 
-  constructor(private cartService: ShoppingCartService,
-  ) {
+  constructor(private cartService: ShoppingCartService,) {
   }
 
   ngOnInit() {
@@ -21,5 +20,9 @@ export class ProductCardComponent implements OnInit {
 
   addToCart() {
     this.cartService.addToCart(this.product);
+  }
+
+  removeFromCart() {
+    this.cartService.removeFromCart(this.product);
   }
 }

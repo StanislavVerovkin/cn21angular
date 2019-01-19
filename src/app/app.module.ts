@@ -49,9 +49,10 @@ import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireStorageModule} from '@angular/fire/storage';
-import { ProductItemComponent } from './product-item/product-item.component';
+import {ProductItemComponent} from './product-item/product-item.component';
 import {ShoppingCartService} from './services/shopping-cart.service';
-import { ProductCardComponent } from './product-card/product-card.component';
+import {ProductCardComponent} from './product-card/product-card.component';
+import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 
 
 const routes: Routes = [
@@ -89,6 +90,7 @@ const routes: Routes = [
     HomeComponent,
     ProductItemComponent,
     ProductCardComponent,
+    ProductQuantityComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],

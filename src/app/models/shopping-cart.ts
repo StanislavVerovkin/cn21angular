@@ -1,4 +1,5 @@
 import {ShoppingCartItem} from './shopping-cart-item';
+import {Product} from './product.model';
 
 export class ShoppingCart {
 
@@ -9,6 +10,11 @@ export class ShoppingCart {
       const item = itemsMap[productId];
       this.items.push(new ShoppingCartItem(item.product, item.quantity));
     }
+  }
+
+  getQuantity(product: Product) {
+    const item = this.itemsMap[product.id];
+    return item.quantity ? item.quantity : 0;
   }
 
   get totalPrice() {

@@ -8,14 +8,18 @@
           <div class="img">
             <img src="../../assets/suit.jpg" alt="">
           </div>
-          <div class="flex">
-            <mat-icon>navigate_before</mat-icon>
-            {{item.quantity}}
-            <mat-icon>navigate_next</mat-icon>
+          <!--<div class="flex">-->
+            <!--<mat-icon>navigate_before</mat-icon>-->
+            <app-product-quantity
+              class="flex"
+              [product]="item.product"
+              [shoppingCart]="cart">
+            </app-product-quantity>
+            <!--<mat-icon>navigate_next</mat-icon>-->
             <div class="price">
               Total: EUR {{item.totalPrice}}
             </div>
-          </div>
+          <!--</div>-->
         </div>
         <hr>
         <strong>
