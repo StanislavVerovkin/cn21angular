@@ -17,7 +17,7 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private cartService: ShoppingCartService) {
   }
 
- async ngOnInit() {
+  async ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -25,5 +25,13 @@ export class ShoppingCartComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
     this.cart$ = await this.cartService.getCart();
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
+  }
+
+  clearItem(productId) {
+    this.cartService.clearItem(productId);
   }
 }

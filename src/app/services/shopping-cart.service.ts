@@ -30,6 +30,16 @@ export class ShoppingCartService {
       );
   }
 
+  async clearCart() {
+    const cartId = await this.getOrCreateCartId();
+    this.db.object('/cart/' + cartId + '/items').remove();
+  }
+
+  async clearItem(productId) {
+    const cartId = await this.getOrCreateCartId();
+    this.db.object('/cart/' + cartId + '/items/' + productId).remove();
+  }
+
   private getItem(cartId: string, productId: string) {
     return this.db.object('/cart/' + cartId + '/items/' + productId);
   }

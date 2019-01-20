@@ -3,27 +3,32 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Cart</ng-template>
       <ng-container *ngIf="cart$ | async as cart">
-        <div *ngFor="let item of cart.items">
-          <h3>{{item.product.title}}</h3>
-          <div class="img">
-            <img src="../../assets/suit.jpg" alt="">
-          </div>
+        <strong>
+          <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
+        </strong>
+        <div class="cart-product">
+          <div *ngFor="let item of cart.items">
+            <h3>{{item.product.title}}</h3>
+            <div class="img">
+              <img [src]="item.product.image" alt="">
+            </div>
             <app-product-quantity
-              class="flex"
+              class="product"
               [product]="item.product"
               [shoppingCart]="cart">
             </app-product-quantity>
             <div class="price">
-              Total: EUR {{item.totalPrice}}
+              <div>Total: EUR {{item.totalPrice}}</div>
+              <div (click)="clearItem(item.product.id)">
+                <mat-icon>delete</mat-icon>
+              </div>
             </div>
+          </div>
         </div>
         <hr>
-        <strong>
-          <div class="total">Merchandise Total: EUR {{cart.totalPrice}}</div>
-        </strong>
-        <strong>
-          <div class="total">You have {{cart.totalItemsCount}} items in your cart</div>
-        </strong>
+        <div class="but">
+          <button (click)="clearCart()" mat-raised-button color="warn">Clear shopping cart</button>
+        </div>
       </ng-container>
     </form>
   </mat-step>

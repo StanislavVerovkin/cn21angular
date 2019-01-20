@@ -16,7 +16,6 @@ export class ShoppingCart {
 
   getQuantity(product: Product) {
     const item = this.itemsMap[product.id];
-    debugger;
     return item !== undefined ? item.quantity : 0;
   }
 
