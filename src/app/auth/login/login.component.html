@@ -1,6 +1,5 @@
 <div class="form">
   <form (ngSubmit)="onSubmit()" [formGroup]="form" class="example-form">
-    <mat-card>
       <mat-card-title align="center">LOGIN</mat-card-title>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Email" formControlName="email">
@@ -21,6 +20,5 @@
         </mat-error>
       </mat-form-field>
       <button [disabled]="form.invalid" mat-raised-button>Login</button>
-    </mat-card>
   </form>
 </div>

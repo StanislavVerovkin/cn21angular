@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     this.authService.user$
       .subscribe(user => {
         if (user) {
-          this.userService.addUserToDb(user);
+          this.userService.addUserToDb(user, this.form.value);
         }
       });
   }
@@ -41,6 +41,9 @@ export class RegistrationComponent implements OnInit {
         Validators.minLength(6)
       ]),
       'address': new FormControl('', [
+        Validators.required
+      ]),
+      'name': new FormControl('', [
         Validators.required
       ]),
       'mobile': new FormControl('', [
@@ -69,21 +72,16 @@ export class RegistrationComponent implements OnInit {
 
     this.spinner.show();
 
-    concat(
-      this.authService.registration(email, password),
-      this.userService.addUserToDbWithParameters(value)
-    )
-      .subscribe({
-        complete: () => {
-          this.router.navigate(['/']);
-          this.spinner.hide();
-        },
-        error: (error) => {
-          this.spinner.hide();
-          this.snackBar.open(error.message, 'Close', {
-            duration: 5000
-          });
-        }
+    this.authService.registration(email, password)
+      .then(() => {
+        this.router.navigate(['/']);
+        this.spinner.hide();
+      })
+      .catch((error) => {
+        this.spinner.hide();
+        this.snackBar.open(error.message, 'Close', {
+          duration: 5000
+        });
       });
   }
 }

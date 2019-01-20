@@ -1,59 +1,60 @@
 <div class="form">
   <form (ngSubmit)="onSubmit(form.value)" [formGroup]="form" class="example-form">
-    <mat-card>
-      <mat-card-title align="center">JOIN</mat-card-title>
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input type="email" formControlName="email" matInput placeholder="Email">
-              <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                Please enter a valid email address
-              </mat-error>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input formControlName="password" type="password" matInput placeholder="Password">
-              <mat-error *ngIf="form.contains('password') && !password.hasError('required')">
-                Min length is 6
-              </mat-error>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
+    <mat-card-title align="center">JOIN</mat-card-title>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input type="email" formControlName="email" matInput placeholder="Email">
+            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input formControlName="password" type="password" matInput placeholder="Password">
+            <mat-error *ngIf="form.contains('password') && !password.hasError('required')">
+              Min length is 6
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
-      <p>
-        <mat-form-field class="example-full-width">
-          <textarea formControlName="address" matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
-        </mat-form-field>
-      </p>
+    <mat-form-field class="example-full-width">
+      <input formControlName="name" matInput placeholder="Name">
+    </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <span matPrefix>+3 80 &nbsp;</span>
-        <input type="number" formControlName="mobile" matInput placeholder="Telephone">
-        <mat-icon matSuffix>mode_edit</mat-icon>
-      </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea formControlName="address" matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+    </mat-form-field>
 
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input type="text" formControlName="city" matInput placeholder="City">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="example-full-width">
-              <input type="number" formControlName="postal_code" matInput #postalCode maxlength="5" placeholder="Postal Code">
-              <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-      <button [disabled]="form.invalid" mat-raised-button>
-        Join
-      </button>
-    </mat-card>
+    <mat-form-field class="example-full-width">
+      <span matPrefix>+3 80 &nbsp;</span>
+      <input type="number" formControlName="mobile" matInput placeholder="Telephone">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input type="text" formControlName="city" matInput placeholder="City">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input type="number" formControlName="postal_code" matInput #postalCode maxlength="5"
+                   placeholder="Postal Code">
+            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <button [disabled]="form.invalid" mat-raised-button>
+      Join
+    </button>
   </form>
 </div>
 

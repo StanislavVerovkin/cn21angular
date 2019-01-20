@@ -53,6 +53,7 @@ import {ProductItemComponent} from './product-item/product-item.component';
 import {ShoppingCartService} from './services/shopping-cart.service';
 import {ProductCardComponent} from './product-card/product-card.component';
 import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
+import {OrderService} from './services/order.service';
 
 
 const routes: Routes = [
@@ -132,6 +133,7 @@ const routes: Routes = [
     CategoryService,
     ProductService,
     ShoppingCartService,
+    OrderService,
     AuthGuard,
     AdminGuard
   ],

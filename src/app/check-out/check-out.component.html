@@ -1,3 +1,22 @@
-<p>
-  check-out works!
-</p>
+<form [formGroup]="form" (ngSubmit)="placeOrder()" class="form">
+  <div class="example-form">
+    <mat-card-title align="center">Checkout</mat-card-title>
+    <mat-form-field class="example-full-width">
+      <input formControlName="name" matInput placeholder="Name">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="address" type="text" matInput placeholder="Address">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="mobile" matInput placeholder="Telephone">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="city" matInput placeholder="City">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input type="number" formControlName="postal_code" matInput #postalCode maxlength="5" placeholder="Postal Code">
+      <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+    </mat-form-field>
+    <button [disabled]="form.invalid" mat-raised-button>Place Order</button>
+  </div>
+</form>
