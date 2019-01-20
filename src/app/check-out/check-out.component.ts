@@ -6,6 +6,7 @@ import {ShoppingCart} from '../models/shopping-cart';
 import {Subscription} from 'rxjs';
 import {OrderService} from '../services/order.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-check-out',
@@ -16,13 +17,16 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public userData;
+  public userId;
   public cart: ShoppingCart;
-  public subscription: Subscription;
+  public cartSubscription: Subscription;
+  public userSubscription: Subscription;
 
   constructor(private auth: AuthService,
               private cartService: ShoppingCartService,
               private orderService: OrderService,
               private spinner: NgxSpinnerService,
+              private router: Router
   ) {
   }
 
@@ -49,8 +53,13 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
 
     const cart$ = await this.cartService.getCart();
-    this.subscription = cart$.subscribe((cart) => {
+
+    this.cartSubscription = cart$.subscribe((cart) => {
       this.cart = cart;
+    });
+
+    this.userSubscription = this.auth.user$.subscribe((user) => {
+      this.userId = user.uid;
     });
 
     return this.auth.appUser$
@@ -65,11 +74,13 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
-  placeOrder() {
+  async placeOrder() {
     const order = {
+      userId: this.userId,
       dateCreated: new Date().getDate(),
       shipping: this.form.value,
       items: this.cart.items.map(i => {
@@ -85,9 +96,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       })
     };
     this.spinner.show();
-    this.orderService.storeOrder(order)
-      .then(() => {
-        this.spinner.hide();
-      });
+    const result = await this.orderService.storeOrder(order);
+    this.cartService.clearCart();
+    this.router.navigate(['/order-success', result.key]);
+    this.spinner.hide();
   }
 }
