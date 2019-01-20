@@ -6,9 +6,9 @@
   <p>EUR {{product.price}}</p>
   <button
     (click)="addToCart()"
-    *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
     mat-raised-button
     color="warn"
+    *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
   >
     Add to cart
   </button>

@@ -6,6 +6,8 @@ export class ShoppingCart {
   items: ShoppingCartItem[] = [];
 
   constructor(public itemsMap: { [productId: string]: ShoppingCartItem }) {
+    this.itemsMap = itemsMap || {};
+
     for (const productId in itemsMap) {
       const item = itemsMap[productId];
       this.items.push(new ShoppingCartItem(item.product, item.quantity));
@@ -14,7 +16,8 @@ export class ShoppingCart {
 
   getQuantity(product: Product) {
     const item = this.itemsMap[product.id];
-    return item.quantity ? item.quantity : 0;
+    debugger;
+    return item !== undefined ? item.quantity : 0;
   }
 
   get totalPrice() {

@@ -64,17 +64,28 @@ export class ShoppingCartService {
         take(1)
       )
       .subscribe((item: any) => {
-        if (item.quantity) {
-          item$.update({
-            quantity: item.quantity + change
-          });
-        } else {
-          item$.set({
-            product: product,
-            quantity: 1
-          });
+
+          if (item !== null) {
+            const quantity = (item.quantity || 0) + change;
+
+            item$.update({
+              product: product,
+              quantity: quantity
+            });
+
+            if (quantity === 0) {
+              item$.remove();
+            }
+          }
+
+          if (item === null) {
+            item$.set({
+              product: product,
+              quantity: 1
+            });
+          }
         }
-      });
+      );
   }
 }
 
