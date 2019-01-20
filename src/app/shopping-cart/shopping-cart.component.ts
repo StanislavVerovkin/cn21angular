@@ -9,21 +9,12 @@ import {ShoppingCartService} from '../services/shopping-cart.service';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  public isLinear = false;
-  public firstFormGroup: FormGroup;
-  public secondFormGroup: FormGroup;
   public cart$;
 
-  constructor(private _formBuilder: FormBuilder, private cartService: ShoppingCartService) {
+  constructor(private cartService: ShoppingCartService) {
   }
 
   async ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
     this.cart$ = await this.cartService.getCart();
   }
 

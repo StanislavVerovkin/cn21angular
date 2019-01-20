@@ -5,6 +5,10 @@ img {
 .but {
   display: flex;
   justify-content: flex-start;
+
+  button {
+    margin: 5px;
+  }
 }
 
 .flex {
