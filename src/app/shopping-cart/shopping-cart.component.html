@@ -1,5 +1,4 @@
 <ng-container *ngIf="cart$ | async as cart">
-  <hr>
   <strong>
     <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
   </strong>
@@ -22,7 +21,6 @@
       </div>
     </div>
   </div>
-  <hr>
   <div class="but">
     <div *ngIf="cart.items.length">
       <button (click)="clearCart()" mat-raised-button color="warn">Clear cart</button>
