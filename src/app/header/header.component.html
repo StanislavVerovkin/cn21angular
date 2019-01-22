@@ -7,6 +7,14 @@
 
     <span class="spacer"></span>
 
+    <div class="navigate-header">
+      <button mat-button routerLink="/products">Shop</button>
+      <button mat-button>About</button>
+      <button mat-button>Contact</button>
+    </div>
+
+    <span class="spacer"></span>
+
     <ng-template #anonymousUser>
       <button mat-button routerLinkActive="mat-accent" routerLink="/login" class="header-menu">Login</button>
       <button mat-button routerLinkActive="mat-accent" routerLink="/registration" class="header-menu">Join</button>
@@ -16,10 +24,10 @@
 
       <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">{{appUser.email}}
       </button>
-      <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item>My orders</button>
+        <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
         <ng-container *ngIf="appUser.isAdmin">
           <button routerLink="/admin/orders" mat-menu-item>Manage Orders</button>
           <button
@@ -29,6 +37,7 @@
           >
             Manage Products
           </button>
+          <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
         </ng-container>
       </mat-menu>
 
@@ -37,17 +46,6 @@
       </mat-menu>
 
     </div>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>code</mat-icon>
-    </button>
-
-    <mat-menu #menu="matMenu">
-      <button routerLink="/products" mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Shop</span>
-      </button>
-    </mat-menu>
 
   </mat-toolbar-row>
 </mat-toolbar>

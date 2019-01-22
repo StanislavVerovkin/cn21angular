@@ -11,7 +11,6 @@
 }
 
 .tool {
-  //padding: 0 0 0 16px;
   height: 100px;
 }
 
@@ -22,6 +21,16 @@ mat-toolbar {
 
 img {
   width: 150px;
+}
+
+.navigate-header {
+
+  button {
+    padding: 5px;
+    animation: glitch 1s steps(100) infinite;
+    font-size: 14px;
+    cursor: pointer;
+  }
 }
 
 
