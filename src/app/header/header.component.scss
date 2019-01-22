@@ -37,4 +37,22 @@ img {
   }
 }
 
+@media (max-width: 690px) {
+  .tool {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
+  }
+}
+
+@media (max-width: 435px) {
+  .user-email {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 25px;
+  }
+}
+
 

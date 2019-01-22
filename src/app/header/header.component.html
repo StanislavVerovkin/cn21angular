@@ -12,15 +12,18 @@
     </div>
 
     <ng-template #anonymousUser>
-      <button mat-button routerLinkActive="mat-accent" routerLink="/login" class="header-menu">Login</button>
-      <button mat-button routerLinkActive="mat-accent" routerLink="/registration" class="header-menu">Join</button>
+      <div class="join">
+        <button mat-button routerLinkActive="mat-accent" routerLink="/login" class="header-menu">Login</button>
+        <button mat-button routerLinkActive="mat-accent" routerLink="/registration" class="header-menu">Join</button>
+      </div>
     </ng-template>
 
     <div *ngIf="appUser; else anonymousUser">
 
-      <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">{{appUser.email}}
-      </button>
-      <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
+      <div class="user-email">
+        <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">{{appUser.email}}</button>
+        <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
+      </div>
 
       <mat-menu #menu="matMenu">
         <button mat-menu-item>My orders</button>
