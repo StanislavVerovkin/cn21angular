@@ -25,6 +25,10 @@ img {
 
 .navigate-header {
 
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
   button {
     padding: 5px;
     animation: glitch 1s steps(100) infinite;

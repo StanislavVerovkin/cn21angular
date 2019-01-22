@@ -1,8 +1,11 @@
 <ng-container *ngIf="cart$ | async as cart">
-  <strong>
+  <strong *ngIf="cart.items.length; else noItem">
     <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
   </strong>
   <div class="cart-product">
+    <ng-template #noItem>
+      <h2 align="center">You have no item in the shopping cart</h2>
+    </ng-template>
     <div *ngFor="let item of cart.items">
       <h3>{{item.product.title}}</h3>
       <div class="img">
