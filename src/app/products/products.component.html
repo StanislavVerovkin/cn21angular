@@ -6,7 +6,6 @@
     <mat-icon [matBadge]="cart.totalItemsCount" matBadgeColor="warn">add_shopping_cart</mat-icon>
   </button>
 </div>
-
 <mat-menu #menu="matMenu">
   <a
     *ngFor="let c of categories$ | async"
@@ -18,9 +17,18 @@
   </a>
 </mat-menu>
 <hr>
+
+<div class="search">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input #query (keyup)="searchProduct(query.value)" matInput placeholder="Search products...">
+    </mat-form-field>
+  </form>
+</div>
+
 <div class="flex">
   <div *ngFor="let p of filteredProducts">
-   <app-product-card [shoppingCart]="cart" [product]="p"></app-product-card>
+    <app-product-card [shoppingCart]="cart" [product]="p"></app-product-card>
   </div>
 </div>
 <hr>

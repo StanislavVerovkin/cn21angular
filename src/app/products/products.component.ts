@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../services/product.service';
 import {Product} from '../models/product.model';
-import {switchMap} from 'rxjs/operators';
+import {map, startWith, switchMap} from 'rxjs/operators';
 import {CategoryService} from '../services/category.service';
 import {ActivatedRoute} from '@angular/router';
 import {ShoppingCartService} from '../services/shopping-cart.service';
@@ -46,6 +46,16 @@ export class ProductsComponent implements OnInit {
 
     this.categories$ = this.categoryService.getCategories();
     this.category = this.route.snapshot.paramMap.get('category');
+  }
+
+  searchProduct(query: string) {
+    this.filteredProducts = query ?
+      this.products
+        .filter(p => p.title
+          .toLowerCase()
+          .includes(
+            query.toLowerCase())) :
+      this.products;
   }
 
   async ngOnInit() {
