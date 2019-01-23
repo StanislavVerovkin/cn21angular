@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(email, password)
       .then(() => {
           this.spinner.hide();
-          this.router.navigate(['/']);
+          this.router.navigate(['/products']);
         }
       )
       .catch((error) => {
