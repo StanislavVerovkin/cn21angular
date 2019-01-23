@@ -22,11 +22,12 @@ export class ProductsComponent implements OnInit {
   public cart;
   public cart$: Observable<ShoppingCart>;
 
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private cartService: ShoppingCartService,
     public route: ActivatedRoute,
+    private cartService: ShoppingCartService,
   ) {
 
     this.productService.getAllProducts()

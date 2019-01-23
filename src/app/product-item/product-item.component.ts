@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../services/product.service';
+import {ShoppingCartService} from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -12,9 +13,11 @@ export class ProductItemComponent implements OnInit {
   public id;
   public isLoaded = false;
   public product: any = {};
+  public cart$;
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService
+              private productService: ProductService,
+              private cartService: ShoppingCartService
   ) {
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -28,6 +31,11 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.cart$ = await this.cartService.getCart();
+  }
+
+  addToCart() {
+    this.cartService.addToCart(this.product);
   }
 }

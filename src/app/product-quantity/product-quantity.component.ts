@@ -12,7 +12,7 @@ export class ProductQuantityComponent implements OnInit {
   @Input('product') product: Product;
   @Input('shoppingCart') shoppingCart;
 
-  constructor(private cartService: ShoppingCartService,) {
+  constructor(private cartService: ShoppingCartService) {
   }
 
   ngOnInit() {
