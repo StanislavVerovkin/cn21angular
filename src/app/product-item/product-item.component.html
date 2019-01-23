@@ -1,9 +1,10 @@
-<div *ngIf="isLoaded" class="description">
-  <h1>{{product.title}}</h1>
-  <h2>EUR {{product.price}}</h2>
-  <div class="flex">
-    <div>
-      <img [src]="product.image">
-    </div>
+<div class="container">
+  <div class="description">
+    <div>{{product.title}}</div>
+    <div>EUR {{product.price}}</div>
+    <div><strong>BUY</strong></div>
+  </div>
+  <div *ngIf="isLoaded" class="image">
+    <img [src]="product.image">
   </div>
 </div>

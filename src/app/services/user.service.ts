@@ -13,7 +13,14 @@ export class UserService {
   }
 
   addUserToDb(user: firebase.User, value) {
-    this.db.object('/users/' + user.uid).update(value);
+    this.db.object('/users/' + user.uid).update({
+      email: value.email,
+      address: value.address,
+      name: value.name,
+      mobile: value.mobile,
+      city: value.city,
+      postal_code: value.postal_code
+    });
   }
 
   getUserObject(uid: string): AngularFireObject<User> {

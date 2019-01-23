@@ -40,7 +40,7 @@ export class ProductService {
     return this.db.object('/products/' + productId).valueChanges();
   }
 
-  update(productId, image, value) {
+  updateWithImage(productId, image, value) {
     return this.db.object('/products/' + productId).update({
       title: value.title,
       price: value.price,
@@ -48,6 +48,16 @@ export class ProductService {
       size: value.size,
       category: value.category,
       image: image
+    });
+  }
+
+  updateWithoutImage(productId, value) {
+    return this.db.object('/products/' + productId).update({
+      title: value.title,
+      price: value.price,
+      description: value.description,
+      size: value.size,
+      category: value.category,
     });
   }
 

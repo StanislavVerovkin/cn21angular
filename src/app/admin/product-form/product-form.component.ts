@@ -47,9 +47,6 @@ export class ProductFormComponent implements OnInit {
       ]),
       'category': new FormControl('', [
         Validators.required
-      ]),
-      'image': new FormControl('', [
-        Validators.required
       ])
     });
 
@@ -72,35 +69,35 @@ export class ProductFormComponent implements OnInit {
   }
 
   onSubmit(value) {
+    this.spinner.show();
     if (this.id) {
-      this.updateImage();
+      this.productService.updateWithoutImage(this.id, value)
+        .then(() => {
+          this.spinner.hide();
+        });
     } else {
       this.productService.addProductToDb(value)
         .then((product) => {
           this.id = product.key;
-          this.updateImage();
+
+          const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
+
+          this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)
+            .then((data) => {
+              data.ref.getDownloadURL()
+
+                .then((url) => {
+                  this.imageSrc = url;
+                  this.productService.updateWithImage(this.id, this.imageSrc, this.form.value)
+
+                    .then(() => {
+                      this.form.reset();
+                      this.router.navigate(['/admin/products']);
+                    });
+                });
+            });
         });
     }
-  }
-
-  updateImage() {
-
-    this.spinner.show();
-    const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
-
-    this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)
-      .then((data) => {
-        data.ref.getDownloadURL()
-          .then((url) => {
-            this.imageSrc = url;
-            this.productService.update(this.id, this.imageSrc, this.form.value)
-              .then(() => {
-                this.form.reset();
-                this.spinner.hide();
-                this.router.navigate(['/admin/products']);
-              });
-          });
-      });
   }
 
   deleteProduct() {
