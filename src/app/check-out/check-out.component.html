@@ -17,6 +17,7 @@
       <input formControlName="postal_code" matInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
       <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
     </mat-form-field>
+    <button routerLink="/shopping-cart" mat-raised-button>Return to cart</button>
     <button [disabled]="form.invalid" mat-raised-button>Place Order</button>
   </div>
 </form>

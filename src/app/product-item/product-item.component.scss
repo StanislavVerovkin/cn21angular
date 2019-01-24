@@ -10,6 +10,11 @@
     width: 700px;
   }
 
+  .back {
+    cursor: pointer;
+    display: flex;
+  }
+
   .description {
     display: flex;
     flex-direction: column;
