@@ -47,6 +47,8 @@
 
     <div class="spacer"></div>
 
+    <button mat-button routerLinkActive="mat-primary">Customer care</button>
+
     <button class="cart" routerLink="/shopping-cart" mat-icon-button *ngIf="cart$ | async as cart">
       <mat-icon [matBadge]="cart.totalItemsCount" matBadgeColor="primary">add_shopping_cart</mat-icon>
     </button>
