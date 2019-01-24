@@ -47,7 +47,6 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {HeaderComponent} from './header/header.component';
 import {HomeComponent} from './home/home.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {ProductItemComponent} from './product-item/product-item.component';
 import {ShoppingCartService} from './services/shopping-cart.service';
@@ -122,11 +121,10 @@ const routes: Routes = [
     MatDialogModule,
     NgxDatatableModule,
     MatGridListModule,
-    FlexLayoutModule,
     MatProgressBarModule,
     MatBadgeModule,
     MatStepperModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [
     AuthService,

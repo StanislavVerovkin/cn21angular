@@ -17,7 +17,7 @@ export class ProductItemComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
-              private cartService: ShoppingCartService
+              private cartService: ShoppingCartService,
   ) {
 
     this.id = this.route.snapshot.paramMap.get('id');
