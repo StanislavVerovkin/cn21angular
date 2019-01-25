@@ -1,7 +1,7 @@
 <div *ngIf="shoppingCart" class="flex">
   <h2>{{product.title}}</h2>
   <a [routerLink]="['/product-item/', product.id]">
-    <img [src]=product.image/>
+    <img [src]=product.image />
   </a>
   <p>EUR {{product.price}}</p>
   <button

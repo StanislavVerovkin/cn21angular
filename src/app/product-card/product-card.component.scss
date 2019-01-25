@@ -16,3 +16,9 @@ h1 {
 .mat-raised-button {
   background-color: black;
 }
+
+@media (max-width: 516px) {
+  div {
+    padding: 0;
+  }
+}

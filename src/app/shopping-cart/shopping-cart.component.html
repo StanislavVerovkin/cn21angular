@@ -28,7 +28,6 @@
   </div>
   <div class="but">
     <div *ngIf="cart.items.length">
-      <button routerLink="/products" mat-raised-button color="warn">Back</button>
       <button (click)="clearCart()" mat-raised-button color="primary">Clear cart</button>
       <button routerLink="/check-out" mat-raised-button color="primary">Checkout</button>
     </div>
