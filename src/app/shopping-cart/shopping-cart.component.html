@@ -1,13 +1,8 @@
-<ng-container *ngIf="cart; else noItem">
+<ng-container *ngIf="cart.items.length; else noItem">
   <strong>
     <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
   </strong>
   <div class="cart-product">
-    <ng-template #noItem>
-      <div class="no-tem">
-        <h2>You have no item in the shopping cart...</h2>
-      </div>
-    </ng-template>
     <div *ngFor="let item of cart.items">
       <h3>{{item.product.title}}</h3>
       <div class="img">
@@ -33,3 +28,8 @@
     </div>
   </div>
 </ng-container>
+<ng-template #noItem>
+  <div class="no-tem">
+    <h2>You have no item in the shopping cart...</h2>
+  </div>
+</ng-template>

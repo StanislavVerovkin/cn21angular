@@ -24,8 +24,7 @@ export class RegistrationComponent implements OnInit {
   ) {
     this.authService.user$
       .subscribe(user => {
-        debugger;
-        if (user) {
+        if (user !== null) {
           this.userService.addUserToDb(user, this.form.value);
         }
       });

@@ -1,34 +1,20 @@
-@media (max-width: 1024px) and (min-width: 500px) {
-  img {
-    display: none;
-  }
-}
+.images {
+  display: flex;
+  flex-direction: column;
 
-@media (max-width: 1920px) and (min-width: 500px) {
-  img {
-    display: none;
-  }
-}
-
-@media (max-width: 375px) {
-  video {
-    display: none;
-  }
   img {
     width: 100%;
   }
 }
 
-@media (max-width: 414px) {
-  video {
+@media (max-width: 1920px) and (min-width: 1000px) {
+  img {
     display: none;
   }
-  .images {
-    display: flex;
-    flex-direction: column;
+}
 
-    img {
-      width: 100%;
-    }
+@media (max-width: 1000px) {
+  video {
+    display: none;
   }
 }
