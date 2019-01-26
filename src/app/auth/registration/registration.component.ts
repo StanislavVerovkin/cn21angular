@@ -4,7 +4,6 @@ import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MatSnackBar} from '@angular/material';
-import {concat} from 'rxjs';
 import {UserService} from '../../services/user.service';
 
 @Component({
@@ -22,12 +21,6 @@ export class RegistrationComponent implements OnInit {
               private spinner: NgxSpinnerService,
               private snackBar: MatSnackBar,
   ) {
-    this.authService.user$
-      .subscribe(user => {
-        if (user !== null) {
-          this.userService.addUserToDb(user, this.form.value);
-        }
-      });
   }
 
   ngOnInit() {
@@ -74,8 +67,12 @@ export class RegistrationComponent implements OnInit {
 
     this.authService.registration(email, password)
       .then(() => {
-        this.router.navigate(['/']);
-        this.spinner.hide();
+        this.authService.user$
+          .subscribe((user) => {
+            this.userService.addUserToDb(user, this.form.value);
+            this.router.navigate(['/']);
+            this.spinner.hide();
+          });
       })
       .catch((error) => {
         this.spinner.hide();
