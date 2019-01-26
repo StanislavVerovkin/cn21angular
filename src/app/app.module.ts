@@ -93,7 +93,7 @@ const routes: Routes = [
     ProductQuantityComponent,
   ],
   imports: [
-    [RouterModule.forRoot(routes)],
+    [RouterModule.forRoot(routes, {useHash: true})],
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,

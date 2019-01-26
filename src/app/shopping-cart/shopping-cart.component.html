@@ -1,5 +1,5 @@
-<ng-container *ngIf="cart$ | async as cart">
-  <strong *ngIf="cart.items.length; else noItem">
+<ng-container *ngIf="cart; else noItem">
+  <strong>
     <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
   </strong>
   <div class="cart-product">
