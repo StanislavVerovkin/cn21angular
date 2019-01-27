@@ -12,16 +12,12 @@ import {Observable} from 'rxjs';
 export class ShoppingCartComponent implements OnInit {
 
   public cart$: Observable<ShoppingCart>;
-  public cart;
 
   constructor(private cartService: ShoppingCartService) {
   }
 
   async ngOnInit() {
-    (this.cart$ = await this.cartService.getCart())
-      .subscribe((data) => {
-        this.cart = data;
-      });
+    (this.cart$ = await this.cartService.getCart());
   }
 
   clearCart() {
@@ -30,5 +26,9 @@ export class ShoppingCartComponent implements OnInit {
 
   clearItem(productId) {
     this.cartService.clearItem(productId);
+  }
+
+  trackByFn(index, item) {
+    return item.product.id;
   }
 }

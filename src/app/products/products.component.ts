@@ -19,7 +19,6 @@ export class ProductsComponent implements OnInit {
   public filteredProducts: Product[] = [];
   public categories$;
   public category: string;
-  public cart;
   public cart$: Observable<ShoppingCart>;
 
 
@@ -60,9 +59,6 @@ export class ProductsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    (this.cart$ = await this.cartService.getCart())
-      .subscribe((data) => {
-        this.cart = data;
-      });
+    this.cart$ = await this.cartService.getCart();
   }
 }

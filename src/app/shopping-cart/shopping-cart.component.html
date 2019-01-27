@@ -1,9 +1,9 @@
-<div *ngIf="cart">
-  <strong>
+<div *ngIf="cart$ | async as cart">
+  <strong *ngIf="cart.items.length !== 0">
     <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
   </strong>
   <div class="cart-product">
-    <div *ngFor="let item of cart.items">
+    <div *ngFor="let item of cart.items; trackBy: trackByFn">
       <h3>{{item.product.title}}</h3>
       <div class="img">
         <img [src]="item.product.image" alt="">

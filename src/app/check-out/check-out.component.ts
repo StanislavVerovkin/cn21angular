@@ -95,10 +95,13 @@ export class CheckOutComponent implements OnInit, OnDestroy {
         };
       })
     };
+
     this.spinner.show();
+
     const result = await this.orderService.storeOrder(order);
     this.cartService.clearCart();
     this.router.navigate(['/order-success', result.key]);
+
     this.spinner.hide();
   }
 }

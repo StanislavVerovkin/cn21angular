@@ -26,7 +26,7 @@
 
 <div class="flex">
   <div *ngFor="let p of filteredProducts">
-    <app-product-card [shoppingCart]="cart" [product]="p"></app-product-card>
+    <app-product-card [shoppingCart]="cart$" [product]="p"></app-product-card>
   </div>
 </div>
 
