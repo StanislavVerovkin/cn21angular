@@ -1,4 +1,4 @@
-<ng-container *ngIf="cart.items.length; else noItem">
+<div *ngIf="cart">
   <strong>
     <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
   </strong>
@@ -27,9 +27,10 @@
       <button routerLink="/check-out" mat-raised-button color="primary">Checkout</button>
     </div>
   </div>
-</ng-container>
-<ng-template #noItem>
-  <div class="no-tem">
-    <h2>You have no item in the shopping cart...</h2>
-  </div>
-</ng-template>
+  <ng-container *ngIf="cart.items.length === 0">
+    <div class="no-tem">
+      <h2>You have no item in the shopping cart...</h2>
+    </div>
+  </ng-container>
+</div>
+
