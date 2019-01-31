@@ -1,20 +1,14 @@
-<div class="icons_menu">
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>sort</mat-icon>
-  </button>
-
+<div class="categories">
+    <button
+      mat-raised-button
+      [routerLink]="['/products/']"
+      *ngFor="let c of categories$ | async"
+      [queryParams]="{category: c.id}"
+      routerLinkActive="color-button"
+    >
+      {{c.name}}
+    </button>
 </div>
-<mat-menu #menu="matMenu">
-  <a
-    *ngFor="let c of categories$ | async"
-    mat-menu-item
-    [routerLink]="['/products/']"
-    [queryParams]="{ category: c.id }"
-  >
-    {{c.name}}
-  </a>
-</mat-menu>
-<hr>
 
 <div class="search">
   <form class="example-form">

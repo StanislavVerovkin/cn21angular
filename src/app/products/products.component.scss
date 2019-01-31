@@ -4,12 +4,6 @@
   justify-content: center;
 }
 
-.icons_menu {
-  padding: 9px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .search {
   display: flex;
   justify-content: center;
@@ -22,5 +16,24 @@
 
   .example-full-width {
     width: 100%;
+  }
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid;
+  flex-wrap: wrap;
+
+  button {
+    margin: 10px;
+    border: 1px solid;
+    border-radius: 0;
+    animation: glitch 1s steps(100) infinite;
+  }
+
+  .color-button {
+    background-color: black;
   }
 }
