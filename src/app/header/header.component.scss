@@ -17,6 +17,10 @@
 mat-toolbar {
   color: white;
   background-color: black;
+  position: fixed;
+  z-index: 9999;
+  box-shadow: 0 0 55px rgba(0,0,0,0.5);
+  height: 70px;
 }
 
 img {
@@ -42,6 +46,10 @@ img {
     flex-direction: column;
     justify-content: space-around;
     height: 180px;
+  }
+
+  mat-toolbar {
+    height: 170px;
   }
 }
 

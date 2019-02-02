@@ -1,14 +1,46 @@
-img {
-  width: 300px;
-}
+.cart {
+  padding-top: 100px;
 
-.but {
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid;
+  .total {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
 
-  button {
-    margin: 5px;
+  .cart-product {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+
+    img {
+      width: 300px;
+    }
+  }
+
+  .price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    mat-icon {
+      cursor: pointer;
+    }
+  }
+
+  .cart-buttons {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid;
+
+    button {
+      margin: 5px;
+      border: 1px solid;
+      border-radius: 0;
+      animation: glitch 1s steps(100) infinite;
+    }
   }
 }
 
@@ -23,35 +55,6 @@ img {
   }
 }
 
-.total {
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.cart-product {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-}
-
-.price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  mat-icon {
-    cursor: pointer;
-  }
-}
-
-.mat-raised-button {
-  background-color: black;
-}
-
 .no-tem {
   display: flex;
   height: 50em;
@@ -60,5 +63,11 @@ img {
 
   h2 {
     font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .cart {
+    padding-top: 182px;
   }
 }

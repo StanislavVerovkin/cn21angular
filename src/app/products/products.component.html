@@ -1,13 +1,13 @@
 <div class="categories">
-    <button
-      mat-raised-button
-      [routerLink]="['/products/']"
-      *ngFor="let c of categories$ | async"
-      [queryParams]="{category: c.id}"
-      routerLinkActive="color-button"
-    >
-      {{c.name}}
-    </button>
+  <button
+    mat-raised-button
+    [routerLink]="['/products/']"
+    *ngFor="let c of categories$ | async"
+    [queryParams]="{category: c.id}"
+    routerLinkActive="color-button"
+  >
+    {{c.name}}
+  </button>
 </div>
 
 <div class="search">

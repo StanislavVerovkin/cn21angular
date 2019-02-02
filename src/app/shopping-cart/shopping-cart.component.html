@@ -1,4 +1,4 @@
-<div *ngIf="cart$ | async as cart">
+<div class="cart" *ngIf="cart$ | async as cart">
   <strong *ngIf="cart.items.length !== 0">
     <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
   </strong>
@@ -21,10 +21,10 @@
       </div>
     </div>
   </div>
-  <div class="but">
+  <div class="cart-buttons">
     <div *ngIf="cart.items.length">
-      <button (click)="clearCart()" mat-raised-button color="primary">Clear cart</button>
-      <button routerLink="/check-out" mat-raised-button color="primary">Checkout</button>
+      <button (click)="clearCart()" mat-raised-button>Clear cart</button>
+      <button routerLink="/check-out" mat-raised-button>Checkout</button>
     </div>
   </div>
   <ng-container *ngIf="cart.items.length === 0">

@@ -12,4 +12,11 @@
   display: flex;
   justify-content: center;
   padding: 50px 10px 10px;
+  height: 90vh;
+  align-items: center;
+
+  button {
+    border: 1px solid;
+    border-radius: 0;
+  }
 }

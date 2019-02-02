@@ -22,9 +22,11 @@
 .categories {
   display: flex;
   justify-content: center;
-  padding: 10px;
   border-bottom: 1px solid;
   flex-wrap: wrap;
+  padding: 80px 10px 10px;
+  z-index: 0;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 
   button {
     margin: 10px;
@@ -35,5 +37,11 @@
 
   .color-button {
     background-color: black;
+  }
+}
+
+@media (max-width: 663px) {
+  .categories {
+    padding-top: 192px;
   }
 }
