@@ -1,11 +1,14 @@
 .flex {
-  width: 50%;
-  margin-left: 420px;
-  margin-top: 20px;
+  padding-top: 70px;
 
   .example-full-width {
     width: 100%;
   }
 }
 
+@media (max-width: 690px) {
+  .flex {
+    padding-top: 170px;
+  }
+}
 
