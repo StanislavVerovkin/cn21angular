@@ -88,7 +88,7 @@ export class ProductFormComponent implements OnInit {
 
                 .then((url) => {
                   this.imageSrc = url;
-                  this.productService.updateWithImage(this.id, this.imageSrc, this.form.value)
+                  this.productService.updateWithImage(this.id, this.imageSrc, value)
 
                     .then(() => {
                       this.form.reset();

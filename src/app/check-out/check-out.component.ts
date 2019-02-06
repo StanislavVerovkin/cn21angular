@@ -64,12 +64,14 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
     return this.auth.appUser$
       .subscribe(data => {
-        this.userData = data;
-        this.form.get('address').setValue(this.userData.address);
-        this.form.get('name').setValue(this.userData.name);
-        this.form.get('mobile').setValue(this.userData.mobile);
-        this.form.get('city').setValue(this.userData.city);
-        this.form.get('postal_code').setValue(this.userData.postal_code);
+        if (data !== null) {
+          this.userData = data;
+          this.form.get('address').setValue(this.userData.address);
+          this.form.get('name').setValue(this.userData.name);
+          this.form.get('mobile').setValue(this.userData.mobile);
+          this.form.get('city').setValue(this.userData.city);
+          this.form.get('postal_code').setValue(this.userData.postal_code);
+        }
       });
   }
 
