@@ -70,10 +70,18 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit(value) {
     this.spinner.show();
-    if (this.id) {
+    if (this.id && !this.image) {
       this.productService.updateWithoutImage(this.id, value)
         .then(() => {
           this.spinner.hide();
+        });
+    } else if (this.id && this.image) {
+      this.productService.updateWithImage(this.id, this.imageSrc, value)
+        .then(() => {
+          this.productService.updateWithoutImage(this.id, value)
+            .then(() => {
+              this.spinner.hide();
+            });
         });
     } else {
       this.productService.addProductToDb(value)

@@ -1,36 +1,38 @@
 <div class="cart" *ngIf="cart$ | async as cart">
-  <strong *ngIf="cart.items.length !== 0">
-    <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
-  </strong>
-  <div class="cart-product">
-    <div *ngFor="let item of cart.items; trackBy: trackByFn">
-      <h3>{{item.product.title}}</h3>
-      <div class="img">
-        <img [src]="item.product.image" alt="">
-      </div>
-      <app-product-quantity
-        class="product"
-        [product]="item.product"
-        [shoppingCart]="cart">
-      </app-product-quantity>
-      <div class="price">
-        <div>Total: EUR {{item.totalPrice}}</div>
-        <div (click)="clearItem(item.product.id)">
-          <mat-icon>delete</mat-icon>
+  <div *ngIf="cart.items.length; else noItem">
+    <strong>
+      <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
+    </strong>
+    <div class="cart-product">
+      <div *ngFor="let item of cart.items; trackBy: trackByFn">
+        <h3>{{item.product.title}}</h3>
+        <div class="img">
+          <img [src]="item.product.image" alt="">
+        </div>
+        <app-product-quantity
+          class="product"
+          [product]="item.product"
+          [shoppingCart]="cart">
+        </app-product-quantity>
+        <div class="price">
+          <div>Total: EUR {{item.totalPrice}}</div>
+          <div (click)="clearItem(item.product.id)">
+            <mat-icon>delete</mat-icon>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="cart-buttons">
-    <div *ngIf="cart.items.length">
-      <button (click)="clearCart()" mat-raised-button>Clear cart</button>
-      <button routerLink="/check-out" mat-raised-button>Checkout</button>
+    <div class="cart-buttons">
+      <div>
+        <button (click)="clearCart()" mat-raised-button>Clear cart</button>
+        <button routerLink="/check-out" mat-raised-button>Checkout</button>
+      </div>
     </div>
   </div>
-  <ng-container *ngIf="cart.items.length === 0">
+  <ng-template #noItem>
     <div class="no-tem">
       <h2>You have no item in the shopping cart...</h2>
     </div>
-  </ng-container>
+  </ng-template>
 </div>
 
