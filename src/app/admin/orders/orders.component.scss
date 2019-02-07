@@ -8,7 +8,26 @@
 
   .example-card {
     margin: 10px;
-    max-width: 400px;
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 900px) {
+  .card-order {
+
+    .example-card {
+      margin-top: 100px;
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .card-order {
+
+    .example-card {
+      margin-top: 200px;
+    }
   }
 }
 

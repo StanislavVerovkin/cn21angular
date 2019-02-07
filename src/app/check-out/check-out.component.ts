@@ -3,10 +3,11 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../services/auth.service';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {ShoppingCart} from '../models/shopping-cart';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {OrderService} from '../services/order.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Router} from '@angular/router';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-check-out',
@@ -18,9 +19,13 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public userData;
   public userId;
+  public delivery = [];
   public cart: ShoppingCart;
   public cartSubscription: Subscription;
   public userSubscription: Subscription;
+  filteredOptions: Observable<string[]>;
+  myControl = new FormControl();
+
 
   constructor(private auth: AuthService,
               private cartService: ShoppingCartService,
@@ -48,9 +53,17 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       'postal_code': new FormControl('', [
         Validators.required,
         Validators.minLength(5)
+      ]),
+      'delivery_way': new FormControl('', [
+        Validators.required,
       ])
     });
 
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
 
     const cart$ = await this.cartService.getCart();
 
@@ -61,6 +74,11 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.userSubscription = this.auth.user$.subscribe((user) => {
       this.userId = user.uid;
     });
+
+    this.orderService.getNovaPoshta()
+      .subscribe((data: any) => {
+        this.delivery = data.data;
+      });
 
     return this.auth.appUser$
       .subscribe(data => {
@@ -73,6 +91,12 @@ export class CheckOutComponent implements OnInit, OnDestroy {
           this.form.get('postal_code').setValue(this.userData.postal_code);
         }
       });
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.delivery.filter(option => option.DescriptionRu.toLowerCase().includes(filterValue));
   }
 
   ngOnDestroy() {

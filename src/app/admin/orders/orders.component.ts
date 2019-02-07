@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../../services/order.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-orders',
@@ -10,7 +11,8 @@ export class OrdersComponent implements OnInit {
 
   public orders$;
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService
+  ) {
     this.orders$ = this.orderService.getAllOrders();
   }
 

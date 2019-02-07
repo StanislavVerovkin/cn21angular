@@ -17,6 +17,19 @@
       <input formControlName="postal_code" matInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
       <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
     </mat-form-field>
+      <!--<mat-form-field class="example-full-width">-->
+        <!--<mat-select formControlName="delivery_way" placeholder="Delivery Way">-->
+          <!--<mat-option *ngFor="let d of delivery" [value]="d.Description">{{d.Description}}</mat-option>-->
+        <!--</mat-select>-->
+      <!--</mat-form-field>-->
+    <mat-form-field class="example-full-width">
+      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let d of filteredOptions | async" [value]="d.DescriptionRu">
+          {{d.DescriptionRu}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
     <button routerLink="/shopping-cart" mat-raised-button>Return to cart</button>
     <button [disabled]="form.invalid" mat-raised-button>Place Order</button>
   </div>

@@ -5,15 +5,16 @@
       <mat-card-subtitle>{{o.dateCreated}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>{{o.shipping.address}}</p>
-      <p>{{o.shipping.city}}</p>
-      <p>{{o.shipping.mobile}}</p>
+      <p>Address: <strong>{{o.shipping.address}}</strong></p>
+      <p>City: <strong>{{o.shipping.city}}</strong></p>
+      <p>Phone: <strong>{{o.shipping.mobile}}</strong></p>
+      <p>Delivery Way: <strong>{{o.shipping.delivery_way}}</strong></p>
     </mat-card-content>
     <hr>
     <mat-card-content *ngFor="let p of o.items">
-      {{p.product.title}}
-      {{p.quantity}}
-      {{p.totalPrice}}
+      <p>Product: <strong>{{p.product.title}}</strong></p>
+      <p>Quantity: <strong>{{p.quantity}}</strong></p>
+      <p>Total price: <strong>{{p.totalPrice}}</strong></p>
     </mat-card-content>
   </mat-card>
 </div>
