@@ -23,9 +23,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   public cart: ShoppingCart;
   public cartSubscription: Subscription;
   public userSubscription: Subscription;
-  filteredOptions: Observable<string[]>;
-  myControl = new FormControl();
-
+  public filteredOptions: Observable<string[]>;
 
   constructor(private auth: AuthService,
               private cartService: ShoppingCartService,
@@ -54,12 +52,12 @@ export class CheckOutComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.minLength(5)
       ]),
-      'delivery_way': new FormControl('', [
+      'delivery': new FormControl('', [
         Validators.required,
-      ])
+      ]),
     });
 
-    this.filteredOptions = this.myControl.valueChanges
+    this.filteredOptions = this.form.controls.delivery.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
@@ -75,7 +73,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       this.userId = user.uid;
     });
 
-    this.orderService.getNovaPoshta()
+    this.orderService.getWarehouses()
       .subscribe((data: any) => {
         this.delivery = data.data;
       });
@@ -91,12 +89,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
           this.form.get('postal_code').setValue(this.userData.postal_code);
         }
       });
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.delivery.filter(option => option.DescriptionRu.toLowerCase().includes(filterValue));
   }
 
   ngOnDestroy() {
@@ -129,5 +121,11 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.router.navigate(['/order-success', result.key]);
 
     this.spinner.hide();
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.delivery.filter(option => option.DescriptionRu.toLowerCase().includes(filterValue));
   }
 }

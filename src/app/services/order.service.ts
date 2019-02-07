@@ -18,13 +18,10 @@ export class OrderService {
     return this.db.list('/orders').valueChanges();
   }
 
-  getNovaPoshta() {
+  getWarehouses() {
     return this.http.post('https://api.novaposhta.ua/v2.0/json/ ', {
       modelName: 'AddressGeneral',
       calledMethod: 'getWarehouses',
-      methodProperties: {
-        Language: 'ru'
-      },
       apiKey: '9e3e3e31d4ab0b594528f53be9a9f255',
     });
   }
