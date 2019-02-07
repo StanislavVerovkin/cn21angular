@@ -12,4 +12,8 @@ export class OrderService {
   storeOrder(order) {
     return this.db.list('/orders').push(order);
   }
+
+  getAllOrders() {
+    return this.db.list('/orders').valueChanges();
+  }
 }

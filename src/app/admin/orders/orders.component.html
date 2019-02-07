@@ -1,0 +1,19 @@
+<div class="card-order">
+  <mat-card *ngFor="let o of orders$ | async" class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{o.shipping.name}}</mat-card-title>
+      <mat-card-subtitle>{{o.dateCreated}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{o.shipping.address}}</p>
+      <p>{{o.shipping.city}}</p>
+      <p>{{o.shipping.mobile}}</p>
+    </mat-card-content>
+    <hr>
+    <mat-card-content *ngFor="let p of o.items">
+      {{p.product.title}}
+      {{p.quantity}}
+      {{p.totalPrice}}
+    </mat-card-content>
+  </mat-card>
+</div>

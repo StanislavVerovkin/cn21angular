@@ -16,7 +16,7 @@ export class ShoppingCartService {
 
   private create() {
     return this.db.list('cart').push({
-      dateCreated: new Date().getDate()
+      dateCreated: new Date().toLocaleDateString()
     });
   }
 

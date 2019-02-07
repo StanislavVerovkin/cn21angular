@@ -83,7 +83,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   async placeOrder() {
     const order = {
       userId: this.userId,
-      dateCreated: new Date().getDate(),
+      dateCreated: new Date().toLocaleDateString(),
       shipping: this.form.value,
       items: this.cart.items.map(i => {
         return {
