@@ -87,17 +87,13 @@ export class ProductFormComponent implements OnInit {
       this.productService.addProductToDb(value)
         .then((product) => {
           this.id = product.key;
-
           const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
-
           this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)
             .then((data) => {
               data.ref.getDownloadURL()
-
                 .then((url) => {
                   this.imageSrc = url;
                   this.productService.updateWithImage(this.id, this.imageSrc, value)
-
                     .then(() => {
                       this.form.reset();
                       this.router.navigate(['/admin/products']);
