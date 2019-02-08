@@ -1,8 +1,6 @@
 <div class="cart" *ngIf="cart$ | async as cart">
   <div *ngIf="cart.items.length; else noItem">
-    <strong>
-      <span class="total">Merchandise Total: EUR {{cart.totalPrice}}</span>
-    </strong>
+      <h2 class="total">Merchandise Total: EUR {{cart.totalPrice}}</h2>
     <div class="cart-product">
       <div *ngFor="let item of cart.items; trackBy: trackByFn">
         <h3>{{item.product.title}}</h3>

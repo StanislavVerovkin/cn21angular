@@ -18,7 +18,14 @@ import {
   MatDialogModule,
   MatGridListModule,
   MatProgressBarModule,
-  MatBadgeModule, MatStepperModule, MatAutocompleteModule, MatRadioModule, MatCheckboxModule, MatChipsModule, MatSidenavModule
+  MatBadgeModule,
+  MatStepperModule,
+  MatAutocompleteModule,
+  MatRadioModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatSidenavModule,
+  MatListModule
 } from '@angular/material';
 import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
@@ -130,6 +137,7 @@ const routes: Routes = [
     MatCheckboxModule,
     MatChipsModule,
     MatSidenavModule,
+    MatListModule,
     FlexLayoutModule
   ],
   providers: [

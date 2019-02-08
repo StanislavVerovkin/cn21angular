@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
+import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -8,19 +8,23 @@ import {User} from '../models/user.model';
 import {ShoppingCart} from '../models/shopping-cart';
 import {Observable} from 'rxjs';
 import {ShoppingCartService} from '../services/shopping-cart.service';
+import {MediaMatcher} from '@angular/cdk/layout';
+import {CategoryService} from '../services/category.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   public appUser: User;
   public cart;
+  public categories$;
+  public category: string;
   public cart$: Observable<ShoppingCart>;
-
-  @Output() toggleSidenav = new EventEmitter<void>();
+  public mobileQuery: MediaQueryList;
+  public _mobileQueryListener: () => void;
 
   constructor(private fb: AngularFireAuth,
               private authService: AuthService,
@@ -28,7 +32,17 @@ export class HeaderComponent implements OnInit {
               private snackBar: MatSnackBar,
               private router: Router,
               private cartService: ShoppingCartService,
+              public changeDetectorRef: ChangeDetectorRef,
+              public media: MediaMatcher,
+              private categoryService: CategoryService,
+              public route: ActivatedRoute,
   ) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.categories$ = this.categoryService.getCategories();
+    this.category = this.route.snapshot.paramMap.get('category');
   }
 
   async ngOnInit() {
@@ -53,5 +67,9 @@ export class HeaderComponent implements OnInit {
       .catch((error) => {
         this.snackBar.open(error.message, 'Close');
       });
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 }

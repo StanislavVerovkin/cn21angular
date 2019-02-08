@@ -18,7 +18,6 @@ export class ProductsComponent implements OnInit {
 
   public products: Product[] = [];
   public filteredProducts: Product[] = [];
-  public categories$;
   public category: string;
   public cart$: Observable<ShoppingCart>;
 
@@ -44,9 +43,6 @@ export class ProductsComponent implements OnInit {
           this.products.filter((p) => p.category === this.category) :
           this.products;
       });
-
-    this.categories$ = this.categoryService.getCategories();
-    this.category = this.route.snapshot.paramMap.get('category');
   }
 
   searchProduct(query: string) {
