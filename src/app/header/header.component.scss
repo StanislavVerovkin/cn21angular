@@ -13,29 +13,33 @@ mat-toolbar {
   z-index: 9999;
   box-shadow: 0 0 55px rgba(0, 0, 0, 0.5);
   height: 70px;
-}
 
-img {
-  width: 150px;
-}
-
-.navigate-header {
-
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  .logo {
+  .navigate-header {
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
   button {
     font-size: 14px;
     cursor: pointer;
   }
+
+  .header-buttons {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 98%;
+  }
 }
+
+img {
+  width: 150px;
+}
+
 
 
 

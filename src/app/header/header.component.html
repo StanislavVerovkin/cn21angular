@@ -4,8 +4,12 @@
     <div class="navigate-header">
 
       <div class="logo">
-         <img routerLink="/" src="../../assets/C.N.21white.svg">
-       </div>
+        <img routerLink="/" src="../../assets/C.N.21white.svg">
+      </div>
+
+    </div>
+
+    <div class="header-buttons">
 
       <button mat-button routerLinkActive="mat-primary" routerLink="/products">Shop</button>
       <button mat-button routerLinkActive="mat-primary">About</button>
@@ -44,10 +48,13 @@
 
       </div>
 
+
       <button class="cart" routerLink="/shopping-cart" mat-icon-button *ngIf="cart$ | async as cart">
         <mat-icon [matBadge]="cart.totalItemsCount" matBadgeColor="primary">add_shopping_cart</mat-icon>
       </button>
 
     </div>
+
   </mat-toolbar-row>
 </mat-toolbar>
+

@@ -18,7 +18,7 @@ import {
   MatDialogModule,
   MatGridListModule,
   MatProgressBarModule,
-  MatBadgeModule, MatStepperModule, MatAutocompleteModule, MatRadioModule, MatCheckboxModule, MatChipsModule
+  MatBadgeModule, MatStepperModule, MatAutocompleteModule, MatRadioModule, MatCheckboxModule, MatChipsModule, MatSidenavModule
 } from '@angular/material';
 import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
@@ -53,6 +53,7 @@ import {ShoppingCartService} from './services/shopping-cart.service';
 import {ProductCardComponent} from './product-card/product-card.component';
 import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 import {OrderService} from './services/order.service';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 const routes: Routes = [
@@ -127,7 +128,9 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatRadioModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSidenavModule,
+    FlexLayoutModule
   ],
   providers: [
     AuthService,

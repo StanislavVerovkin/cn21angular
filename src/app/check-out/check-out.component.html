@@ -20,7 +20,7 @@
     <mat-form-field class="example-full-width">
       <input type="text" placeholder="Delivery Way" matInput formControlName="delivery" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let d of filteredOptions | async" [value]="d.DescriptionRu">
+        <mat-option *ngFor="let d of filteredWarehouses | async" [value]="d.DescriptionRu">
           {{d.DescriptionRu}}
         </mat-option>
       </mat-autocomplete>

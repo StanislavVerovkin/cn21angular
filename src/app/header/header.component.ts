@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
   public appUser: User;
   public cart;
   public cart$: Observable<ShoppingCart>;
+
+  @Output() toggleSidenav = new EventEmitter<void>();
 
   constructor(private fb: AngularFireAuth,
               private authService: AuthService,

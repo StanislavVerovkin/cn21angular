@@ -23,7 +23,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   public cart: ShoppingCart;
   public cartSubscription: Subscription;
   public userSubscription: Subscription;
-  public filteredOptions: Observable<string[]>;
+  public filteredWarehouses: Observable<string[]>;
 
   constructor(private auth: AuthService,
               private cartService: ShoppingCartService,
@@ -57,14 +57,13 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       ]),
     });
 
-    this.filteredOptions = this.form.controls.delivery.valueChanges
+    this.filteredWarehouses = this.form.controls.delivery.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
 
     const cart$ = await this.cartService.getCart();
-
     this.cartSubscription = cart$.subscribe((cart) => {
       this.cart = cart;
     });
@@ -78,7 +77,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
         this.delivery = data.data;
       });
 
-    return this.auth.appUser$
+    this.auth.appUser$
       .subscribe(data => {
         if (data !== null) {
           this.userData = data;
@@ -89,11 +88,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
           this.form.get('postal_code').setValue(this.userData.postal_code);
         }
       });
-  }
-
-  ngOnDestroy() {
-    this.cartSubscription.unsubscribe();
-    this.userSubscription.unsubscribe();
   }
 
   async placeOrder() {
@@ -126,6 +120,11 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.delivery.filter(option => option.DescriptionRu.toLowerCase().includes(filterValue));
+    return this.delivery.filter(data => data.DescriptionRu.toLowerCase().includes(filterValue));
+  }
+
+  ngOnDestroy() {
+    this.cartSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }
