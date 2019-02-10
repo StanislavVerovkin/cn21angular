@@ -1,24 +1,31 @@
 .images {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 
   img {
-    width: 100%;
+    width: 35%;
+    margin: 15px;
   }
 }
 
-video {
-  padding-top: 10px;
-}
-
-@media (max-width: 1920px) and (min-width: 1000px) {
-  img {
-    display: none;
-  }
-}
-
-@media (max-width: 1000px) {
-  video {
-    display: none;
-  }
-}
+//}
+//
+//video {
+//  padding-top: 10px;
+//  width: 100%;
+//}
+//
+//@media (max-width: 1920px) and (min-width: 1000px) {
+//  img {
+//    display: none;
+//  }
+//}
+//
+//@media (max-width: 1000px) {
+//  video {
+//    display: none;
+//  }
+//}

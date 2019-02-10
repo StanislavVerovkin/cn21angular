@@ -1,9 +1,8 @@
-<video width="100%" height="100%" playsinline preload="auto" autoplay [muted]="true" loop>
-  <source src="../../assets/IMG_3395.mov" type="video/mp4">
-</video>
+<!--<video playsinline preload="auto" autoplay [muted]="true" loop>-->
+<!--<source src="../../assets/IMG_3395.mov" type="video/mp4">-->
+<!--</video>-->
 
-<div class="images">
-  <img src="../../assets/main.jpg" alt="">
-  <img src="../../assets/main1.jpg" alt="">
-  <img src="../../assets/main2.jpg" alt="">
+<div class="images" *ngIf="firstImage">
+  <img [src]="firstImage" alt="">
+  <img [src]="secondImage" alt="">
 </div>
