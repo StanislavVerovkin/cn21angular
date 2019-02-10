@@ -3,10 +3,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   height: 100vh;
 
   img {
-    width: 35%;
+    width: 35em;
     margin: 15px;
   }
 }
