@@ -6,12 +6,17 @@ mat-toolbar {
   height: 70px;
   padding: 0;
 
-  .navigate-header {
+  .logo {
     display: flex;
     position: fixed;
     align-items: center;
     justify-content: center;
     width: 100%;
+    cursor: pointer;
+
+    :focus {
+      outline: none;
+    }
   }
 
   button {

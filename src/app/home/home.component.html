@@ -2,7 +2,14 @@
 <!--<source src="../../assets/IMG_3395.mov" type="video/mp4">-->
 <!--</video>-->
 
-<div class="images" *ngIf="firstImage">
+<div class="images" *ngIf="firstImage; else images">
   <img [src]="firstImage" alt="">
   <img [src]="secondImage" alt="">
 </div>
+
+<ng-template #images>
+  <div class="images">
+    <img src="../../assets/1.jpg" alt="">
+    <img src="../../assets/2.jpg" alt="">
+  </div>
+</ng-template>

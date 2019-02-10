@@ -40,6 +40,6 @@ export class HomeComponent implements OnInit {
       } else {
         this.secondImage = images[i + 1];
       }
-    }, 3000);
+    }, 4000);
   }
 }
