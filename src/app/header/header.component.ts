@@ -10,7 +10,6 @@ import {Observable} from 'rxjs';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {CategoryService} from '../services/category.service';
-import {BreadcrumbsService} from 'ng6-breadcrumbs';
 
 @Component({
   selector: 'app-header',
