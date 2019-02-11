@@ -47,7 +47,8 @@ export class ProductFormComponent implements OnInit {
       ]),
       'category': new FormControl('', [
         Validators.required
-      ])
+      ]),
+      'preOrder': new FormControl()
     });
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -64,6 +65,7 @@ export class ProductFormComponent implements OnInit {
           this.form.get('description').setValue(this.product.description);
           this.form.get('size').setValue(this.product.size);
           this.form.get('category').setValue(this.product.category);
+          this.form.get('preOrder').setValue(this.product.preOrder);
         });
     }
   }

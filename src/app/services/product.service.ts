@@ -19,6 +19,7 @@ export class ProductService {
       description: value.description,
       size: value.size,
       category: value.category,
+      preOrder: value.preOrder,
       image: ''
     });
   }
@@ -54,6 +55,7 @@ export class ProductService {
       description: value.description,
       size: value.size,
       category: value.category,
+      preOrder: value.preOrder,
       image: image
     });
   }
@@ -65,6 +67,7 @@ export class ProductService {
       description: value.description,
       size: value.size,
       category: value.category,
+      preOrder: value.preOrder,
     });
   }
 

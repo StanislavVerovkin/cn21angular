@@ -12,6 +12,25 @@
   }
 }
 
+@media (max-width: 414px) {
+
+  .images {
+
+    img {
+      width: 25em;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .images {
+
+    img {
+      width: 22em;
+    }
+  }
+}
+
 //}
 //
 //video {

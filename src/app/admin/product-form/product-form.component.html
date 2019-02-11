@@ -1,27 +1,30 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form">
   <div class="example-form">
-      <mat-card-title align="center">New product</mat-card-title>
-      <mat-form-field class="example-full-width">
-        <input formControlName="title" matInput placeholder="Title">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input formControlName="price" type="number" matInput placeholder="Price">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <textarea formControlName="description" matInput placeholder="Description"></textarea>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input formControlName="size" matInput placeholder="Size">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-select formControlName="category" placeholder="Category">
-          <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <input  (change)="onFileChanged($event)" #fileInput type="file" hidden accept="image/*">
-      <button type="button" (click)="fileInput.click()" mat-raised-button>Upload</button>
-      <button [disabled]="form.invalid" mat-raised-button>Save</button>
-      <button [disabled]="form.invalid" type="button" (click)="deleteProduct()" mat-raised-button>Delete</button>
+    <mat-card-title align="center">New product</mat-card-title>
+    <mat-form-field class="example-full-width">
+      <input formControlName="title" matInput placeholder="Title">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="price" type="number" matInput placeholder="Price">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea formControlName="description" matInput placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="size" matInput placeholder="Size">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-select formControlName="category" placeholder="Category">
+        <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input (change)="onFileChanged($event)" #fileInput type="file" hidden accept="image/*">
+    <button type="button" (click)="fileInput.click()" mat-raised-button>Upload</button>
+    <button [disabled]="form.invalid" mat-raised-button>Save</button>
+    <button [disabled]="form.invalid" type="button" (click)="deleteProduct()" mat-raised-button>Delete</button>
     <img *ngIf="imageSrc" [src]="imageSrc">
+    <mat-radio-group formControlName="preOrder">
+      <mat-radio-button value="Pre-order">Pre-order</mat-radio-button>
+    </mat-radio-group>
   </div>
 </form>

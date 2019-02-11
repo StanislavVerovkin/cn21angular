@@ -8,10 +8,6 @@
         <img routerLink="/" src="../../assets/C.N.21.svg">
       </div>
 
-      <button mat-button routerLinkActive="mat-primary" routerLink="/products">Shop</button>
-      <button mat-button routerLinkActive="mat-primary">About</button>
-      <button mat-button routerLinkActive="mat-primary">Contact</button>
-
       <ng-template #anonymousUser>
         <button mat-button routerLinkActive="mat-primary" routerLink="/login" class="header-menu">Login</button>
         <button mat-button routerLinkActive="mat-primary" routerLink="/registration" class="header-menu">Join</button>
@@ -48,12 +44,12 @@
 
 
       <button class="cart" routerLink="/shopping-cart" mat-icon-button *ngIf="cart$ | async as cart">
-        <mat-icon [matBadge]="cart.totalItemsCount" matBadgeColor="primary">add_shopping_cart</mat-icon>
+        <mat-icon matBadgeColor="warn" [matBadge]="cart.totalItemsCount">add_shopping_cart</mat-icon>
       </button>
 
     </div>
 
-    <button mat-icon-button (click)="snav.toggle()">
+    <button class="menu" mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -69,12 +65,17 @@
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
     >
       <mat-nav-list>
+        <a mat-list-item routerLinkActive="mat-list-item-content" routerLink="/products">shop</a>
+        <a mat-list-item>about us</a>
+        <a mat-list-item>contact us</a>
+        <a mat-list-item>customer care</a>
+        <hr>
         <a
           mat-list-item
           [routerLink]="['/products/']"
           *ngFor="let c of categories$ | async"
           [queryParams]="{category: c.id}"
-          routerLinkActive="color-button"
+          routerLinkActive="mat-list-item-content"
         >
           {{c.name}}
         </a>

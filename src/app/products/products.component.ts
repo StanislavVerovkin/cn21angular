@@ -7,6 +7,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {Observable} from 'rxjs';
 import {ShoppingCart} from '../models/shopping-cart';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-products',
@@ -40,7 +41,7 @@ export class ProductsComponent implements OnInit {
         this.category = params.get('category');
 
         this.filteredProducts = (this.category) ?
-          this.products.filter((p) => p.category === this.category) :
+          this.products.filter(p => p.category === this.category) :
           this.products;
       });
   }
