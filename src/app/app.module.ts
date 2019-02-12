@@ -60,7 +60,7 @@ import {ShoppingCartService} from './services/shopping-cart.service';
 import {ProductCardComponent} from './product-card/product-card.component';
 import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 import {OrderService} from './services/order.service';
-import {CarouselModule} from 'angular2-carousel';
+import { CarouselComponent } from './carousel/carousel.component';
 
 const routes: Routes = [
 
@@ -98,6 +98,7 @@ const routes: Routes = [
     ProductItemComponent,
     ProductCardComponent,
     ProductQuantityComponent,
+    CarouselComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes, {useHash: true})],
@@ -137,7 +138,6 @@ const routes: Routes = [
     MatChipsModule,
     MatSidenavModule,
     MatListModule,
-    CarouselModule
   ],
   providers: [
     AuthService,

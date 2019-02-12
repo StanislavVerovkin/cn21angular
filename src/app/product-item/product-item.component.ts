@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../services/product.service';
 import {ShoppingCartService} from '../services/shopping-cart.service';
-import {CarouselComponent} from 'angular2-carousel';
 
 @Component({
   selector: 'app-product-item',
@@ -12,9 +11,11 @@ import {CarouselComponent} from 'angular2-carousel';
 export class ProductItemComponent implements OnInit {
 
   public id;
-  public isLoaded = false;
   public product: any = {};
   public cart$;
+
+  public index;
+  public images = [];
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
@@ -27,22 +28,18 @@ export class ProductItemComponent implements OnInit {
       this.productService.getProductById(this.id)
         .subscribe((data) => {
           this.product = data;
-          this.isLoaded = true;
+          this.images.push(this.product.image, this.product.secondImage, this.product.thirdImage);
         });
     }
   }
-
-  @ViewChild('topCarousel') topCarousel: CarouselComponent;
 
   async ngOnInit() {
     this.cart$ = await this.cartService.getCart();
   }
 
-  prev(){
-    this.topCarousel.slidePrev();
-  }
-  next(){
-    this.topCarousel.slideNext();
+  onChange(idx) {
+    console.log(idx);
+    this.index = idx;
   }
 
   addToCart() {

@@ -1,98 +1,14 @@
-//.container {
-//  display: flex;
-//  flex-direction: row;
-//  flex-wrap: wrap;
-//  justify-content: space-around;
-//  align-items: center;
-//  padding: 100px 20px 20px;
-//
-//  img {
-//    width: 700px;
-//  }
-//
-//  .back {
-//    cursor: pointer;
-//    display: flex;
-//  }
-//
-//  .description {
-//    display: flex;
-//    flex-direction: column;
-//    align-items: center;
-//    font-size: 60px;
-//
-//    .quantity {
-//      width: 300px;
-//    }
-//
-//    .price {
-//      font-size: 30px;
-//    }
-//
-//    .add-cart {
-//      font-size: 60px;
-//      font-style: italic;
-//      cursor: pointer;
-//      animation: glitch 1s steps(100) infinite;
-//    }
-//  }
-//}
-//
-//@media (max-width: 900px) {
-//  .container {
-//
-//    img {
-//      width: 500px;
-//    }
-//  }
-//}
-//
-//@media (max-width: 690px) {
-//  .container {
-//    padding-top: 170px;
-//  }
-//}
-//
-//@media (max-width: 500px) {
-//  .container {
-//
-//    img {
-//      width: 400px;
-//    }
-//
-//    .description {
-//      font-size: 30px;
-//
-//      .add-cart {
-//        font-size: 40px;
-//      }
-//    }
-//  }
-//}
-//
-//@media (max-width: 375px) {
-//  .container {
-//
-//    img {
-//      width: 350px;
-//    }
-//  }
-//}
-
-.parameters-content {
+.title {
   margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  width: 100%;
 }
 
-.item-carousel {
-
-  div,
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.item-carousel div {
-  background-size: contain;
-  background: no-repeat center center;
+strong {
+  cursor: pointer;
+  font-size: 20px;
 }
