@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MatSnackBar} from '@angular/material';
+import {UserService} from '../../services/user.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,9 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router,
               private spinner: NgxSpinnerService,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              private ngZone: NgZone,
+              private userService: UserService,
   ) {
   }
 
@@ -54,7 +58,7 @@ export class LoginComponent implements OnInit {
       )
       .catch((error) => {
         this.spinner.hide();
-        this.snackBar.open(error.message, 'Close' , {
+        this.snackBar.open(error.message, 'Close', {
           duration: 5000
         });
       });

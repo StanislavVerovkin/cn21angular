@@ -60,13 +60,12 @@ import {ShoppingCartService} from './services/shopping-cart.service';
 import {ProductCardComponent} from './product-card/product-card.component';
 import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 import {OrderService} from './services/order.service';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 const routes: Routes = [
 
   {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent, data: {breadcrumb: 'login'}},
-  {path: 'registration', component: RegistrationComponent, data: {breadcrumb: 'join'}},
+  {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'product-item/:id', component: ProductItemComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
@@ -98,7 +97,6 @@ const routes: Routes = [
     ProductItemComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    BreadcrumbComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes, {useHash: true})],

@@ -25,6 +25,7 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <button [disabled]="form.invalid" mat-raised-button>Place Order</button>
+    <button routerLink="/shopping-cart" type="button" mat-raised-button>Back to cart</button>
+    <button class="order" [disabled]="form.invalid" mat-raised-button>Place Order</button>
   </div>
 </form>

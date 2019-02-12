@@ -1,6 +1,6 @@
 <div class="cart" *ngIf="cart$ | async as cart">
   <div *ngIf="cart.items.length; else noItem">
-    <h2 class="total">Merchandise Total: EUR {{cart.totalPrice}}</h2>
+    <h2 class="total">Merchandise Total: EUR {{cart.totalPrice | number}}</h2>
     <div class="cart-product">
       <div *ngFor="let item of cart.items; trackBy: trackByFn">
         <h3>{{item.product.title}}</h3>
@@ -8,12 +8,12 @@
           <img [src]="item.product.image" alt="">
         </div>
         <app-product-quantity
-          class="product"x
+          class="product"
           [product]="item.product"
           [shoppingCart]="cart">
         </app-product-quantity>
         <div class="price">
-          <div>Total: EUR {{item.totalPrice}}</div>
+          <div>Total: EUR {{item.totalPrice | number}}</div>
           <div (click)="clearItem(item.product.id)">
             <mat-icon>delete</mat-icon>
           </div>
@@ -22,6 +22,7 @@
     </div>
     <div class="cart-buttons">
       <div>
+        <button routerLink="/products" mat-raised-button>Back to shop</button>
         <button (click)="clearCart()" mat-raised-button>Clear cart</button>
         <button routerLink="/check-out" mat-raised-button>Checkout</button>
       </div>
@@ -30,6 +31,7 @@
   <ng-template #noItem>
     <div class="no-tem">
       <h2>You have no item in the shopping cart...</h2>
+      <button routerLink="/products" mat-raised-button>Continue shopping</button>
     </div>
   </ng-template>
 </div>

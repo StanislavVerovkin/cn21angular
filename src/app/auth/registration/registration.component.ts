@@ -69,7 +69,7 @@ export class RegistrationComponent implements OnInit {
       .then(() => {
         this.authService.user$
           .subscribe((user) => {
-            this.userService.addUserToDb(user, this.form.value);
+            this.userService.addUserToDb(user, value);
             this.router.navigate(['/']);
             this.spinner.hide();
           });
