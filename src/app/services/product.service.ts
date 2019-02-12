@@ -13,15 +13,11 @@ export class ProductService {
   }
 
   addProductToDb(value) {
-    return this.db.list('products').push({
-      title: value.title,
-      price: value.price,
-      description: value.description,
-      size: value.size,
-      category: value.category,
-      preOrder: value.preOrder,
-      image: ''
-    });
+    return this.db.list('products').push(value);
+  }
+
+  updateProduct(productId, value) {
+    return this.db.object('/products/' + productId).update(value);
   }
 
   getAllProducts() {
@@ -46,29 +42,6 @@ export class ProductService {
             return {id, ...data};
         })
       );
-  }
-
-  updateWithImage(productId, image, value) {
-    return this.db.object('/products/' + productId).update({
-      title: value.title,
-      price: value.price,
-      description: value.description,
-      size: value.size,
-      category: value.category,
-      preOrder: value.preOrder,
-      image: image
-    });
-  }
-
-  updateWithoutImage(productId, value) {
-    return this.db.object('/products/' + productId).update({
-      title: value.title,
-      price: value.price,
-      description: value.description,
-      size: value.size,
-      category: value.category,
-      preOrder: value.preOrder,
-    });
   }
 
   delete(productId) {

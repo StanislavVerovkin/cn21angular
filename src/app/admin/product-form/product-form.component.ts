@@ -48,6 +48,18 @@ export class ProductFormComponent implements OnInit {
       'category': new FormControl('', [
         Validators.required
       ]),
+      'image': new FormControl('', [
+        Validators.required
+      ]),
+      'firstImage': new FormControl('', [
+        Validators.required
+      ]),
+      'secondImage': new FormControl('', [
+        Validators.required
+      ]),
+      'thirdImage': new FormControl('', [
+        Validators.required
+      ]),
       'preOrder': new FormControl()
     });
 
@@ -66,43 +78,27 @@ export class ProductFormComponent implements OnInit {
           this.form.get('size').setValue(this.product.size);
           this.form.get('category').setValue(this.product.category);
           this.form.get('preOrder').setValue(this.product.preOrder);
+          this.form.get('image').setValue(this.product.image);
+          this.form.get('firstImage').setValue(this.product.firstImage);
+          this.form.get('secondImage').setValue(this.product.secondImage);
+          this.form.get('thirdImage').setValue(this.product.thirdImage);
         });
     }
   }
 
   onSubmit(value) {
     this.spinner.show();
-    if (this.id && !this.image) {
-      this.productService.updateWithoutImage(this.id, value)
+    if (this.id) {
+      this.productService.updateProduct(this.id, value)
         .then(() => {
           this.spinner.hide();
         });
-    } else if (this.id && this.image) {
-      this.productService.updateWithImage(this.id, this.imageSrc, value)
-        .then(() => {
-          this.productService.updateWithoutImage(this.id, value)
-            .then(() => {
-              this.spinner.hide();
-            });
-        });
     } else {
       this.productService.addProductToDb(value)
-        .then((product) => {
-          this.id = product.key;
-          const imageExtension = this.image.name.slice(this.image.name.lastIndexOf('.'));
-          this.afs.ref(`uploads/${this.id}${imageExtension}`).put(this.image)
-            .then((data) => {
-              data.ref.getDownloadURL()
-                .then((url) => {
-                  this.imageSrc = url;
-                  this.productService.updateWithImage(this.id, this.imageSrc, value)
-                    .then(() => {
-                      this.form.reset();
-                      this.router.navigate(['/admin/products']);
-                      this.spinner.hide();
-                    });
-                });
-            });
+        .then(() => {
+          this.form.reset();
+          this.router.navigate(['/admin/products']);
+          this.spinner.hide();
         });
     }
   }
@@ -116,18 +112,5 @@ export class ProductFormComponent implements OnInit {
           this.spinner.hide();
         });
     }
-  }
-
-  onFileChanged(event) {
-
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = e => {
-      this.imageSrc = reader.result;
-    };
-
-    reader.readAsDataURL(file);
-    this.image = file;
   }
 }

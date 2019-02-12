@@ -1,4 +1,4 @@
-.title {
+.info {
   margin-top: 100px;
   display: flex;
   justify-content: center;
@@ -6,6 +6,10 @@
   align-items: center;
   position: fixed;
   width: 100%;
+
+  .title {
+    font-size: 35px;
+  }
 }
 
 strong {

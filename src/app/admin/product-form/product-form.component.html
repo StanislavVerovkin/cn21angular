@@ -14,15 +14,24 @@
       <input formControlName="size" matInput placeholder="Size">
     </mat-form-field>
     <mat-form-field class="example-full-width">
+      <input formControlName="image" matInput placeholder="Image">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="firstImage" matInput placeholder="First Image">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="secondImage" matInput placeholder="Second Image">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input formControlName="thirdImage" matInput placeholder="Third Image">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
       <mat-select formControlName="category" placeholder="Category">
         <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <input (change)="onFileChanged($event)" #fileInput type="file" hidden accept="image/*">
-    <button type="button" (click)="fileInput.click()" mat-raised-button>Upload</button>
     <button [disabled]="form.invalid" mat-raised-button>Save</button>
     <button [disabled]="form.invalid" type="button" (click)="deleteProduct()" mat-raised-button>Delete</button>
-    <img *ngIf="imageSrc" [src]="imageSrc">
     <mat-radio-group formControlName="preOrder">
       <mat-radio-button value="Pre-order">Pre-order</mat-radio-button>
     </mat-radio-group>
