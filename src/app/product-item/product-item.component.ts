@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../services/product.service';
 import {ShoppingCartService} from '../services/shopping-cart.service';
+import {CarouselComponent} from 'angular2-carousel';
 
 @Component({
   selector: 'app-product-item',
@@ -31,8 +32,17 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
+  @ViewChild('topCarousel') topCarousel: CarouselComponent;
+
   async ngOnInit() {
     this.cart$ = await this.cartService.getCart();
+  }
+
+  prev(){
+    this.topCarousel.slidePrev();
+  }
+  next(){
+    this.topCarousel.slideNext();
   }
 
   addToCart() {
