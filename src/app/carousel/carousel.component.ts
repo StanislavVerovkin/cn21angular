@@ -21,31 +21,19 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
       justify-content: center;
       width: 100%;
       align-items: center;
-      position: fixed;
-      top: 210px;
-    }
-
-    .icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
     }
 
     .tmb img {
-      width: 500px;
+      width: 400px;
       cursor: pointer;
       box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+      margin: -200px;
     }
   `],
   template: `
     <div class="carousel">
       <div [@thumbState]="idx === counter ? 'active' : 'inactive'" class="tmb"
            *ngFor="let img of images; let idx = index">
-        <div class="icon">
-          <span>click to show more</span>
-          <mat-icon>arrow_downward</mat-icon>
-        </div>
         <img [src]="img" (click)="onClickThumb($event)"/>
       </div>
     </div>

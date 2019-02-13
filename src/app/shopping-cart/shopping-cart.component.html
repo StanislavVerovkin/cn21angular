@@ -4,7 +4,7 @@
     <div class="cart-product">
       <div *ngFor="let item of cart.items; trackBy: trackByFn">
         <h3>{{item.product.title}}</h3>
-        <div class="img">
+        <div [routerLink]="['/product-item/', item.product.id]" class="img">
           <img [src]="item.product.image" alt="">
         </div>
         <app-product-quantity

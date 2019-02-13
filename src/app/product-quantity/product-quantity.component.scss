@@ -1,7 +1,16 @@
 .product {
   display: flex;
   justify-content: space-around;
-  width: 100px;
+  width: 38vh;
+  font-size: 50px;
+  align-items: center;
+
+  .number-quantity {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 
   span {
     cursor: pointer;
