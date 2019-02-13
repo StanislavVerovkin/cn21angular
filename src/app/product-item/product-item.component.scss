@@ -29,6 +29,10 @@
       cursor: pointer;
     }
 
+    .pre-order {
+      font-style: italic;
+    }
+
     .description {
       width: 30%;
     }
@@ -53,3 +57,20 @@
   }
 }
 
+@media (max-width: 375px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+
+    .info {
+      height: 146vh;
+
+      .description {
+        width: 340px;
+      }
+    }
+  }
+}

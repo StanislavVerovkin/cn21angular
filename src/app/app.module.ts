@@ -61,6 +61,7 @@ import {ProductCardComponent} from './product-card/product-card.component';
 import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 import {OrderService} from './services/order.service';
 import { CarouselComponent } from './carousel/carousel.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
 
@@ -99,7 +100,9 @@ const routes: Routes = [
     ProductCardComponent,
     ProductQuantityComponent,
     CarouselComponent,
+    DialogComponent,
   ],
+  entryComponents: [DialogComponent],
   imports: [
     [RouterModule.forRoot(routes, {useHash: true})],
     AngularFireModule.initializeApp(environment.firebase),

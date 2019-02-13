@@ -1,4 +1,4 @@
-import {Component,OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../services/product.service';
 import {Product} from '../models/product.model';
 import {switchMap} from 'rxjs/operators';
@@ -7,7 +7,6 @@ import {ActivatedRoute} from '@angular/router';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {Observable} from 'rxjs';
 import {ShoppingCart} from '../models/shopping-cart';
-import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-products',

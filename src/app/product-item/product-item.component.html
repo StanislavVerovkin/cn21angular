@@ -1,5 +1,6 @@
 <div *ngIf="cart$ | async as cart" class="container">
   <div class="info">
+    <div class="pre-order">{{product.preOrder}}</div>
     <div class="title">{{product.title}}</div>
     <div class="price">EUR {{product.price}}</div>
     <div
