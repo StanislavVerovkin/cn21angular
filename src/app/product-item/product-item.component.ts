@@ -46,14 +46,12 @@ export class ProductItemComponent implements OnInit {
   }
 
   addToCart() {
-    if (this.product.preOrder) {
+    this.product.preOrder ?
       this.dialog.open(DialogComponent, {
         height: '400px',
         width: '600px',
         data: this.product
-      });
-    } else {
-      this.cartService.addToCart(this.product);
-    }
+      })
+      : this.cartService.addToCart(this.product);
   }
 }
