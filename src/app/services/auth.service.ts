@@ -33,6 +33,13 @@ export class AuthService {
     return this.fb.auth.signOut();
   }
 
+  resetPassword(email: string) {
+    const auth = firebase.auth();
+    return auth.sendPasswordResetEmail(email)
+      .then(() => console.log('email sent'))
+      .catch((error) => console.log(error));
+  }
+
   get appUser$(): Observable<User> {
     return this.user$
       .pipe(

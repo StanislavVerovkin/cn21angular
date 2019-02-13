@@ -25,11 +25,12 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   public userSubscription: Subscription;
   public filteredWarehouses: Observable<string[]>;
 
-  constructor(private auth: AuthService,
-              private cartService: ShoppingCartService,
-              private orderService: OrderService,
-              private spinner: NgxSpinnerService,
-              private router: Router
+  constructor(
+    private auth: AuthService,
+    private cartService: ShoppingCartService,
+    private orderService: OrderService,
+    private spinner: NgxSpinnerService,
+    private router: Router
   ) {
   }
 

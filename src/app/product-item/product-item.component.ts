@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../services/product.service';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {MatDialog} from '@angular/material';
-import {DialogComponent} from '../dialog/dialog.component';
+import {DialogComponent} from '../dialogs/dialog/dialog.component';
 
 @Component({
   selector: 'app-product-item',

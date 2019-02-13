@@ -61,13 +61,16 @@ import {ProductCardComponent} from './product-card/product-card.component';
 import {ProductQuantityComponent} from './product-quantity/product-quantity.component';
 import {OrderService} from './services/order.service';
 import { CarouselComponent } from './carousel/carousel.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from './dialogs/dialog/dialog.component';
+import { WelcomeDialogComponent } from './dialogs/welcome-dialog/welcome-dialog.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const routes: Routes = [
 
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'product-item/:id', component: ProductItemComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
@@ -101,8 +104,10 @@ const routes: Routes = [
     ProductQuantityComponent,
     CarouselComponent,
     DialogComponent,
+    WelcomeDialogComponent,
+    ForgotPasswordComponent,
   ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent, WelcomeDialogComponent],
   imports: [
     [RouterModule.forRoot(routes, {useHash: true})],
     AngularFireModule.initializeApp(environment.firebase),

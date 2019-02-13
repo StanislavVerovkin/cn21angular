@@ -1,11 +1,9 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MatSnackBar} from '@angular/material';
-import {UserService} from '../../services/user.service';
-import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +18,6 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private spinner: NgxSpinnerService,
               private snackBar: MatSnackBar,
-              private ngZone: NgZone,
-              private userService: UserService,
   ) {
   }
 

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {WelcomeDialogComponent} from '../dialogs/welcome-dialog/welcome-dialog.component';
 
 
 @Component({
@@ -12,10 +14,13 @@ export class HomeComponent implements OnInit {
   public secondImage;
 
 
-  constructor() {
+  constructor(
+    public dialog: MatDialog
+  ) {
   }
 
   ngOnInit() {
+    // this.welcomeBanner();
     this.changeImage();
   }
 
@@ -41,5 +46,14 @@ export class HomeComponent implements OnInit {
         this.secondImage = images[i + 1];
       }
     }, 4000);
+  }
+
+  welcomeBanner() {
+    setTimeout(() => {
+      this.dialog.open(WelcomeDialogComponent, {
+        height: '400px',
+        width: '600px',
+      });
+    }, 5000);
   }
 }
