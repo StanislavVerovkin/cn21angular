@@ -19,8 +19,12 @@
         Password is required
       </mat-error>
     </mat-form-field>
-    <button [disabled]="form.invalid" mat-raised-button>Login</button>
-    <button type="button" class="join" routerLink="/registration" mat-raised-button>Join</button>
-    <div class="forgot" routerLink="/forgot-password">Forgot password ?</div>
+    <div class="down-block">
+      <div class="buttons-control">
+        <button [disabled]="form.invalid" mat-raised-button>Login</button>
+        <button type="button" class="join" routerLink="/registration" mat-raised-button>Join</button>
+      </div>
+      <span class="forgot" routerLink="/forgot-password">Forgot password ?</span>
+    </div>
   </form>
 </div>

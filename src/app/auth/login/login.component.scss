@@ -20,9 +20,13 @@
     border-radius: 0;
   }
 
-  .forgot {
+  .down-block {
     display: flex;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .forgot {
     cursor: pointer;
     outline: none;
   }
