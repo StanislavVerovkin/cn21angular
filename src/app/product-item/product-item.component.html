@@ -1,27 +1,25 @@
 <div *ngIf="cart$ | async as cart" class="container">
-  <!--<div class="description">{{product.description}}</div>-->
-  <!--<div class="info-title">-->
-    <!--<div class="title">{{product.title}}</div>-->
-  <!--</div>-->
+  <div class="info">
+    <div class="title">{{product.title}}</div>
+    <div class="price">EUR {{product.price}}</div>
+    <div
+      class="buy"
+      (click)="addToCart()"
+      *ngIf="cart.getQuantity(product) === 0; else updateQuantity"
+    >
+      <strong>BUY</strong>
+    </div>
+    <ng-template #updateQuantity>
+      <app-product-quantity
+        class="quantity"
+        [product]="product"
+        [shoppingCart]="cart">
+      </app-product-quantity>
+    </ng-template>
+    <div class="description">{{product.description}}</div>
+  </div>
   <app-carousel
     [images]="images"
     (change)="onChange($event)">
   </app-carousel>
-  <!--<div class="additional-info">-->
-    <!--<div>EUR {{product.price}}</div>-->
-    <!--<div class="buy"-->
-      <!--(click)="addToCart()"-->
-      <!--*ngIf="cart.getQuantity(product) === 0; else updateQuantity"-->
-    <!--&gt;-->
-      <!--<strong>BUY</strong>-->
-    <!--</div>-->
-    <!--<ng-template #updateQuantity>-->
-      <!--<app-product-quantity-->
-        <!--class="quantity"-->
-        <!--[product]="product"-->
-        <!--[shoppingCart]="cart">-->
-      <!--</app-product-quantity>-->
-    <!--</ng-template>-->
-  <!--</div>-->
 </div>
-

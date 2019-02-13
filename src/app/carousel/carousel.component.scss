@@ -6,8 +6,30 @@
 }
 
 .tmb img {
-  width: 400px;
+  width: 600px;
   cursor: pointer;
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
-  margin: -200px;
+  margin: -400px;
+}
+
+@media (max-width: 414px) {
+  .carousel {
+    margin-left: 200px;
+    height: 500px;
+  }
+
+  .tmb img {
+    width: 400px;
+  }
+}
+
+@media (max-width: 414px) {
+  .carousel {
+    margin-left: 225px;
+    height: 550px;
+  }
+
+  .tmb img {
+    width: 350px;
+  }
 }

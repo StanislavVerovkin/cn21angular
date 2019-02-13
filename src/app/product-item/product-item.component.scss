@@ -2,42 +2,54 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding-right: 400px;
 
-  .info-title {
+  .info {
+    width: 100%;
     display: flex;
-    top: 0;
     justify-content: center;
+    position: absolute;
     flex-direction: column;
     align-items: center;
-    position: fixed;
-    width: 100%;
+    height: 100vh;
+
+    .price {
+      font-size: 20px;
+    }
 
     .title {
-      margin-top: 170px;
-      font-size: 35px;
+      font-size: 40px;
+    }
+
+    .buy {
+      font-size: 50px;
+      font-style: italic;
+      cursor: pointer;
+    }
+
+    .description {
+      width: 30%;
     }
   }
+}
 
-  .additional-info {
+@media (max-width: 414px) {
+  .container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    padding: 0;
 
-  .buy {
-    cursor: pointer;
-    font-size: 50px;
-    font-style: italic;
-    animation: glitch 1s steps(100) infinite;
-  }
+    .info {
+      height: 146vh;
 
-  .description {
-    display: flex;
-    width: 50%;
-    justify-content: flex-end;
-    height: 150px;
+      .description {
+        width: 400px;
+      }
+    }
   }
 }
+
