@@ -1,0 +1,13 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.tmb img {
+  width: 400px;
+  cursor: pointer;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+  margin: -200px;
+}
