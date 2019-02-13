@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
   public firstImage;
   public secondImage;
 
-
   constructor(
     public dialog: MatDialog
   ) {
@@ -32,7 +31,7 @@ export class HomeComponent implements OnInit {
         '../../assets/3.jpg',
         '../../assets/4.jpg',
         '../../assets/5.jpg',
-        '../../assets/6.jpg'
+        '../../assets/6.jpg',
       ],
 
       i = -1;
@@ -45,7 +44,7 @@ export class HomeComponent implements OnInit {
       } else {
         this.secondImage = images[i + 1];
       }
-    }, 4000);
+    }, 3000);
   }
 
   welcomeBanner() {

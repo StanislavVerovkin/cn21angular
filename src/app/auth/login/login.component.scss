@@ -24,9 +24,6 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
-
-    :focus {
-      outline: none;
-    }
+    outline: none;
   }
 }

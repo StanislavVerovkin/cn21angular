@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,6 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private router: Router,
+    private spinner: NgxSpinnerService
   ) {
   }
 
@@ -30,9 +32,11 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(value) {
+    this.spinner.show();
     this.authService.resetPassword(value.email)
       .then(() => {
         this.router.navigate(['/login']);
+        this.spinner.hide();
         this.snackBar.open('Link for change password successfully sent', 'Close', {
           duration: 5000
         });
