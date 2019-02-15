@@ -18,6 +18,7 @@ export class ProductFormComponent implements OnInit {
 
   public id;
   public categories$;
+  public sizes$;
   public product;
   public image;
 
@@ -36,6 +37,7 @@ export class ProductFormComponent implements OnInit {
               private router: Router,
   ) {
     this.categories$ = categoryService.getCategories();
+    this.sizes$ = productService.getSizes();
   }
 
   ngOnInit() {
@@ -122,7 +124,6 @@ export class ProductFormComponent implements OnInit {
   }
 
   onSubmit(value) {
-    debugger;
     this.spinner.show();
     if (this.id) {
       this.productService.updateProduct(this.id, value)

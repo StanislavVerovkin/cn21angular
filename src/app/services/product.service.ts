@@ -13,7 +13,6 @@ export class ProductService {
   }
 
   addProductToDb(value) {
-    debugger;
     return this.db.list('products').push(value);
   }
 
@@ -27,6 +26,19 @@ export class ProductService {
         map(actions => {
           return actions.map(a => {
             const data = a.payload.val() as Product;
+            const id = a.payload.key;
+            return {id, ...data};
+          });
+        })
+      );
+  }
+
+  getSizes() {
+    return this.db.list('sizes').snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.val();
             const id = a.payload.key;
             return {id, ...data};
           });

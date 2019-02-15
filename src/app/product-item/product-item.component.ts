@@ -4,6 +4,7 @@ import {ProductService} from '../services/product.service';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {MatDialog} from '@angular/material';
 import {DialogComponent} from '../dialogs/dialog/dialog.component';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-product-item',
@@ -18,6 +19,7 @@ export class ProductItemComponent implements OnInit {
 
   public index;
   public images = [];
+  public size = new FormControl();
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
@@ -46,6 +48,18 @@ export class ProductItemComponent implements OnInit {
   }
 
   addToCart() {
+
+    const PRODUCT = {
+      availableSizes: this.product.availableSizes = this.size.value,
+      category: this.product.category,
+      description: this.product.description,
+      image: this.product.image,
+      price: this.product.price,
+      title: this.product.title
+    };
+
+    debugger;
+
     this.product.preOrder ?
       this.dialog.open(DialogComponent, {
         height: '400px',
@@ -53,6 +67,6 @@ export class ProductItemComponent implements OnInit {
         data: this.product
       })
       :
-      this.cartService.addToCart(this.product);
+      this.cartService.addToCart(PRODUCT);
   }
 }

@@ -12,9 +12,9 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-chip-list formArrayName="availableSizes" #chipList>
-        <mat-chip  *ngFor="let size of availableSizes.controls" [selectable]="selectable"
+        <mat-chip  *ngFor="let size of sizes$ | async" [selectable]="selectable"
                   [removable]="removable" (removed)="removeSize(size)">
-          {{size.value}}
+          {{size.name}}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
         <input
