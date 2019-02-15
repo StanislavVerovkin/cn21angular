@@ -52,6 +52,7 @@ export class ProductItemComponent implements OnInit {
         width: '600px',
         data: this.product
       })
-      : this.cartService.addToCart(this.product);
+      :
+      this.cartService.addToCart(this.product);
   }
 }

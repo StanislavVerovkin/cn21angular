@@ -6,17 +6,9 @@
     <div
       class="buy"
       (click)="addToCart()"
-      *ngIf="cart.getQuantity(product) === 0; else updateQuantity"
     >
       <strong>BUY</strong>
     </div>
-    <ng-template #updateQuantity>
-      <app-product-quantity
-        class="quantity"
-        [product]="product"
-        [shoppingCart]="cart">
-      </app-product-quantity>
-    </ng-template>
     <div class="description">{{product.description}}</div>
   </div>
   <app-carousel

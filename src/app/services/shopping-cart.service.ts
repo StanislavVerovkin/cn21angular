@@ -79,8 +79,8 @@ export class ShoppingCartService {
             const quantity = (item.quantity || 0) + change;
 
             item$.update({
-              product: product,
-              quantity: quantity
+              product,
+              quantity
             });
 
             if (quantity === 0) {
@@ -90,7 +90,7 @@ export class ShoppingCartService {
 
           if (item === null) {
             item$.set({
-              product: product,
+              product,
               quantity: 1
             });
           }

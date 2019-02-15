@@ -11,7 +11,20 @@
       <textarea formControlName="description" matInput placeholder="Description"></textarea>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input formControlName="size" matInput placeholder="Size">
+      <mat-chip-list formArrayName="availableSizes" #chipList>
+        <mat-chip  *ngFor="let size of availableSizes.controls" [selectable]="selectable"
+                  [removable]="removable" (removed)="removeSize(size)">
+          {{size.value}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Sizes"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="addSize($event)"
+        >
+      </mat-chip-list>
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <input formControlName="image" matInput placeholder="Image">
