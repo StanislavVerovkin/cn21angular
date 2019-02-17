@@ -9,8 +9,6 @@ import {ShoppingCart} from '../models/shopping-cart';
 })
 export class ShoppingCartService {
 
-  public cart;
-
   constructor(private afs: AngularFirestore, private db: AngularFireDatabase) {
   }
 
@@ -79,7 +77,7 @@ export class ShoppingCartService {
             const quantity = (item.quantity || 0) + change;
 
             item$.update({
-              product,
+              product: product,
               quantity
             });
 

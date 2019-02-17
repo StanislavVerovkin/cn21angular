@@ -5,6 +5,7 @@ import {ShoppingCartService} from '../services/shopping-cart.service';
 import {MatDialog} from '@angular/material';
 import {DialogComponent} from '../dialogs/dialog/dialog.component';
 import {FormControl} from '@angular/forms';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-item',
@@ -49,8 +50,9 @@ export class ProductItemComponent implements OnInit {
 
   addToCart() {
 
-    const PRODUCT = {
-      availableSizes: this.product.availableSizes = this.size.value,
+    const product = {
+      id: this.product.id,
+      size: this.size.value,
       category: this.product.category,
       description: this.product.description,
       image: this.product.image,
@@ -58,15 +60,13 @@ export class ProductItemComponent implements OnInit {
       title: this.product.title
     };
 
-    debugger;
-
     this.product.preOrder ?
       this.dialog.open(DialogComponent, {
         height: '400px',
         width: '600px',
-        data: this.product
+        data: product
       })
       :
-      this.cartService.addToCart(PRODUCT);
+      this.cartService.addToCart(product);
   }
 }
