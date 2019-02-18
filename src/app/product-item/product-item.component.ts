@@ -51,7 +51,7 @@ export class ProductItemComponent implements OnInit {
   addToCart() {
 
     const product = {
-      id: this.product.id,
+      // id: this.product.id,
       size: this.size.value,
       category: this.product.category,
       description: this.product.description,

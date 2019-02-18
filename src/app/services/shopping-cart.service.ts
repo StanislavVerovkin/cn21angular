@@ -3,6 +3,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, take} from 'rxjs/operators';
 import {ShoppingCart} from '../models/shopping-cart';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,8 @@ export class ShoppingCartService {
     this.db.object('/cart/' + cartId + '/items/' + productId).remove();
   }
 
-  private getItem(cartId: string, productId: string) {
-    return this.db.object('/cart/' + cartId + '/items/' + productId);
+  private getItem(cartId: string) {
+    return this.db.list('/cart/' + cartId + '/items/');
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -65,32 +66,44 @@ export class ShoppingCartService {
   private async updateItemQuantity(product, change: number) {
 
     const cartId = await this.getOrCreateCartId();
-    const item$ = this.getItem(cartId, product.id);
+    const item$ = this.getItem(cartId);
 
     item$.valueChanges()
       .pipe(
         take(1)
       )
-      .subscribe((item: any) => {
+      .subscribe((item: any[]) => {
 
-          if (item !== null) {
-            const quantity = (item.quantity || 0) + change;
+          // if (item !== null && item.product.size !== product.size) {
+          // const quantity = (item.quantity || 0) + change;
 
-            item$.update({
-              product: product,
-              quantity
-            });
 
-            if (quantity === 0) {
-              item$.remove();
-            }
-          }
+          // this.db.list('/cart/' + cartId + '/items/').push({
+          //   product,
+          //   quantity: 1
+          // });
 
-          if (item === null) {
-            item$.set({
+          // item$.update({
+          //   product,
+          //   quantity
+          // });
+
+          // if (quantity === 0) {
+          //   item$.remove();
+          // }
+          // }
+
+          if (item.length === 0) {
+            item$.push({
               product,
               quantity: 1
             });
+          }
+
+          if (item.find((i) => i.product.size === product.size)) {
+            console.log('size equal');
+          } else {
+            console.log('not equal');
           }
         }
       );
