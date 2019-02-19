@@ -3,7 +3,6 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, take} from 'rxjs/operators';
 import {ShoppingCart} from '../models/shopping-cart';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +39,7 @@ export class ShoppingCartService {
   }
 
   private getItem(cartId: string) {
-    return this.db.list('/cart/' + cartId + '/items/');
+    return this.db.object('/cart/' + cartId + '/items/');
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -72,38 +71,34 @@ export class ShoppingCartService {
       .pipe(
         take(1)
       )
-      .subscribe((item: any[]) => {
+      .subscribe((item: any) => {
 
-          // if (item !== null && item.product.size !== product.size) {
-          // const quantity = (item.quantity || 0) + change;
+        debugger;
 
-
-          // this.db.list('/cart/' + cartId + '/items/').push({
-          //   product,
-          //   quantity: 1
-          // });
-
-          // item$.update({
-          //   product,
-          //   quantity
-          // });
-
-          // if (quantity === 0) {
-          //   item$.remove();
-          // }
-          // }
-
-          if (item.length === 0) {
-            item$.push({
+          if (item === null) {
+            item$.set({
               product,
               quantity: 1
             });
-          }
+          } else if (item !== null) {
 
-          if (item.find((i) => i.product.size === product.size)) {
-            console.log('size equal');
-          } else {
-            console.log('not equal');
+            const quantity = (item.quantity || 0) + change;
+
+            debugger
+
+            this.db.object('/cart/' + cartId + '/items/' + product.id + `-${product.size}`).set({
+              product,
+              quantity
+            });
+
+            if (quantity === 0) {
+              item$.remove();
+            }
+          } else if (item !== null && item.product.size !== product.size) {
+            this.db.object('/cart/' + cartId + '/items/' + product.id + `-${product.size}`).update({
+              product,
+              quantity: 1
+            });
           }
         }
       );
