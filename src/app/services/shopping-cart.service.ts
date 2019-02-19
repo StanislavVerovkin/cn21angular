@@ -73,24 +73,28 @@ export class ShoppingCartService {
       )
       .subscribe((item: any) => {
 
-          if (item !== null) {
-            const quantity = (item.quantity || 0) + change;
-
-            item$.update({
-              product: product,
-              quantity
-            });
-
-            if (quantity === 0) {
-              item$.remove();
-            }
-          }
-
           if (item === null) {
             item$.set({
               product,
               quantity: 1
             });
+          } else {
+            item$.update({
+              product,
+              quantity: 1
+            });
+
+            if (product.id === item.product.id) {
+              const quantity = (item.quantity || 0) + change;
+              item$.update({
+                product,
+                quantity
+              });
+
+              if (quantity === 0) {
+                item$.remove();
+              }
+            }
           }
         }
       );

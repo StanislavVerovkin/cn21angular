@@ -3,8 +3,8 @@
     <h2 class="total">Merchandise Total: EUR {{cart.totalPrice | number}}</h2>
     <div class="cart-product">
       <div *ngFor="let item of cart.items; trackBy: trackByFn">
-        <h3>{{item.product.title}}</h3>
-        <div [routerLink]="['/product-item/', item.product.id]" class="img">
+        <h3>{{item.product.title}} | {{item.product.size}}</h3>
+        <div class="img">
           <img [src]="item.product.image" alt="">
         </div>
         <app-product-quantity
