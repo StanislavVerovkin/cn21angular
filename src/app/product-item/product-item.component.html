@@ -9,12 +9,18 @@
           {{p}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="!p">
+        Please choose size
+      </mat-error>
     </mat-form-field>
-    <div
-      class="buy"
-      (click)="addToCart()"
-    >
-      <strong>BUY</strong>
+    <div class="buy">
+      <button
+        (click)="addToCart()"
+        mat-raised-button
+        [disabled]="size.invalid"
+      >
+        BUY
+      </button>
     </div>
     <div class="description">{{product.description}}</div>
   </div>

@@ -24,9 +24,13 @@
     }
 
     .buy {
-      font-size: 50px;
-      font-style: italic;
-      cursor: pointer;
+      button {
+        border-radius: 1px;
+        margin-bottom: 10px;
+        font-size: 50px;
+        font-style: italic;
+        height: 62px;
+      }
     }
 
     .pre-order {

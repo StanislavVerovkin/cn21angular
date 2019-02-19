@@ -3,13 +3,17 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, take} from 'rxjs/operators';
 import {ShoppingCart} from '../models/shopping-cart';
+import {MatSnackBar} from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingCartService {
 
-  constructor(private afs: AngularFirestore, private db: AngularFireDatabase) {
+  constructor(private afs: AngularFirestore,
+              private db: AngularFireDatabase,
+              private snackBar: MatSnackBar,
+  ) {
   }
 
   private create() {
@@ -85,7 +89,16 @@ export class ShoppingCartService {
             });
 
             if (product.id === item.product.id) {
-              const quantity = (item.quantity || 0) + change;
+              const limit = 2;
+              let quantity = (item.quantity || 0) + change;
+
+              if (quantity > limit) {
+                quantity = limit;
+                this.snackBar.open('You can place a maximum of 2 identical items in the Shopping Bag', 'Close', {
+                  duration: 5000
+                });
+              }
+
               item$.update({
                 product,
                 quantity

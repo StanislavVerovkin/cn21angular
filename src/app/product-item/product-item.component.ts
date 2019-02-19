@@ -4,8 +4,7 @@ import {ProductService} from '../services/product.service';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {MatDialog} from '@angular/material';
 import {DialogComponent} from '../dialogs/dialog/dialog.component';
-import {FormControl} from '@angular/forms';
-import {take} from 'rxjs/operators';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-product-item',
@@ -20,7 +19,7 @@ export class ProductItemComponent implements OnInit {
 
   public index;
   public images = [];
-  public size = new FormControl();
+  public size = new FormControl('', [Validators.required]);
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
