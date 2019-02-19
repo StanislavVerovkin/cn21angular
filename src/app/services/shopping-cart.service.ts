@@ -38,8 +38,8 @@ export class ShoppingCartService {
     this.db.object('/cart/' + cartId + '/items/' + productId).remove();
   }
 
-  private getItem(cartId: string) {
-    return this.db.object('/cart/' + cartId + '/items/');
+  private getItem(cartId: string, productId: string) {
+    return this.db.object('/cart/' + cartId + '/items/' + productId);
   }
 
   private async getOrCreateCartId(): Promise<string> {
@@ -65,7 +65,7 @@ export class ShoppingCartService {
   private async updateItemQuantity(product, change: number) {
 
     const cartId = await this.getOrCreateCartId();
-    const item$ = this.getItem(cartId);
+    const item$ = this.getItem(cartId, product.id);
 
     item$.valueChanges()
       .pipe(
@@ -73,32 +73,28 @@ export class ShoppingCartService {
       )
       .subscribe((item: any) => {
 
-        debugger;
-
           if (item === null) {
             item$.set({
               product,
               quantity: 1
             });
-          } else if (item !== null && item.product.size === product.size) {
-
-            const quantity = (item.quantity || 0) + change;
-
-            debugger
-
-            this.db.object('/cart/' + cartId + '/items/').set({
-              product,
-              quantity
-            });
-
-            if (quantity === 0) {
-              item$.remove();
-            }
-          } else if (item !== null && item.product.size !== product.size) {
-            this.db.object('/cart/' + cartId + '/items/'  + `product-${product.size}`).update({
+          } else {
+            item$.update({
               product,
               quantity: 1
             });
+
+            if (product.id === item.product.id) {
+              const quantity = (item.quantity || 0) + change;
+              item$.update({
+                product,
+                quantity
+              });
+
+              if (quantity === 0) {
+                item$.remove();
+              }
+            }
           }
         }
       );

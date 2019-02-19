@@ -4,7 +4,7 @@
     <div class="title">{{product.title}}</div>
     <div class="price">EUR {{product.price}}</div>
     <mat-form-field>
-      <mat-select [formControl]="size" placeholder="Favorite food">
+      <mat-select [formControl]="size" placeholder="Size">
         <mat-option *ngFor="let p of product.availableSizes" [value]="p">
           {{p}}
         </mat-option>
