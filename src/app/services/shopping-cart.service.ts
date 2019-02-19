@@ -80,13 +80,13 @@ export class ShoppingCartService {
               product,
               quantity: 1
             });
-          } else if (item !== null) {
+          } else if (item !== null && item.product.size === product.size) {
 
             const quantity = (item.quantity || 0) + change;
 
             debugger
 
-            this.db.object('/cart/' + cartId + '/items/' + product.id + `-${product.size}`).set({
+            this.db.object('/cart/' + cartId + '/items/').set({
               product,
               quantity
             });
@@ -95,7 +95,7 @@ export class ShoppingCartService {
               item$.remove();
             }
           } else if (item !== null && item.product.size !== product.size) {
-            this.db.object('/cart/' + cartId + '/items/' + product.id + `-${product.size}`).update({
+            this.db.object('/cart/' + cartId + '/items/'  + `product-${product.size}`).update({
               product,
               quantity: 1
             });
