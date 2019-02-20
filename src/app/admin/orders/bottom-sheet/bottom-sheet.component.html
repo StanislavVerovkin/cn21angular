@@ -1,0 +1,12 @@
+<div class="container" *ngFor="let orders of data | async">
+  <div class="main" *ngFor="let p of orders.items">
+    <span>{{p.product.title}}</span> |
+    <span>{{p.product.size}}</span> |
+    <span>EUR {{p.totalPrice}}</span> |
+    <span>{{p.quantity}}</span>
+    <div>
+      <img [src]="p.product.image" alt="">
+    </div>
+  </div>
+</div>
+

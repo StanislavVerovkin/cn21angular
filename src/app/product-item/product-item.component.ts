@@ -51,6 +51,7 @@ export class ProductItemComponent implements OnInit {
 
     const product = {
       id: this.product.id + `-${this.size.value}`,
+      originalId: this.product.id,
       size: this.size.value,
       category: this.product.category,
       description: this.product.description,

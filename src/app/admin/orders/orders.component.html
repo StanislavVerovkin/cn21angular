@@ -11,12 +11,6 @@
       <p>Delivery Way: <strong>{{o.shipping.delivery}}</strong></p>
     </mat-card-content>
     <hr>
-    <mat-card-content *ngFor="let p of o.items">
-      <p>Product: <strong>{{p.product.title}}</strong></p>
-      <p>Quantity: <strong>{{p.quantity}}</strong></p>
-      <p>Total price: <strong>{{p.totalPrice}}</strong></p>
-    </mat-card-content>
+    <button (click)="openBottomSheet()" mat-raised-button>Show more</button>
   </mat-card>
 </div>
-
-
