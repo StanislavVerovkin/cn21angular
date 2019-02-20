@@ -101,7 +101,8 @@ export class CheckOutComponent implements OnInit, OnDestroy {
           product: {
             title: i.product.title,
             image: i.product.image,
-            price: i.product.price
+            price: i.product.price,
+            size: i.product.size
           },
           quantity: i.quantity,
           totalPrice: i.totalPrice

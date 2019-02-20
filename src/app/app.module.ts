@@ -25,7 +25,7 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule, MatBottomSheetModule
 } from '@angular/material';
 import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
@@ -64,6 +64,7 @@ import {CarouselComponent} from './carousel/carousel.component';
 import {DialogComponent} from './dialogs/dialog/dialog.component';
 import {WelcomeDialogComponent} from './dialogs/welcome-dialog/welcome-dialog.component';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
+import { BottomSheetComponent } from './admin/orders/bottom-sheet/bottom-sheet.component';
 
 const routes: Routes = [
 
@@ -105,9 +106,10 @@ const routes: Routes = [
     CarouselComponent,
     DialogComponent,
     WelcomeDialogComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    BottomSheetComponent
   ],
-  entryComponents: [DialogComponent, WelcomeDialogComponent],
+  entryComponents: [DialogComponent, WelcomeDialogComponent, BottomSheetComponent],
   imports: [
     [RouterModule.forRoot(routes, {useHash: true})],
     AngularFireModule.initializeApp(environment.firebase),
@@ -146,6 +148,7 @@ const routes: Routes = [
     MatChipsModule,
     MatSidenavModule,
     MatListModule,
+    MatBottomSheetModule
   ],
   providers: [
     AuthService,
