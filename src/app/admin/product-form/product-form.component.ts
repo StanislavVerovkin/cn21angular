@@ -66,8 +66,7 @@ export class ProductFormComponent implements OnInit {
         'thirdImage': new FormControl('', [
           Validators.required
         ]),
-        'availableSizes': this.fb.array([],
-          Validators.required),
+        'availableSizes': this.fb.array([]),
         'preOrder': new FormControl()
       }
     );
@@ -107,7 +106,7 @@ export class ProductFormComponent implements OnInit {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.availableSizes.push(new FormControl(value.trim()));
+      this.availableSizes.value.push(value.trim());
     }
 
     if (input) {
@@ -116,10 +115,10 @@ export class ProductFormComponent implements OnInit {
   }
 
   removeSize(size): void {
-    const index = this.availableSizes.controls.indexOf(size);
+    const index = this.availableSizes.value.indexOf(size);
 
     if (index >= 0) {
-      this.availableSizes.controls.splice(index, 1);
+      this.availableSizes.value.splice(index, 1);
     }
   }
 
