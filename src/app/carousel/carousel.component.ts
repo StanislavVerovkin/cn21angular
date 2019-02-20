@@ -19,16 +19,29 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   ],
 })
 
-export class CarouselComponent {
+export class CarouselComponent implements OnInit {
   @Input() images: Array<string>;
   @Output() change: EventEmitter<number> = new EventEmitter<number>();
-  counter = 0;
+
+  public counter = 0;
+
+  ngOnInit() {
+    // this.changeImages();
+  }
 
   onClickThumb(event) {
     const total = this.images.length - 1;
     this.counter = event.layerX < 150 ? this.dec(total) : this.inc(total);
     this.change.emit(this.counter);
   }
+
+  // changeImages() {
+  //   setInterval(() => {
+  //     const total = this.images.length;
+  //     this.counter = this.counter >= 0 && this.counter !== 2 ? this.inc(total) : this.dec(total);
+  //     this.change.emit(this.counter);
+  //   }, 4000);
+  // }
 
   inc(total) {
     return (this.counter < total) ? this.counter + 1 : 0;

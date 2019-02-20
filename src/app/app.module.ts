@@ -64,7 +64,8 @@ import {CarouselComponent} from './carousel/carousel.component';
 import {DialogComponent} from './dialogs/dialog/dialog.component';
 import {WelcomeDialogComponent} from './dialogs/welcome-dialog/welcome-dialog.component';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
-import { BottomSheetComponent } from './admin/orders/bottom-sheet/bottom-sheet.component';
+import {BottomSheetComponent} from './admin/orders/bottom-sheet/bottom-sheet.component';
+import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
 
@@ -75,6 +76,7 @@ const routes: Routes = [
   {path: 'products', component: ProductsComponent},
   {path: 'product-item/:id', component: ProductItemComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
+  {path: 'about', component: AboutComponent},
 
   {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
   {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
@@ -107,7 +109,8 @@ const routes: Routes = [
     DialogComponent,
     WelcomeDialogComponent,
     ForgotPasswordComponent,
-    BottomSheetComponent
+    BottomSheetComponent,
+    AboutComponent,
   ],
   entryComponents: [DialogComponent, WelcomeDialogComponent, BottomSheetComponent],
   imports: [

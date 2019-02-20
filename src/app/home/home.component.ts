@@ -47,12 +47,12 @@ export class HomeComponent implements OnInit {
     }, 3000);
   }
 
-  welcomeBanner() {
-    setTimeout(() => {
-      this.dialog.open(WelcomeDialogComponent, {
-        height: '400px',
-        width: '600px',
-      });
-    }, 5000);
-  }
+  // welcomeBanner() {
+  //   setTimeout(() => {
+  //     this.dialog.open(WelcomeDialogComponent, {
+  //       height: '400px',
+  //       width: '600px',
+  //     });
+  //   }, 5000);
+  // }
 }
