@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../services/product.service';
 import {ShoppingCartService} from '../services/shopping-cart.service';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {DialogComponent} from '../dialogs/dialog/dialog.component';
 import {FormControl, Validators} from '@angular/forms';
 
@@ -24,7 +24,8 @@ export class ProductItemComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
               private cartService: ShoppingCartService,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private snackBar: MatSnackBar,
   ) {
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -67,6 +68,10 @@ export class ProductItemComponent implements OnInit {
         data: product
       })
       :
-      this.cartService.addToCart(product);
+      this.cartService.addToCart(product).then(() => {
+        this.snackBar.open('Your item successfully added to a Shopping Cart', 'Success', {
+          duration: 4000,
+        });
+      });
   }
 }
