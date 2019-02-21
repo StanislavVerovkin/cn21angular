@@ -3,6 +3,14 @@
   justify-content: center;
   width: 100%;
   align-items: center;
+
+  .change {
+    margin-bottom: 46em;
+    color: #d6cab9;
+    font-style: italic;
+    display: flex;
+    width: 37vh;
+  }
 }
 
 .tmb img {
@@ -12,24 +20,25 @@
   margin: -400px;
 }
 
-@media (max-width: 414px) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .carousel {
-    margin-left: 200px;
-    height: 500px;
+    margin: 0;
+
+    .change {
+      margin: 0;
+      color: #d6cab9;
+      font-style: italic;
+      width: 42vh;
+      position: relative;
+      top: 30px;
+    }
   }
 
   .tmb img {
-    width: 400px;
+    width: 21em;
+    margin: -358px;
+    position: relative;
+    top: 100px;
   }
 }
 
-@media (max-width: 375px) {
-  .carousel {
-    margin-left: 225px;
-    height: 550px;
-  }
-
-  .tmb img {
-    width: 350px;
-  }
-}

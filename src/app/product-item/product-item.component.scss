@@ -43,37 +43,18 @@
   }
 }
 
-@media (max-width: 414px) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .container {
     display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
     padding: 0;
+    height: 500px;
 
     .info {
-      height: 146vh;
 
       .description {
-        width: 400px;
-      }
-    }
-  }
-}
-
-@media (max-width: 375px) {
-  .container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-    padding: 0;
-
-    .info {
-      height: 146vh;
-
-      .description {
-        width: 340px;
+        width: 85%;
+        position: relative;
+        top: 440px;
       }
     }
   }

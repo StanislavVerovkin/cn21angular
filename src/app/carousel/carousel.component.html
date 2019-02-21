@@ -1,4 +1,7 @@
 <div class="carousel">
+  <div class="change" *ngIf="isShow">
+    click on image to change ...
+  </div>
   <div [@thumbState]="idx === counter ? 'active' : 'inactive'" class="tmb"
        *ngFor="let img of images; let idx = index">
     <img [src]="img" (click)="onClickThumb($event)"/>

@@ -13,21 +13,20 @@
   }
 }
 
-@media (max-width: 414px) {
-
+//Iphone 6 7 8
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .images {
-
     img {
-      width: 25em;
+      width: 51vh;
     }
   }
 }
 
-@media (max-width: 375px) {
+//Iphone 6 7 8 PLUS
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
   .images {
-
     img {
-      width: 22em;
+      width: 24em;
     }
   }
 }
