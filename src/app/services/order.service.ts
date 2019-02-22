@@ -18,6 +18,10 @@ export class OrderService {
     return this.db.list('/orders').valueChanges();
   }
 
+  getOrderById(orderId) {
+    return this.db.object('/orders/' + orderId + '/items/').valueChanges();
+  }
+
   getWarehouses() {
     return this.http.post('https://api.novaposhta.ua/v2.0/json/ ', {
       modelName: 'AddressGeneral',
