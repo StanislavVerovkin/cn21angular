@@ -29,4 +29,8 @@ export class OrderService {
       apiKey: '9e3e3e31d4ab0b594528f53be9a9f255',
     });
   }
+
+  pay(total) {
+   return this.http.get('../../server/payment.php?price=' + total);
+  }
 }

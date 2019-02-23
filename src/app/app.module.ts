@@ -66,6 +66,7 @@ import {WelcomeDialogComponent} from './dialogs/welcome-dialog/welcome-dialog.co
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
 import {BottomSheetComponent} from './admin/orders/bottom-sheet/bottom-sheet.component';
 import {AboutComponent} from './about/about.component';
+import { SafePipe } from './safe.pipe';
 
 const routes: Routes = [
 
@@ -111,6 +112,7 @@ const routes: Routes = [
     ForgotPasswordComponent,
     BottomSheetComponent,
     AboutComponent,
+    SafePipe,
   ],
   entryComponents: [DialogComponent, WelcomeDialogComponent, BottomSheetComponent],
   imports: [

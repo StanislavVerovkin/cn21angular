@@ -97,7 +97,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       dateCreated: new Date().toLocaleDateString(),
       shipping: this.form.value,
       items: this.cart.items.map(i => {
-        debugger
         return {
           product: {
             title: i.product.title,
