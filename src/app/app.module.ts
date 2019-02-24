@@ -67,6 +67,8 @@ import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.co
 import {BottomSheetComponent} from './admin/orders/bottom-sheet/bottom-sheet.component';
 import {AboutComponent} from './about/about.component';
 import { SafePipe } from './safe.pipe';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import {ContactService} from './services/contact.service';
 
 const routes: Routes = [
 
@@ -78,6 +80,7 @@ const routes: Routes = [
   {path: 'product-item/:id', component: ProductItemComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'contact', component: ContactUsComponent},
 
   {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
   {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
@@ -113,6 +116,7 @@ const routes: Routes = [
     BottomSheetComponent,
     AboutComponent,
     SafePipe,
+    ContactUsComponent,
   ],
   entryComponents: [DialogComponent, WelcomeDialogComponent, BottomSheetComponent],
   imports: [
@@ -163,7 +167,8 @@ const routes: Routes = [
     ShoppingCartService,
     OrderService,
     AuthGuard,
-    AdminGuard
+    AdminGuard,
+    ContactService
   ],
   bootstrap: [AppComponent]
 })

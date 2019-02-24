@@ -31,6 +31,6 @@ export class OrderService {
   }
 
   pay(total) {
-    return this.http.get('http://localhost:8888/api/payment.php?price=' + total);
+    return this.http.get('https://c-n-21.com/server/payment.php?price=' + total);
   }
 }
