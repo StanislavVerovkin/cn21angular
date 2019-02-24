@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ContactService} from '../services/contact.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contact-us',
@@ -10,7 +12,11 @@ import {ContactService} from '../services/contact.service';
 export class ContactUsComponent implements OnInit {
   public form;
 
-  constructor(private contactService: ContactService) {
+  constructor(
+    private contactService: ContactService,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+  ) {
   }
 
   ngOnInit() {
@@ -41,9 +47,13 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit(value) {
+    this.spinner.show();
     this.contactService.sendMessage(value)
       .subscribe({
-        next: data => console.log(data),
+        next: () => {
+          this.spinner.hide();
+          this.router.navigate(['/products']);
+        },
         error: err => console.log(err)
       });
   }
