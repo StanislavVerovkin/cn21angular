@@ -142,7 +142,7 @@ class LiqPay
             <form method="POST" action="%s" accept-charset="utf-8">
                 %s
                 %s
-                <input type="image" src="https://image.flaticon.com/icons/svg/24/24834.svg" name="btn_text" />
+                <input style="width: 80px" type="image" src="https://image.flaticon.com/icons/svg/24/24858.svg" name="btn_text" />
             </form>
             ',
             $this->_checkout_url,

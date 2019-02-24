@@ -1,4 +1,22 @@
-<div class="container"
-     [innerHtml]="formFromServer | safe: 'html'"
-     *ngIf="isLoaded">
+<div class="info">
+  <div *ngFor="let p of orderProducts">
+    <div class="title">{{p.product.title}}</div>
+    <div class="additional-container">
+      <div class="additional">
+        <div>Quantity: {{p.quantity}}</div>
+        <div>Size: {{p.product.size}}</div>
+        <div>Price: {{p.totalPrice}}</div>
+      </div>
+      <hr>
+      <div class="image">
+        <img [src]="p.product.image" alt="">
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="total">Total: {{total}}</div>
+  <div class="form-pay"
+       *ngIf="isLoaded"
+       [innerHtml]="formFromServer | safe: 'html'">
+  </div>
 </div>

@@ -13,6 +13,7 @@ export class OrderSuccessComponent implements OnInit {
   public id;
   public order = [];
   public total;
+  public orderProducts;
   public formFromServer;
   public isLoaded = false;
 
@@ -30,6 +31,7 @@ export class OrderSuccessComponent implements OnInit {
       this.spinner.show();
       this.orderService.getOrderById(this.id)
         .subscribe((data: any[]) => {
+          this.orderProducts = data;
           data.forEach((i) => {
             this.order.push(i.totalPrice);
             this.total = this.order.reduce((sum, current) => {

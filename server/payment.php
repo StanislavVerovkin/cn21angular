@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 
 include 'LiqPay.php';
 
@@ -14,11 +15,9 @@ if (isset($_GET['price'])) {
         'version' => '3',
         'amount' => $price,
         'currency' => 'EUR',
-        'description' => "test",
-        'language' => 'en'
+        'description' => "payment for products",
+        'language' => 'en',
     ));
 
     echo json_encode($html);
 }
-
-
