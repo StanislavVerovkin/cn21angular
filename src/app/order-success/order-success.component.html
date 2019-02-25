@@ -15,8 +15,8 @@
     <hr>
   </div>
   <div class="total">Total: {{total}}</div>
-  <!--<div class="form-pay"-->
-       <!--*ngIf="isLoaded"-->
-       <!--[innerHtml]="formFromServer | safe: 'html'">-->
-  <!--</div>-->
+  <div class="form-pay"
+       *ngIf="isLoaded"
+       [innerHtml]="formFromServer | safe: 'html'">
+  </div>
 </div>

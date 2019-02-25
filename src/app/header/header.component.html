@@ -23,7 +23,6 @@
         </div>
 
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>My orders</button>
           <ng-container *ngIf="appUser.isAdmin">
             <button routerLink="/admin/orders" mat-menu-item>Manage Orders</button>
             <button
