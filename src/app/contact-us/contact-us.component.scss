@@ -11,12 +11,33 @@
 .form {
   display: flex;
   justify-content: center;
-  padding: 150px 10px 10px;
-  height: 70vh;
+  height: 100%;
   align-items: center;
+
+  .title {
+    display: flex;
+    justify-content: center;
+  }
 
   button {
     border: 1px solid;
     border-radius: 0;
+  }
+
+  .send-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .images {
+
+    display: flex;
+    justify-content: center;
+    height: 70px;
+
+    img {
+      width: 30px;
+      margin: 20px;
+    }
   }
 }
