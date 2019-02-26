@@ -130,7 +130,7 @@ export class ProductFormComponent implements OnInit {
           this.spinner.hide();
         });
     } else {
-      this.productService.addProductToDb(value)
+      this.productService.addProduct(value)
         .then(() => {
           this.form.reset();
           this.router.navigate(['/admin/products']);
@@ -142,7 +142,7 @@ export class ProductFormComponent implements OnInit {
   deleteProduct() {
     if (confirm('Are you sure?')) {
       this.spinner.show();
-      this.productService.delete(this.id)
+      this.productService.deleteProduct(this.id)
         .then(() => {
           this.router.navigate(['/admin/products']);
           this.spinner.hide();

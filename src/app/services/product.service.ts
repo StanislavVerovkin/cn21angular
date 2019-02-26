@@ -12,15 +12,14 @@ export class ProductService {
   ) {
   }
 
-  addProductToDb(value) {
+  addProduct(value) {
     return this.db.list('products').push(value);
   }
 
   updateProduct(productId, value) {
-    if (value.preOrder !== undefined) {
-      return this.db.object('/products/' + productId).update(value);
-    } else {
-      return this.db.object('/products/' + productId).update({
+    return value.preOrder !== undefined ?
+      this.db.object('/products/' + productId).update(value)
+      : this.db.object('/products/' + productId).update({
         availableSizes: value.availableSizes,
         category: value.category,
         description: value.description,
@@ -31,7 +30,10 @@ export class ProductService {
         thirdImage: value.thirdImage,
         title: value.title,
       });
-    }
+  }
+
+  deleteProduct(productId) {
+    return this.db.object('/products/' + productId).remove();
   }
 
   getAllProducts() {
@@ -69,9 +71,5 @@ export class ProductService {
           return {id, ...data};
         })
       );
-  }
-
-  delete(productId) {
-    return this.db.object('/products/' + productId).remove();
   }
 }
