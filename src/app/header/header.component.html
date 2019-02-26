@@ -8,49 +8,49 @@
         <img routerLink="/" src="../../assets/C.N.21.svg">
       </div>
 
-      <!--<ng-template #anonymousUser>-->
-        <!--<button mat-button routerLinkActive="mat-primary" routerLink="/login" class="header-menu">Login</button>-->
-        <!--<button mat-button routerLinkActive="mat-primary" routerLink="/registration" class="header-menu">Join</button>-->
-      <!--</ng-template>-->
+      <ng-template #anonymousUser>
+        <button mat-button routerLinkActive="mat-primary" routerLink="/login" class="header-menu">Login</button>
+        <button mat-button routerLinkActive="mat-primary" routerLink="/registration" class="header-menu">Join</button>
+      </ng-template>
 
-      <!--<div *ngIf="appUser; else anonymousUser">-->
+      <div *ngIf="appUser; else anonymousUser">
 
-        <!--<div class="user-email">-->
-          <!--<button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">-->
-            <!--{{appUser.email}}-->
-          <!--</button>-->
-          <!--<button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>-->
-        <!--</div>-->
+        <div class="user-email">
+          <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">
+            {{appUser.email}}
+          </button>
+          <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">Logout</button>
+        </div>
 
-        <!--<mat-menu #menu="matMenu">-->
-          <!--<ng-container *ngIf="appUser.isAdmin">-->
-            <!--<button routerLink="/admin/orders" mat-menu-item>Manage Orders</button>-->
-            <!--<button-->
-              <!--[matMenuTriggerFor]="manage_products"-->
-              <!--routerLink="/admin/products"-->
-              <!--mat-menu-item-->
-            <!--&gt;-->
-              <!--Manage Products-->
-            <!--</button>-->
-          <!--</ng-container>-->
-        <!--</mat-menu>-->
+        <mat-menu #menu="matMenu">
+          <ng-container *ngIf="appUser.isAdmin">
+            <button routerLink="/admin/orders" mat-menu-item>Manage Orders</button>
+            <button
+              [matMenuTriggerFor]="manage_products"
+              routerLink="/admin/products"
+              mat-menu-item
+            >
+              Manage Products
+            </button>
+          </ng-container>
+        </mat-menu>
 
-        <!--<mat-menu #manage_products="matMenu">-->
-          <!--<button routerLink="/admin/products/new" mat-menu-item>New</button>-->
-        <!--</mat-menu>-->
+        <mat-menu #manage_products="matMenu">
+          <button routerLink="/admin/products/new" mat-menu-item>New</button>
+        </mat-menu>
 
-      <!--</div>-->
+      </div>
 
 
-      <!--<button class="cart" routerLink="/shopping-cart" mat-icon-button *ngIf="cart$ | async as cart">-->
-        <!--<mat-icon matBadgeColor="warn" [matBadge]="cart.totalItemsCount">add_shopping_cart</mat-icon>-->
-      <!--</button>-->
+      <button class="cart" routerLink="/shopping-cart" mat-icon-button *ngIf="cart$ | async as cart">
+        <mat-icon matBadgeColor="warn" [matBadge]="cart.totalItemsCount">add_shopping_cart</mat-icon>
+      </button>
 
     </div>
 
-    <!--<button class="menu" mat-icon-button (click)="snav.toggle()">-->
-      <!--<mat-icon>menu</mat-icon>-->
-    <!--</button>-->
+    <button class="menu" mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
   </mat-toolbar>
 

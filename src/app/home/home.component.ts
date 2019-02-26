@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       } else {
         this.secondImage = images[i + 1];
       }
-    }, 1500);
+    }, 3000);
   }
 
   // welcomeBanner() {
