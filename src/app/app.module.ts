@@ -120,7 +120,7 @@ const routes: Routes = [
   ],
   entryComponents: [DialogComponent, WelcomeDialogComponent, BottomSheetComponent],
   imports: [
-    [RouterModule.forRoot(routes, {useHash: true})],
+    [RouterModule.forRoot(routes)],
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
