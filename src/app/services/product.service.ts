@@ -17,7 +17,21 @@ export class ProductService {
   }
 
   updateProduct(productId, value) {
-    return this.db.object('/products/' + productId).update(value);
+    if (value.preOrder !== undefined) {
+      return this.db.object('/products/' + productId).update(value);
+    } else {
+      return this.db.object('/products/' + productId).update({
+        availableSizes: value.availableSizes,
+        category: value.category,
+        description: value.description,
+        firstImage: value.firstImage,
+        image: value.image,
+        price: value.price,
+        secondImage: value.secondImage,
+        thirdImage: value.thirdImage,
+        title: value.title,
+      });
+    }
   }
 
   getAllProducts() {
