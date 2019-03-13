@@ -31,7 +31,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AuthService} from './services/auth.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {environment} from '../environments/environment';
@@ -66,9 +66,11 @@ import {WelcomeDialogComponent} from './dialogs/welcome-dialog/welcome-dialog.co
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
 import {BottomSheetComponent} from './admin/orders/bottom-sheet/bottom-sheet.component';
 import {AboutComponent} from './about/about.component';
-import { SafePipe } from './safe.pipe';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+import {SafePipe} from './safe.pipe';
+import {ContactUsComponent} from './contact-us/contact-us.component';
 import {ContactService} from './services/contact.service';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 const routes: Routes = [
 
@@ -131,6 +133,13 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     NgxSpinnerModule,
     MatToolbarModule,
     MatTabsModule,
@@ -173,4 +182,8 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

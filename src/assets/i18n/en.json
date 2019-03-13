@@ -1,0 +1,21 @@
+{
+  "header": {
+    "login": "Login",
+    "join": "Join",
+    "logout": "Logout",
+    "manage_orders": "Manage Orders",
+    "manage_products": "Manage Products",
+    "new": "New"
+  },
+  "sidebar": {
+    "shop": "shop",
+    "about_us": "about us",
+    "contact_us": "contact us",
+    "accessories": "accessories",
+    "outwear": "outwear",
+    "pants": "pants",
+    "shirt": "shirt",
+    "shorts": "shorts",
+    "t-shirts": "t-shirts"
+  }
+}

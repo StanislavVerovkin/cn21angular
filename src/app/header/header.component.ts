@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {ShoppingCartService} from '../services/shopping-cart.service';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {CategoryService} from '../services/category.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -32,10 +33,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar,
               private router: Router,
               private cartService: ShoppingCartService,
-              public changeDetectorRef: ChangeDetectorRef,
-              public media: MediaMatcher,
               private categoryService: CategoryService,
+              private translate: TranslateService,
               public route: ActivatedRoute,
+              public changeDetectorRef: ChangeDetectorRef,
+              public media: MediaMatcher
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -67,6 +69,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .catch((error) => {
         this.snackBar.open(error.message, 'Close');
       });
+  }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
   }
 
   ngOnDestroy(): void {

@@ -1,19 +1,24 @@
 @import '~@angular/material/theming';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url('https://fonts.googleapis.com/css?family=Pridi');
+//@import url('https://fonts.googleapis.com/css?family=Pridi');
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Pridi, serif'
+  $font-family: 'Helvetica, sans-serif'
 );
 
 @include mat-core($custom-typography);
 
+@font-face {
+  font-family: Helvetica;
+  src: url(assets/fonts/HelveticaNeue-CondensedBold.ttf);
+}
+
 body {
   margin: 0;
-  font-family: 'Pridi', serif;
+  font-family: 'Helvetica', sans-serif;
 
   .mat-drawer-container {
     background-color: white;
