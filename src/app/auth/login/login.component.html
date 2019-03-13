@@ -1,30 +1,32 @@
 <div class="form">
   <form (ngSubmit)="onSubmit()" [formGroup]="form" class="example-form">
-    <mat-card-title align="center">LOGIN</mat-card-title>
+    <mat-card-title align="center">{{'auth_controls.title_login' | translate}}</mat-card-title>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email" formControlName="email">
+      <input matInput placeholder="{{'auth_controls.email' | translate}}" formControlName="email">
       <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-        Please enter a valid email address
+        {{'errors.valid_email' | translate}}
       </mat-error>
       <mat-error *ngIf="email.hasError('required')">
-        Email is required
+        {{'errors.required_email' | translate}}
       </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input type="password" matInput placeholder="Password" formControlName="password">
+      <input type="password" matInput placeholder="{{'auth_controls.password' | translate}}" formControlName="password">
       <mat-error *ngIf="form.contains('password') && !password.hasError('required')">
-        Min length is 6
+        {{'errors.min_length_pass' | translate}}
       </mat-error>
       <mat-error *ngIf="password.hasError('required')">
-        Password is required
+        {{'errors.required_password' | translate}}
       </mat-error>
     </mat-form-field>
     <div class="down-block">
       <div class="buttons-control">
-        <button [disabled]="form.invalid" mat-raised-button>Login</button>
-        <button type="button" class="join" routerLink="/registration" mat-raised-button>Join</button>
+        <button [disabled]="form.invalid" mat-raised-button>{{'auth_controls.login_btn' | translate}}</button>
+        <button type="button" class="join" routerLink="/registration" mat-raised-button>{{'auth_controls.join_btn' |
+          translate}}
+        </button>
       </div>
-      <span class="forgot" routerLink="/forgot-password">Forgot password ?</span>
+      <span class="forgot" routerLink="/forgot-password">{{'auth_controls.forgot' | translate}}</span>
     </div>
   </form>
 </div>

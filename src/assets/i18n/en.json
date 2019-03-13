@@ -17,5 +17,21 @@
     "shirt": "shirt",
     "shorts": "shorts",
     "t-shirts": "t-shirts"
+  },
+  "auth_controls": {
+    "title_login": "LOGIN",
+    "title_forgot": "RESET PASSWORD",
+    "email": "E-mail",
+    "password": "Password",
+    "login_btn": "Login",
+    "join_btn": "Join",
+    "reset_btn": "Reset password",
+    "forgot": "Forgot password ?"
+  },
+  "errors": {
+    "valid_email": "Please enter a valid email address",
+    "required_email": "Email is required",
+    "required_password": "Password is required",
+    "min_length_pass": "Min length is 6"
   }
 }

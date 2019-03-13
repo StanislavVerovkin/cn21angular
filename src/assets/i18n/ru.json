@@ -17,5 +17,21 @@
     "shirt": "рубашки",
     "shorts": "шорты",
     "t-shirts": "футболки"
+  },
+  "auth_controls": {
+    "title_login": "ВОЙТИ",
+    "title_forgot": "СБРОС ПАРОЛЯ",
+    "email": "E-mail",
+    "password": "Пароль",
+    "login_btn": "Войти",
+    "join_btn": "Присоединиться",
+    "reset_btn": "Сбросить пароль",
+    "forgot": "Забыли пароль ?"
+  },
+  "errors": {
+    "valid_email": "Введите правильный адрес почты",
+    "required_email": "Почтовый адрес обязателен",
+    "required_password": "Пароль обязателен",
+    "min_length_pass": "Минимальная длина 6 символов"
   }
 }

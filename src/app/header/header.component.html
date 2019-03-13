@@ -8,9 +8,10 @@
         <img routerLink="/" src="../../assets/images/C.N.21.svg">
       </div>
 
+      <button mat-button routerLinkActive="mat-primary" (click)="useLanguage('ru')" class="header-menu">RU</button>
+      <button mat-button routerLinkActive="mat-primary" (click)="useLanguage('en')" class="header-menu">EN</button>
+
       <ng-template #anonymousUser>
-        <button mat-button routerLinkActive="mat-primary" (click)="useLanguage('ru')" class="header-menu">RU</button>
-        <button mat-button routerLinkActive="mat-primary" (click)="useLanguage('en')" class="header-menu">EN</button>
         <button mat-button routerLinkActive="mat-primary" routerLink="/login" class="header-menu">{{ 'header.login' | translate }}</button>
         <button mat-button routerLinkActive="mat-primary" routerLink="/registration" class="header-menu">{{ 'header.join' | translate }}</button>
       </ng-template>
