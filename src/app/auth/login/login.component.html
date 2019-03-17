@@ -2,7 +2,7 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="form" class="example-form">
     <mat-card-title align="center">{{'auth_controls.title_login' | translate}}</mat-card-title>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="{{'auth_controls.email' | translate}}" formControlName="email">
+      <input matInput [placeholder]="'auth_controls.email' | translate" formControlName="email">
       <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
         {{'errors.valid_email' | translate}}
       </mat-error>
@@ -11,7 +11,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input type="password" matInput placeholder="{{'auth_controls.password' | translate}}" formControlName="password">
+      <input type="password" matInput [placeholder]="'auth_controls.password' | translate" formControlName="password">
       <mat-error *ngIf="form.contains('password') && !password.hasError('required')">
         {{'errors.min_length_pass' | translate}}
       </mat-error>
