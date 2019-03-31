@@ -26,12 +26,12 @@ export class HomeComponent implements OnInit {
   changeImage() {
 
     let images = [
-        '../../assets/1.jpg',
-        '../../assets/2.jpg',
-        '../../assets/3.jpg',
-        '../../assets/4.jpg',
-        '../../assets/5.jpg',
-        '../../assets/6.jpg',
+        '../../assets/images/IMG_6758.jpg',
+        '../../assets/images/IMG_6758.jpg',
+        // '../../assets/3.jpg',
+        // '../../assets/4.jpg',
+        // '../../assets/5.jpg',
+        // '../../assets/6.jpg',
       ],
 
       i = -1;
@@ -39,12 +39,11 @@ export class HomeComponent implements OnInit {
     setInterval(() => {
       i < images.length && i !== 5 ? i += 1 : i = 0;
       this.firstImage = images[i];
+      this.secondImage = images[i];
       if (i === 5) {
         this.secondImage = images[i - 1];
-      } else {
-        this.secondImage = images[i + 1];
       }
-    }, 1500);
+    }, 2000);
   }
 
   // welcomeBanner() {
