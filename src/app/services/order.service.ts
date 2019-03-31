@@ -7,7 +7,10 @@ import {HttpClient} from '@angular/common/http';
 })
 export class OrderService {
 
-  constructor(private db: AngularFireDatabase, private http: HttpClient) {
+  constructor(
+    private db: AngularFireDatabase,
+    private http: HttpClient
+  ) {
   }
 
   storeOrder(order) {
@@ -30,7 +33,7 @@ export class OrderService {
     });
   }
 
-  pay(total) {
+  getPayForm(total) {
     return this.http.get('https://c-n-21.com/server/payment.php?price=' + total);
   }
 }

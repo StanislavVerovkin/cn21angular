@@ -24,7 +24,6 @@ export class OrderSuccessComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id) {
@@ -38,7 +37,7 @@ export class OrderSuccessComponent implements OnInit {
               return sum + current;
             }, 0);
           });
-          this.orderService.pay(this.total)
+          this.orderService.getPayForm(this.total)
             .subscribe((form) => {
               this.formFromServer = form;
               this.isLoaded = true;
