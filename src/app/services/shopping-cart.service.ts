@@ -83,10 +83,6 @@ export class ShoppingCartService {
               quantity: 1
             });
           } else {
-            item$.update({
-              product,
-              quantity: 1
-            });
 
             if (product.id === item.product.id) {
               const limit = 2;
