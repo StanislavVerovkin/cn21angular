@@ -65,9 +65,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
       );
 
     const cart$ = await this.cartService.getCart();
-    this.cartSubscription = cart$.subscribe((cart) => {
-      this.cart = cart;
-    });
+    this.cartSubscription = cart$.subscribe(cart => this.cart = cart);
 
     this.userSubscription = this.auth.user$.subscribe((user) => {
       this.userId = user.uid;
@@ -124,7 +122,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
 
     return this.delivery.filter(data => data.DescriptionRu.toLowerCase().includes(filterValue));
   }
-
+ç
   ngOnDestroy() {
     this.cartSubscription.unsubscribe();
     this.userSubscription.unsubscribe();

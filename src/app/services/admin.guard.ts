@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate {
 
     return this.auth.appUser$
       .pipe(
-        map(appUser => appUser.isAdmin)
+        map((appUser => appUser.isAdmin))
       );
   }
 }

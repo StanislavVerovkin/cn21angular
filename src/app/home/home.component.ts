@@ -13,6 +13,13 @@ export class HomeComponent implements OnInit {
   public firstImage;
   public secondImage;
 
+  public images = [
+    '../../assets/images/1.jpg',
+    '../../assets/images/1.jpg',
+  ];
+
+  public i = -1;
+
   constructor(
     public dialog: MatDialog
   ) {
@@ -24,25 +31,10 @@ export class HomeComponent implements OnInit {
   }
 
   changeImage() {
-
-    let images = [
-        '../../assets/images/1.jpg',
-        '../../assets/images/1.jpg',
-        // '../../assets/images/3.jpg',
-        // '../../assets/images/4.jpg',
-        // '../../assets/images/5.jpg',
-        // '../../assets/images/6.jpg',
-      ],
-
-      i = -1;
-
     setInterval(() => {
-      i < images.length && i !== 5 ? i += 1 : i = 0;
-      this.firstImage = images[i];
-      this.secondImage = images[i];
-      if (i === 5) {
-        this.secondImage = images[i - 1];
-      }
+      this.i < this.images.length ? this.i += 1 : this.i = 0;
+      this.firstImage = this.images[this.i];
+      this.secondImage = this.images[this.i];
     }, 2000);
   }
 

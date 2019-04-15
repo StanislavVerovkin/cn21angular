@@ -70,6 +70,7 @@ export class ShoppingCartService {
 
     const cartId = await this.getOrCreateCartId();
     const item$ = this.getItem(cartId, product.id);
+    const limitOfAddedItems = 2;
 
     item$.valueChanges()
       .pipe(
@@ -85,11 +86,10 @@ export class ShoppingCartService {
           } else {
 
             if (product.id === item.product.id) {
-              const limit = 2;
               let quantity = (item.quantity || 0) + change;
 
-              if (quantity > limit) {
-                quantity = limit;
+              if (quantity > limitOfAddedItems) {
+                quantity = limitOfAddedItems;
                 this.snackBar.open('You can place a maximum of 2 identical items in the Shopping Bag', 'Close', {
                   duration: 5000
                 });
