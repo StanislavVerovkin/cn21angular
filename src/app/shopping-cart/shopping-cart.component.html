@@ -7,10 +7,7 @@
         <div [routerLink]="['/product-item/', item.product.originalId]" class="img">
           <img [src]="item.product.image" alt="">
         </div>
-        <app-product-quantity
-          class="product"
-          [product]="item.product"
-          [shoppingCart]="cart">
+        <app-product-quantity class="product" [product]="item.product" [shoppingCart]="cart">
         </app-product-quantity>
         <div class="price">
           <div>Total: EUR {{item.totalPrice | number}}</div>
@@ -35,4 +32,3 @@
     </div>
   </ng-template>
 </div>
-

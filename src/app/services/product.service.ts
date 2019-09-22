@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {AngularFireDatabase} from '@angular/fire/database';
-import {Product} from '../models/product.model';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Product } from '../models/product.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,7 +43,7 @@ export class ProductService {
           return actions.map(a => {
             const data = a.payload.val() as Product;
             const id = a.payload.key;
-            return {id, ...data};
+            return { id, ...data };
           });
         })
       );
@@ -56,7 +56,7 @@ export class ProductService {
           return actions.map(a => {
             const data = a.payload.val();
             const id = a.payload.key;
-            return {id, ...data};
+            return { id, ...data };
           });
         })
       );
@@ -68,7 +68,7 @@ export class ProductService {
         map(actions => {
           const data = actions.payload.val() as Product;
           const id = actions.payload.key;
-          return {id, ...data};
+          return { id, ...data };
         })
       );
   }

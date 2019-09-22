@@ -12,8 +12,10 @@
       <button mat-button routerLinkActive="mat-primary" (click)="useLanguage('en')" class="header-menu">EN</button>
 
       <ng-template #anonymousUser>
-        <button mat-button routerLinkActive="mat-primary" routerLink="/login" class="header-menu">{{ 'header.login' | translate }}</button>
-        <button mat-button routerLinkActive="mat-primary" routerLink="/registration" class="header-menu">{{ 'header.join' | translate }}</button>
+        <button mat-button routerLinkActive="mat-primary" routerLink="/login"
+          class="header-menu">{{ 'header.login' | translate }}</button>
+        <button mat-button routerLinkActive="mat-primary" routerLink="/registration"
+          class="header-menu">{{ 'header.join' | translate }}</button>
       </ng-template>
 
       <div *ngIf="appUser; else anonymousUser">
@@ -22,17 +24,14 @@
           <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="mat-accent" class="user">
             {{appUser.email}}
           </button>
-          <button mat-button (click)="onLogout()" routerLinkActive="mat-accent">{{ 'header.logout' | translate }}</button>
+          <button mat-button (click)="onLogout()"
+            routerLinkActive="mat-accent">{{ 'header.logout' | translate }}</button>
         </div>
 
         <mat-menu #menu="matMenu">
           <ng-container *ngIf="appUser.isAdmin">
             <button routerLink="/admin/orders" mat-menu-item>{{ 'header.manage_orders' | translate }}</button>
-            <button
-              [matMenuTriggerFor]="manage_products"
-              routerLink="/admin/products"
-              mat-menu-item
-            >
+            <button [matMenuTriggerFor]="manage_products" routerLink="/admin/products" mat-menu-item>
               {{ 'header.manage_products' | translate }}
             </button>
           </ng-container>
@@ -57,27 +56,19 @@
 
   </mat-toolbar>
 
-  <mat-sidenav-container
-    class="example-sidenav-container"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
-  >
-    <mat-sidenav
-      #snav
-      [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
-    >
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLinkActive="mat-list-item-content" routerLink="/products">{{ 'sidebar.shop' | translate }}</a>
-        <a mat-list-item routerLinkActive="mat-list-item-content" routerLink="/about">{{ 'sidebar.about_us' | translate }}</a>
-        <a mat-list-item routerLinkActive="mat-list-item-content" routerLink="/contact">{{ 'sidebar.contact_us' | translate }}</a>
+        <a mat-list-item routerLinkActive="mat-list-item-content"
+          routerLink="/products">{{ 'sidebar.shop' | translate }}</a>
+        <a mat-list-item routerLinkActive="mat-list-item-content"
+          routerLink="/about">{{ 'sidebar.about_us' | translate }}</a>
+        <a mat-list-item routerLinkActive="mat-list-item-content"
+          routerLink="/contact">{{ 'sidebar.contact_us' | translate }}</a>
         <hr>
-        <a
-          mat-list-item
-          [routerLink]="['/products/']"
-          *ngFor="let c of categories$ | async"
-          [queryParams]="{category: c.id}"
-          routerLinkActive="mat-list-item-content"
-        >
+        <a mat-list-item [routerLink]="['/products/']" *ngFor="let c of categories$ | async"
+          [queryParams]="{category: c.id}" routerLinkActive="mat-list-item-content">
           {{'sidebar.' + c.name | translate}}
         </a>
       </mat-nav-list>
@@ -88,4 +79,3 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-

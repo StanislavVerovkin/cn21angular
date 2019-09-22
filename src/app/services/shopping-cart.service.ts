@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {AngularFireDatabase} from '@angular/fire/database';
-import {map, take} from 'rxjs/operators';
-import {ShoppingCart} from '../models/shopping-cart';
-import {MatSnackBar} from '@angular/material';
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { map, take } from 'rxjs/operators';
+import { ShoppingCart } from '../models/shopping-cart';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ import {MatSnackBar} from '@angular/material';
 export class ShoppingCartService {
 
   constructor(private afs: AngularFirestore,
-              private db: AngularFireDatabase,
-              private snackBar: MatSnackBar,
+    private db: AngularFireDatabase,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -78,34 +78,34 @@ export class ShoppingCartService {
       )
       .subscribe((item: any) => {
 
-          if (item === null) {
-            item$.set({
-              product,
-              quantity: 1
-            });
-          } else {
+        if (item === null) {
+          item$.set({
+            product,
+            quantity: 1
+          });
+        } else {
 
-            if (product.id === item.product.id) {
-              let quantity = (item.quantity || 0) + change;
+          if (product.id === item.product.id) {
+            let quantity = (item.quantity || 0) + change;
 
-              if (quantity > limitOfAddedItems) {
-                quantity = limitOfAddedItems;
-                this.snackBar.open('You can place a maximum of 2 identical items in the Shopping Bag', 'Close', {
-                  duration: 5000
-                });
-              }
-
-              item$.update({
-                product,
-                quantity
+            if (quantity > limitOfAddedItems) {
+              quantity = limitOfAddedItems;
+              this.snackBar.open('You can place a maximum of 2 identical items in the Shopping Bag', 'Close', {
+                duration: 5000
               });
+            }
 
-              if (quantity === 0) {
-                item$.remove();
-              }
+            item$.update({
+              product,
+              quantity
+            });
+
+            if (quantity === 0) {
+              item$.remove();
             }
           }
         }
+      }
       );
   }
 }

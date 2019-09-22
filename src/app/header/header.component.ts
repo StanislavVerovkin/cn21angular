@@ -1,16 +1,16 @@
-import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AuthService} from '../services/auth.service';
-import {User} from '../models/user.model';
-import {ShoppingCart} from '../models/shopping-cart';
-import {Observable} from 'rxjs';
-import {ShoppingCartService} from '../services/shopping-cart.service';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {CategoryService} from '../services/category.service';
-import {TranslateService} from '@ngx-translate/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../services/auth.service';
+import { User } from '../models/user.model';
+import { ShoppingCart } from '../models/shopping-cart';
+import { Observable } from 'rxjs';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { CategoryService } from '../services/category.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -28,16 +28,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public _mobileQueryListener: () => void;
 
   constructor(private fb: AngularFireAuth,
-              private authService: AuthService,
-              private spinner: NgxSpinnerService,
-              private snackBar: MatSnackBar,
-              private router: Router,
-              private cartService: ShoppingCartService,
-              private categoryService: CategoryService,
-              private translate: TranslateService,
-              public route: ActivatedRoute,
-              public changeDetectorRef: ChangeDetectorRef,
-              public media: MediaMatcher
+    private authService: AuthService,
+    private spinner: NgxSpinnerService,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private cartService: ShoppingCartService,
+    private categoryService: CategoryService,
+    private translate: TranslateService,
+    public route: ActivatedRoute,
+    public changeDetectorRef: ChangeDetectorRef,
+    public media: MediaMatcher
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
