@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {CategoryService} from '../../services/category.service';
-import {ProductService} from '../../services/product.service';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {ActivatedRoute, Router} from '@angular/router';
-import {take} from 'rxjs/operators';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../services/category.service';
+import { ProductService } from '../../services/product.service';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-product-form',
@@ -31,10 +31,10 @@ export class ProductFormComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(public categoryService: CategoryService,
-              private productService: ProductService,
-              private spinner: NgxSpinnerService,
-              private route: ActivatedRoute,
-              private router: Router,
+    private productService: ProductService,
+    private spinner: NgxSpinnerService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.categories$ = categoryService.getCategories();
     this.sizes$ = productService.getSizes();
@@ -42,33 +42,33 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-        'title': new FormControl('', [
-          Validators.required,
-        ]),
-        'price': new FormControl('', [
-          Validators.required,
-        ]),
-        'description': new FormControl('', [
-          Validators.required,
-        ]),
-        'category': new FormControl('', [
-          Validators.required
-        ]),
-        'image': new FormControl('', [
-          Validators.required
-        ]),
-        'firstImage': new FormControl('', [
-          Validators.required
-        ]),
-        'secondImage': new FormControl('', [
-          Validators.required
-        ]),
-        'thirdImage': new FormControl('', [
-          Validators.required
-        ]),
-        'availableSizes': this.fb.array([]),
-        'preOrder': new FormControl()
-      }
+      'title': new FormControl('', [
+        Validators.required,
+      ]),
+      'price': new FormControl('', [
+        Validators.required,
+      ]),
+      'description': new FormControl('', [
+        Validators.required,
+      ]),
+      'category': new FormControl('', [
+        Validators.required
+      ]),
+      'image': new FormControl('', [
+        Validators.required
+      ]),
+      'firstImage': new FormControl('', [
+        Validators.required
+      ]),
+      'secondImage': new FormControl('', [
+        Validators.required
+      ]),
+      'thirdImage': new FormControl('', [
+        Validators.required
+      ]),
+      'availableSizes': this.fb.array([]),
+      'preOrder': new FormControl()
+    }
     );
 
     this.id = this.route.snapshot.paramMap.get('id');
@@ -95,7 +95,6 @@ export class ProductFormComponent implements OnInit {
         });
     }
   }
-
 
   get availableSizes(): FormArray {
     return this.form.get('availableSizes') as FormArray;
