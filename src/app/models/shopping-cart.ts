@@ -6,10 +6,12 @@ export class ShoppingCart {
   items: ShoppingCartItem[] = [];
 
   constructor(public itemsMap: { [productId: string]: ShoppingCartItem }) {
+    debugger
     this.itemsMap = itemsMap || {};
 
     for (const productId in itemsMap) {
       const item = itemsMap[productId];
+      debugger
       this.items.push(new ShoppingCartItem(item.product, item.quantity));
     }
   }
