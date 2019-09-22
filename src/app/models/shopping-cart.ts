@@ -1,5 +1,5 @@
-import {ShoppingCartItem} from './shopping-cart-item';
-import {Product} from './product.model';
+import { ShoppingCartItem } from './shopping-cart-item';
+import { Product } from './product.model';
 
 export class ShoppingCart {
 
